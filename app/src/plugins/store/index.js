@@ -1,0 +1,37 @@
+import { createPinia } from "pinia ";
+import { Buffer } from "buffer";
+import { QpStoreApp } from "./storeApp";
+import { QpStorePlayer } from "./storePlayer";
+
+export const QpInitStore = (store, payload) => {
+    if (localStorage.getItem(`qp-oykus-${store}`)) {
+        try { return QpFromStore(store) } catch (e) {
+            console.log(`Error on Init State > ${state} : `, e)
+        }
+    } else { QpToStore("player", payload) }
+    return payload
+}
+
+export const QpToStore = (store, payload) => {
+    localStorage.setItem(`qp-oykus-${store}`, Buffer.from(JSON.stringify(payload)).toString("base64"))
+}
+
+export const QpFromStore = (store) => {
+    return JSON.parse(Buffer.from(localStorage.getItem(`qp-oykus-${store}`), "base64").toString("utf8"))
+}
+
+const store = createPinia();
+
+export const storeApp = () => {
+    const store = QpStoreApp();
+    store.$subscribe((mutation, state) => { QpToStore("app", state) });
+    return store;
+};
+
+export const storePlayer = () => {
+    const store = QpStorePlayer();
+    store.$subscribe((mutation, state) => { QpToStore("player", state) });
+    return store;
+};
+
+export default store;

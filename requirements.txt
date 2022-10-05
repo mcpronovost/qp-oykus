@@ -1,0 +1,16 @@
+asgiref==3.5.2
+cffi==1.15.1
+cryptography==38.0.1
+Django==4.1.1
+django-cleanup==6.0.0
+django-colorfield==0.7.2
+django-cors-headers==3.13.0
+django-rest-knox==4.2.0
+djangorestframework==3.14.0
+Pillow==9.2.0
+pycparser==2.21
+python-dotenv==0.21.0
+pytz==2022.2.1
+sqlparse==0.4.3
+tzdata==2022.4
+whitenoise==6.2.0

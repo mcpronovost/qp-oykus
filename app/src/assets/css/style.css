@@ -1,0 +1,99 @@
+:root {
+  background-color: #323332;
+
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: #323332;
+    color: rgba(255, 255, 255, 0.87);
+  
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* =================================================================================== */
+/* ===--- MAIN --------------------------------------------------------------------=== */
+/* =================================================================================== */
+
+#qp-main {
+    background-color: transparent;
+    grid-column: 2 / 3;
+    grid-row: 3 / 3;
+}
+#qp-main main {
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#qp-main main.qp-open {
+    grid-template-columns: auto 300px;
+}
+#qp-mainview {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    height: calc(100vh - 49px);
+}
+#qp-sideview {
+    background-color: #3a3b3a;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    height: calc(100vh - 49px);
+}
+@media (max-width: 1199px) {
+    #qp-main,
+    #qp-main main.qp-open {
+        grid-template-columns: auto;
+    }
+    #qp-sideview {
+        box-shadow: -2px 0 2px rgba(0, 0, 0, 0.1);
+        width: calc(100vw - 128px);
+        max-width: 300px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+}

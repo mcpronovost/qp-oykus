@@ -1,0 +1,15 @@
+
+#app .el-card {
+    background-color: #3a3b3a;
+    border-color: #3a3b3a;
+    border-radius: 0;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+#app .el-row {
+    padding: 10px;
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
