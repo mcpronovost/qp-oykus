@@ -21,7 +21,7 @@
 </script>
 
 <template>
-    <QpPage :open="sideview.open">
+    <QpPage :sideview-open="sideview.open">
         <el-row :gutter="20">
             <el-col>
                 <el-card>
@@ -41,8 +41,11 @@
                 </el-card>
             </el-col>
         </el-row>
+        <template #sidenav>
+            sidenav
+        </template>
         <template #sideview>
-            bbvx
+            sideview
         </template>
     </QpPage>
 </template>
