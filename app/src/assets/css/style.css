@@ -1,4 +1,6 @@
 :root {
+  --el-color-primary: #89A411;
+
   background-color: #323332;
 
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -29,6 +31,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 
+    overflow-x: hidden;
     height: 100vh;
     padding: 0;
     margin: 0;
@@ -36,11 +39,11 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #89A411;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #89A411;
 }
 
 a {
