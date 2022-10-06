@@ -1,11 +1,27 @@
 <script setup>
-    import { House } from "@element-plus/icons-vue";
+    import logo from "@/assets/img/logo.png";
+    import router from "../../plugins/router";
+
+    const version = APP_VERSION || "0.1.0"
+
+    const goTo = (obj) => {
+        router.push(obj)
+    }
 </script>
 
 <template>
     <div id="qp-navbar">
         <el-scrollbar height="100%">
             <nav class="qp-navbar-nav">
+                <ul class="qp-navbar-nav-list">
+                    <li class="qp-navbar-nav-list-item qp-logo">
+                        <el-button circle @click="goTo({name:'Home'})">
+                            <el-avatar :src="logo">
+                                <span>Oykus</span>
+                            </el-avatar>
+                        </el-button>
+                    </li>
+                </ul>
                 <ul class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
                         <el-button circle>
@@ -34,6 +50,9 @@
                             <i class="mdi mdi-tune mdi-24px"></i>
                         </el-button>
                     </li>
+                    <li class="qp-navbar-nav-list-item qp-version">
+                        <span v-text="version"></span>
+                    </li>
                 </ul>
             </nav>
         </el-scrollbar>
@@ -42,7 +61,7 @@
 
 <style scope>
     #qp-navbar {
-        background-color: #1C1D1C;
+        background-color: var(--qp-navbar-bg);
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -71,11 +90,24 @@
         padding: 12px 0;
         margin: 0;
     }
+    .qp-navbar-nav-list-item.qp-logo {
+        padding: 3px 0 12px;
+    }
     .qp-navbar-nav-list-item .el-button,
     .qp-navbar-nav-list-item .el-button:hover,
     .qp-navbar-nav-list-item .el-button:focus,
     .qp-navbar-nav-list-item .el-button:active {
         background-color: transparent;
         border-color: transparent;
+    }
+    /* ===---=== */
+    .qp-navbar-nav-list-item.qp-logo .el-avatar {
+        --el-avatar-size: 32px;
+        background-color: #2a2b2a;
+    }
+    .qp-navbar-nav-list-item.qp-version {
+        font-size: 9px;
+        line-height: 120%;
+        color: #6a6b6a;
     }
 </style>

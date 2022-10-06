@@ -3,7 +3,8 @@ import { QpInitStore } from "./index";
 
 const initState = {
     "theme": "dark",
-    "sideview-open": true
+    "isSidenavShow": true,
+    "isSideviewShow": true
 }
 
 export const QpStoreApp = defineStore("storeApp", {
@@ -11,6 +12,12 @@ export const QpStoreApp = defineStore("storeApp", {
     actions: {
         toggleTheme() {
             this.theme = (this.theme == "dark" ? "light" : "dark")
+        },
+        toggleSidenavShow() {
+            this.isSidenavShow = !this.isSidenavShow
+        },
+        toggleSideviewShow() {
+            this.isSideviewShow = !this.isSideviewShow
         }
     }
 })

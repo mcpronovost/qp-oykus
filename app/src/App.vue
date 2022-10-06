@@ -1,15 +1,28 @@
 <script setup>
+    import { onMounted } from "vue";
+    import QpAppbar from "@/components/core/QpAppbar.vue";
     import QpNavbar from "@/components/core/QpNavbar.vue";
+    import QpTopbar from "@/components/core/QpTopbar.vue";
     import QpSidebar from "@/components/core/QpSidebar.vue";
+
+    const setVH = () => {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+    }
+
+    onMounted(() => {
+        setVH()
+        addEventListener("resize", () => {
+            setVH()
+        })
+    })
 </script>
 
 <template>
     <div id="qp-app">
-        <div id="qp-appbar"></div>
+        <QpAppbar />
         <QpNavbar />
-        <div id="qp-topbar">
-            topbar
-        </div>
+        <QpTopbar />
         <div id="qp-main">
             <router-view :key="$route.fullPath" />
         </div>
@@ -23,26 +36,12 @@
         grid-template-columns: 64px auto 64px;
         grid-template-rows: 1px 48px auto;
         width: 100vw;
-        min-width: 400px;
+        min-width: 300px;
         height: 100vh;
     }
-    @media (max-width: 1199px) {
+    @media (max-width: 767px) {
         #qp-app {
-            grid-template-columns: 64px auto 64px;
+            grid-template-columns: 64px auto;
         }
-    }
-    #qp-appbar {
-        background-color: #89A411;
-        grid-column: 1 / 4;
-        grid-row: 1 / 2;
-        height: 4px;
-    }
-    #qp-topbar {
-        background-color: #222322;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        grid-column: 2 / 4;
-        grid-row: 2 / 3;
     }
 </style>

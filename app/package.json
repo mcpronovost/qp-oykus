@@ -1,10 +1,10 @@
 {
   "name": "@mcpronovost/qp-oykus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "M-C Pronovost <mcpronovostkurkiency@gmail.com> (https://github.com/mcpronovost)",
   "private": true,
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },

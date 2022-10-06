@@ -27,7 +27,7 @@
                     </li>
                     <li class="qp-sidebar-nav-list-item">
                         <el-icon size="large">
-                            <User />
+                            <i class="mdi mdi-heart-outline"></i>
                         </el-icon>
                     </li>
                     <li class="qp-sidebar-nav-list-item">
@@ -59,13 +59,18 @@
 
 <style scope>
     #qp-sidebar {
-        background-color: #2A2B2A;
+        background-color: var(--qp-sidebar-bg);
         display: flex;
         width: 100%;
         align-items: flex-start;
         justify-content: center;
         grid-column: 3 / 4;
         grid-row: 3 / 4;
+    }
+    @media (max-width: 767px) {
+        #qp-sidebar {
+            display: none;
+        }
     }
     /* ===---=== */
     .qp-sidebar-nav {
@@ -90,7 +95,7 @@
         margin: 0;
     }
     .qp-sidebar-nav-list-item > .el-icon {
-        margin: 12px 0;
+        margin: 14px 0 12px;
     }
     .qp-sidebar-nav-list-item .el-button,
     .qp-sidebar-nav-list-item .el-button:hover,
