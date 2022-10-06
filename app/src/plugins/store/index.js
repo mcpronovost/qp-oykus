@@ -8,7 +8,7 @@ export const QpInitStore = (store, payload) => {
         try { return QpFromStore(store) } catch (e) {
             console.log(`Error on Init State > ${state} : `, e)
         }
-    } else { QpToStore("player", payload) }
+    } else { QpToStore(store, payload) }
     return payload
 }
 
@@ -23,15 +23,15 @@ export const QpFromStore = (store) => {
 const store = createPinia();
 
 export const storeApp = () => {
-    const store = QpStoreApp();
-    store.$subscribe((mutation, state) => { QpToStore("app", state) });
-    return store;
+    const qpStore = QpStoreApp();
+    qpStore.$subscribe((mutation, state) => { QpToStore("app", state) });
+    return qpStore;
 };
 
 export const storePlayer = () => {
-    const store = QpStorePlayer();
-    store.$subscribe((mutation, state) => { QpToStore("player", state) });
-    return store;
+    const qpStore = QpStorePlayer();
+    qpStore.$subscribe((mutation, state) => { QpToStore("player", state) });
+    return qpStore;
 };
 
 export default store;

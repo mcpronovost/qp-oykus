@@ -1,7 +1,7 @@
 :root {
   --qp-primary: #89a411;
   --qp-base-bg: #323332;
-  --qp-base-color: rgba(255, 255, 255, 0.87);
+  --qp-base-color: #ccc;
   --qp-navbar-bg: #1c1d1c;
   --qp-topbar-bg: #222322;
   --qp-sidebar-bg: #2a2b2a;
@@ -9,7 +9,8 @@
   --qp-sideview-bg: #393a39;
 
   --qp-card-bg: #393a39;
-  --qp-card-color: rgba(255, 255, 255, 0.87);
+  --qp-card-color: #ccc;
+  --qp-card-light-bg: #414241;
 
   /*
   
@@ -73,6 +74,11 @@ a {
 }
 a:hover {
   color: var(--qp-primary);
+}
+
+.qp-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* =================================================================================== */
