@@ -9,7 +9,7 @@
         { color: "#763939", percentage: 34 },
         { color: "#766739", percentage: 67 },
         { color: "var(--qp-primary-dark-2)", percentage: 100 },
-        { color: "var(--qp-primary)", percentage: 101 },
+        { color: "var(--qp-primary-dark-1)", percentage: 101 },
     ]
 
     const doDeleteItem = () => {
