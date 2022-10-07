@@ -27,7 +27,7 @@
                 </el-badge>
             </div>
             <div class="qp-topbar-item qp-player">
-                <el-dropdown trigger="click" @command="goTo">
+                <el-dropdown trigger="click" placement="bottom-end" popper-class="qp-topbar-popper" @command="goTo">
                     <el-avatar>
                         <span>Q</span>
                     </el-avatar>
@@ -43,14 +43,14 @@
                             <el-dropdown-item :command="{name:'MeProfil'}" :disabled="$route.name=='MeProfil'||true">
                                 <span>Mon profil</span>
                             </el-dropdown-item>
-                            <el-dropdown-item :command="{name:'MeProjects'}" :disabled="$route.name=='MeProjects'||true">
+                            <el-dropdown-item :command="{name:'MeProjects'}" :disabled="$route.name=='MeProjects'">
                                 <span>Mes projets</span>
                             </el-dropdown-item>
-                            <el-dropdown-item :command="{name:'MeTasks'}" :disabled="$route.name=='MeTasks'||true">
+                            <el-dropdown-item :command="{name:'MeTasks'}" :disabled="$route.name=='MeTasks'">
                                 <span>Mes tâches</span>
                             </el-dropdown-item>
                             <el-divider />
-                            <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'||true">
+                            <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'">
                                 <span>Paramètres</span>
                             </el-dropdown-item>
                             <el-divider />

@@ -25,8 +25,8 @@
 
 <style scoped>
     .qp-taskan-list {
-        background-color: var(--qp-card-bg);
-        padding: 12px;
+        background-color: transparent;
+        padding: 0;
     }
     .qp-taskan-list-header {
         display: flex;
@@ -36,10 +36,11 @@
         padding: 3px 6px 16px;
     }
     .qp-taskan-list-header h3 {
+        color: var(--qp-card-color);
         font-size: 14px;
         font-weight: 600;
         line-height: 120%;
-        opacity: 0.4;
+        opacity: 0.5;
         padding: 0;
         margin: 0;
     }

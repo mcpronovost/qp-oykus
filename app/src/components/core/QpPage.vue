@@ -1,5 +1,5 @@
 <script setup>
-    import { computed } from "vue";
+    import { computed, onMounted } from "vue";
     import { storeToRefs } from "pinia";
     import { storeApp } from "@/plugins/store";
 
@@ -8,7 +8,7 @@
 
     const useStoreApp = storeApp()
     const { isSidenavShow, isSideviewShow } = storeToRefs(useStoreApp)
-    const { toggleSidenavShow, toggleSideviewShow } = useStoreApp
+    const { toggleSidenavShow, toggleSideviewShow, setMainviewWidth } = useStoreApp
 
     const sideviewClass = computed(() => {
         if (isSidenavShow.value && isSideviewShow.value) {
@@ -19,6 +19,12 @@
             return "qp-sideview-show"
         }
         return ""
+    })
+
+    onMounted(() => {
+        new ResizeObserver((entries) => {
+            setMainviewWidth(entries[0].contentRect.width)
+        }).observe(document.getElementById("qp-mainview"))
     })
 </script>
 

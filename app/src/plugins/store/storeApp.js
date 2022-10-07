@@ -4,7 +4,8 @@ import { QpInitStore } from "./index";
 const initState = {
     "theme": "dark",
     "isSidenavShow": true,
-    "isSideviewShow": true
+    "isSideviewShow": true,
+    "mainviewWidth": 1200
 }
 
 export const QpStoreApp = defineStore("storeApp", {
@@ -18,6 +19,9 @@ export const QpStoreApp = defineStore("storeApp", {
         },
         toggleSideviewShow() {
             this.isSideviewShow = !this.isSideviewShow
+        },
+        setMainviewWidth(payload) {
+            this.mainviewWidth = payload
         }
     }
 })

@@ -1,15 +1,38 @@
 <script setup>
+    import { ElMessage, ElMessageBox } from "element-plus";
 
     const props = defineProps(["item"])
 
     const percent = (props.item.completed * 100) / props.item.total
 
     const listProgressColours = [
-        { color: '#a52f2f', percentage: 34 },
-        { color: '#bb902f', percentage: 67 },
-        { color: '#139595', percentage: 100 },
-        { color: '#139518', percentage: 101 },
+        { color: "#763939", percentage: 34 },
+        { color: "#766739", percentage: 67 },
+        { color: "var(--qp-primary-dark-2)", percentage: 100 },
+        { color: "var(--qp-primary)", percentage: 101 },
     ]
+
+    const doDeleteItem = () => {
+        ElMessageBox.confirm(
+            'proxy will permanently delete the file. Continue?',
+            'Warning',
+            {
+                confirmButtonText: "OK",
+                cancelButtonText: "Cancel",
+                type: "warning"
+            }
+        ).then(() => {
+            ElMessage({
+                type: 'success',
+                message: 'Delete completed',
+            })
+        }).catch(() => {
+            ElMessage({
+                type: 'info',
+                message: 'Delete canceled',
+            })
+        })
+    }
 
 </script>
 
@@ -27,7 +50,7 @@
                         <el-dropdown-item>
                             <span>Modifier</span>
                         </el-dropdown-item>
-                        <el-dropdown-item>
+                        <el-dropdown-item @click="doDeleteItem()">
                             <span>Supprimer</span>
                         </el-dropdown-item>
                     </el-dropdown-menu>
@@ -42,12 +65,19 @@
             <span v-text="`${props.item.completed} / ${props.item.total}`"></span>
             <el-progress :percentage="percent" :color="listProgressColours" :show-text="false" />
         </div>
+        <footer class="qp-taskan-item-footer">
+            <div>aaa</div>
+            <div>
+                <el-icon class="mdi mdi-comment-text-outline" />
+            </div>
+        </footer>
     </article>
 </template>
 
 <style scoped>
     .qp-taskan-item {
-        background-color: var(--qp-card-light-bg);
+        background-color: var(--qp-card-bg);
+        color: var(--qp-card-color);
         padding: 12px;
     }
     .qp-taskan-item + .qp-taskan-item {
@@ -93,11 +123,12 @@
         padding: 12px 0;
     }
     .qp-taskan-content > .el-button {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 120%;
         text-align: left;
         flex: 0 1 auto;
-        padding: 5px;
+        height: auto;
+        padding: 2px 3px;
     }
     .qp-taskan-content > span {
         font-size: 12px;
@@ -110,5 +141,11 @@
     .qp-taskan-content > .el-progress {
         flex: 1 1 100%;
         margin: 4px 0 0;
+    }
+    .qp-taskan-item-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5px;
     }
 </style>

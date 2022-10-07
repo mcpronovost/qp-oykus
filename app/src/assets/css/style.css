@@ -1,18 +1,22 @@
 :root {
   --qp-primary: #89a411;
-  --qp-base-bg: #323332;
-  --qp-base-color: #ccc;
-  --qp-navbar-bg: #1c1d1c;
-  --qp-topbar-bg: #222322;
-  --qp-sidebar-bg: #2a2b2a;
-  --qp-sidenav-bg: #2a2b2a;
-  --qp-sideview-bg: #393a39;
+  --qp-primary-dark-1: #788d18;
+  --qp-primary-dark-2: #66761e;
+  --qp-primary-dark-3: #556025;
+  --qp-primary-dark-4: #43492b;
+  --qp-base-bg: #323232;
+  --qp-base-color: #7a7a7a;
 
-  --qp-card-bg: #393a39;
-  --qp-card-color: #ccc;
-  --qp-card-light-bg: #414241;
+  --qp-navbar-bg: #1a1a1a;
+  --qp-topbar-bg: #222222;
+  --qp-sidebar-bg: #282828;
+  --qp-sidenav-bg: #282828;
+  --qp-sideview-bg: #3a3a3a;
 
-  /*
+  --qp-card-bg: #3a3a3a;
+  --qp-card-color: #b2b2b2;
+
+  /* light
   
   --qp-base-bg: #e6e7e6;
   --qp-base-color: rgba(0, 0, 0, 0.87);
@@ -32,7 +36,7 @@
 
 html {
   background-color: var(--qp-base-bg);
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 16px;
   font-weight: 400;
   font-synthesis: none;
@@ -50,17 +54,6 @@ body {
     background-color: var(--qp-base-bg);
     box-sizing: content-box;
     color: var(--qp-base-color);
-  
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 120%;
-    font-weight: 400;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-
     overflow-x: hidden;
     height: 100%;
     padding: 0;

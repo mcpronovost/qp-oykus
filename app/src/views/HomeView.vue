@@ -1,10 +1,12 @@
 <script setup>
+    import { computed } from "vue";
     import { storeToRefs } from "pinia";
     import { storeApp, storePlayer } from "@/plugins/store";
     import QpPage from "@/components/core/QpPage.vue";
     import QpTaskanList from "@/components/taskan/QpTaskanList.vue";
 
     const useStoreApp = storeApp()
+    const { mainviewWidth } = storeToRefs(useStoreApp)
     const { toggleSidenavShow, toggleSideviewShow } = useStoreApp
 
     const useStorePlayer = storePlayer()
@@ -25,6 +27,11 @@
             title: "Rédiger l'herbier",
             completed: 0,
             total: 1
+        },
+        {
+            title: "Finir le design",
+            completed: 0,
+            total: 12
         }
     ]
 
@@ -38,6 +45,11 @@
             title: "Corriger le contexte",
             completed: 3,
             total: 6
+        },
+        {
+            title: "Trouver des évènements",
+            completed: 5,
+            total: 6
         }
     ]
 
@@ -48,6 +60,11 @@
             total: 4
         }
     ]
+
+    const taskanSpan = computed(() => {
+        return mainviewWidth.value > 1100 ? 8 : mainviewWidth.value > 676 ? 12 : 24
+    })
+
 </script>
 
 <template>
@@ -56,20 +73,20 @@
             <el-row>
                 <el-col>
                     <el-card>
-                        Hello {{ playername }}
+                        Hello {{ playername }} - {{ mainviewWidth }}
                         <el-button @click="toggleSidenavShow()">toggle sidenav</el-button>
                         <el-button @click="toggleSideviewShow()">toggle sideview</el-button>
                     </el-card>
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="24" :md="12" :xl="8">
+                <el-col :span="taskanSpan">
                     <QpTaskanList :type="'todo'" :items="listTaskansTodo" />
                 </el-col>
-                <el-col :span="24" :md="12" :xl="8">
+                <el-col :span="taskanSpan">
                     <QpTaskanList :type="'inprogress'" :items="listTaskansInProgress" />
                 </el-col>
-                <el-col :span="24" :xl="8">
+                <el-col :span="taskanSpan">
                     <QpTaskanList :type="'completed'" :items="listTaskansCompleted" />
                 </el-col>
             </el-row>

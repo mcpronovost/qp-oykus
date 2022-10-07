@@ -6,6 +6,8 @@ import ElementPlus from "element-plus";
 import fr from "element-plus/es/locale/lang/fr";
 import "element-plus/dist/index.css";
 import "@mdi/font/css/materialdesignicons.min.css";
+import "@fontsource/nunito/400.css";
+import "@fontsource/nunito/600.css";
 import "@/assets/css/element.css";
 import "@/assets/css/style.css";
 

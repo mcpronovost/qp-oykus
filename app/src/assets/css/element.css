@@ -1,10 +1,13 @@
+#app {
+    --el-font-family: "Nunito", sans-serif;
+}
 #app .el-button {
-    --el-button-bg-color: var(--qp-card-light-bg);
-    --el-button-border-color: var(--qp-card-light-bg);
-    --el-button-text-color: rgba(255, 255, 255, 0.5);
+    --el-button-bg-color: var(--qp-card-bg);
+    --el-button-border-color: var(--qp-card-bg);
+    --el-button-text-color: var(--qp-base-color);
 
-    --el-button-hover-bg-color: var(--qp-card-light-bg);
-    --el-button-hover-border-color: var(--qp-card-light-bg);
+    --el-button-hover-bg-color: var(--qp-card-bg);
+    --el-button-hover-border-color: var(--qp-card-bg);
     --el-button-hover-text-color: var(--qp-primary);
 
     --el-button-active-bg-color: transparent;
@@ -56,7 +59,7 @@ body .el-dropdown-menu .el-divider--horizontal {
 }
 
 #app .el-progress {
-    --el-border-color-lighter: rgba(0, 0, 0, 0.1);
+    --el-border-color-lighter: rgba(255, 255, 255, 0.05);
 }
 
 #app .el-row {
@@ -65,14 +68,26 @@ body .el-dropdown-menu .el-divider--horizontal {
     margin-right: 0!important;
 }
 
-body .el-popper.is-light {
+body .el-popper.is-light,
+body .el-popper.is-dark {
     --el-bg-color-overlay: var(--qp-sidebar-bg);
     --el-border-color-light: var(--qp-sidebar-bg);
+    --el-text-color-primary: var(--qp-sidebar-bg);
     background-color: var(--qp-sidebar-bg);
     border-color: var(--qp-sidebar-bg);
 }
-body .el-popper.is-light,
-body .el-popper.is-dark {
-    --el-text-color-primary: var(--qp-sidebar-bg);
+body .el-popper.qp-topbar-popper {
+    --el-bg-color-overlay: var(--qp-navbar-bg);
+    --el-border-color-light: var(--qp-navbar-bg);
+    --el-text-color-primary: var(--qp-navbar-bg);
+    background-color: var(--qp-navbar-bg);
+    border-color: var(--qp-navbar-bg);
+}
+body .el-popper.qp-topbar-popper .el-dropdown-menu {
+    --el-bg-color-overlay: var(--qp-sidebar-bg);
+    --el-text-color-regular: #acadac;
+    --el-text-color-disabled: #5e5f5e;
+    background-color: transparent;
+    border-color: transparent;
 }
 
