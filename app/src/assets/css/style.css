@@ -1,19 +1,20 @@
 :root {
   --qp-primary: #89a411;
-  --qp-primary-dark-1: #788d18;
-  --qp-primary-dark-2: #66761e;
-  --qp-primary-dark-3: #556025;
-  --qp-primary-dark-4: #43492b;
-  --qp-base-bg: #323232;
+  --qp-primary-dark-1: #748914;
+  --qp-primary-dark-2: #5e6e17;
+  --qp-primary-dark-3: #49541a;
+  --qp-primary-dark-4: #33391d;
+
+  --qp-base-bg: #1c1c1d;
   --qp-base-color: #7a7a7a;
 
-  --qp-navbar-bg: #1a1a1a;
-  --qp-topbar-bg: #222222;
-  --qp-sidebar-bg: #282828;
-  --qp-sidenav-bg: #282828;
-  --qp-sideview-bg: #3a3a3a;
+  --qp-navbar-bg: #141415;
+  --qp-topbar-bg: #171718;
+  --qp-sidebar-bg: #19191a;
+  --qp-sidenav-bg: #19191a;
+  --qp-sideview-bg: #1e1e20;
 
-  --qp-card-bg: #3a3a3a;
+  --qp-card-bg: #1e1e20;
   --qp-card-color: #b2b2b2;
 
   /* light
