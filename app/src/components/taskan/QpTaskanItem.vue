@@ -1,5 +1,8 @@
 <script setup>
+    import { useI18n } from "vue-i18n";
     import { ElMessage, ElMessageBox } from "element-plus";
+
+    const { t } = useI18n()
 
     const props = defineProps(["item"])
 
@@ -15,7 +18,7 @@
     const doDeleteItem = () => {
         ElMessageBox.confirm(
             'proxy will permanently delete the file. Continue?',
-            'Warning',
+            t("DeleteATask"),
             {
                 confirmButtonText: "OK",
                 cancelButtonText: "Cancel",
