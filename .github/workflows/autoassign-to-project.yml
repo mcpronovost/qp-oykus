@@ -5,6 +5,8 @@ on:
     types: [opened]
   issue_comment:
     types: [created]
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
