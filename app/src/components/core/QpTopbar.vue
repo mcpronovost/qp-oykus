@@ -1,6 +1,11 @@
 <script setup>
+    import { storeToRefs } from "pinia";
     import router from "../../plugins/router";
     import { Bell, Message } from "@element-plus/icons-vue";
+    import { storeUser } from "@/plugins/store";
+
+    const useStoreUser = storeUser()
+    const { rat, username } = storeToRefs(useStoreUser)
 
     const goTo = (obj) => {
         router.push(obj)
@@ -15,15 +20,15 @@
         <div id="qp-topbar-center">
             <!---->
         </div>
-        <div id="qp-topbar-right">
+        <div v-if="rat" id="qp-topbar-right">
             <div class="qp-topbar-item">
                 <el-badge :value="0" :hidden="true">
-                    <el-button :icon="Message"></el-button>
+                    <el-button :icon="Message" round disabled></el-button>
                 </el-badge>
             </div>
             <div class="qp-topbar-item">
                 <el-badge :value="0" :hidden="true">
-                    <el-button :icon="Bell"></el-button>
+                    <el-button :icon="Bell" round disabled></el-button>
                 </el-badge>
             </div>
             <div class="qp-topbar-item qp-player">
@@ -36,21 +41,21 @@
                             <el-dropdown-item class="qp-dropdown-text" disabled>
                                 <div>
                                     <div>Connecté en tant que</div>
-                                    <div>Qamuy Sinen</div>
+                                    <div v-text="username"></div>
                                 </div>
                             </el-dropdown-item>
                             <el-divider />
                             <el-dropdown-item :command="{name:'MeProfil'}" :disabled="$route.name=='MeProfil'||true">
                                 <span>Mon profil</span>
                             </el-dropdown-item>
-                            <el-dropdown-item :command="{name:'MeProjects'}" :disabled="$route.name=='MeProjects'">
+                            <el-dropdown-item :command="{name:'MeProjects'}" :disabled="$route.name=='MeProjects'||true">
                                 <span>Mes projets</span>
                             </el-dropdown-item>
-                            <el-dropdown-item :command="{name:'MeTasks'}" :disabled="$route.name=='MeTasks'">
+                            <el-dropdown-item :command="{name:'MeTasks'}" :disabled="$route.name=='MeTasks'||true">
                                 <span>Mes tâches</span>
                             </el-dropdown-item>
                             <el-divider />
-                            <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'">
+                            <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'||true">
                                 <span>Paramètres</span>
                             </el-dropdown-item>
                             <el-divider />
@@ -60,6 +65,20 @@
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
+            </div>
+        </div>
+        <div v-else id="qp-topbar-right">
+            <div class="qp-topbar-item">
+                <el-button>
+                    <el-icon class="mdi mdi-login-variant el-icon--left" />
+                    <span v-text="$t('Login')"></span>
+                </el-button>
+            </div>
+            <div class="qp-topbar-item">
+                <el-button>
+                    <el-icon class="mdi mdi-card-account-details-outline el-icon--left" />
+                    <span v-text="$t('Register')"></span>
+                </el-button>
             </div>
         </div>
     </div>
@@ -89,6 +108,7 @@
     .qp-topbar-item .el-avatar {
         --el-avatar-size: 32px;
         background-color: var(--qp-primary);
+        color: #fff;
         opacity: 0.8;
         transition: opacity 0.3s;
     }
@@ -102,11 +122,14 @@
         --el-badge-padding: 4px;
     }
     .qp-topbar-item .el-button {
-        background-color: transparent;
-        border-color: transparent;
-        font-size: 20px;
+        background-color: transparent!important;
+        border-color: transparent!important;
+        font-size: 16px;
         height: auto;
         padding: 2px 4px;
+    }
+    .qp-topbar-item .el-button.is-round {
+        font-size: 20px;
     }
     .qp-topbar-item .el-dropdown .el-tooltip__trigger {
         cursor: pointer;

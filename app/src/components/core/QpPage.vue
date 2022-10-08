@@ -1,9 +1,9 @@
 <script setup>
-    import { computed, onMounted } from "vue";
+    import { computed, onMounted, useSlots } from "vue";
     import { storeToRefs } from "pinia";
     import { storeApp } from "@/plugins/store";
 
-    // const slots = useSlots()
+    const slots = useSlots()
     const props = defineProps([])
 
     const useStoreApp = storeApp()
@@ -11,11 +11,11 @@
     const { toggleSidenavShow, toggleSideviewShow, setMainviewWidth } = useStoreApp
 
     const sideviewClass = computed(() => {
-        if (isSidenavShow.value && isSideviewShow.value) {
+        if ("sidenav" in slots && "sideview" in slots && isSidenavShow.value && isSideviewShow.value) {
             return "qp-bothside-show"
-        } else if (isSidenavShow.value) {
+        } else if ("sidenav" in slots && isSidenavShow.value) {
             return "qp-sidenav-show"
-        } else if (isSideviewShow.value) {
+        } else if ("sideview" in slots && isSideviewShow.value) {
             return "qp-sideview-show"
         }
         return ""
@@ -30,7 +30,7 @@
 
 <template>
     <main :class="sideviewClass">
-        <div v-if="isSidenavShow" id="qp-sidenav">
+        <div v-if="'sidenav' in slots && isSidenavShow" id="qp-sidenav">
             <el-scrollbar height="100%">
                 <div id="qp-sidenav-toggle">
                     <el-button @click="toggleSidenavShow()">
@@ -50,7 +50,7 @@
                 <slot></slot>
             </el-scrollbar>
         </div>
-        <div v-if="isSideviewShow" id="qp-sideview">
+        <div v-if="'sideview' in slots && isSideviewShow" id="qp-sideview">
             <el-scrollbar height="100%">
                 <div id="qp-sideview-toggle">
                     <el-button @click="toggleSideviewShow()">

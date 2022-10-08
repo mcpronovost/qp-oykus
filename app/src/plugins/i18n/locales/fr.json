@@ -1,3 +1,6 @@
 {
-    "hello": "salut"
+    "hello": "salut",
+    "Register": "Inscription",
+    "Login": "Connexion",
+    "Logout": "Déconnexion"
 }

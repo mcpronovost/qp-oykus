@@ -1,7 +1,9 @@
 import { createPinia } from "pinia ";
 import { Buffer } from "buffer";
 import { QpStoreApp } from "./storeApp";
-import { QpStorePlayer } from "./storePlayer";
+import { QpStoreUser } from "./storeUser";
+
+export const API = "http://localhost:8000/api"
 
 export const QpInitStore = (store, payload) => {
     if (localStorage.getItem(`qp-oykus-${store}`)) {
@@ -28,9 +30,9 @@ export const storeApp = () => {
     return qpStore;
 };
 
-export const storePlayer = () => {
-    const qpStore = QpStorePlayer();
-    qpStore.$subscribe((mutation, state) => { QpToStore("player", state) });
+export const storeUser = () => {
+    const qpStore = QpStoreUser();
+    qpStore.$subscribe((mutation, state) => { QpToStore("user", state) });
     return qpStore;
 };
 

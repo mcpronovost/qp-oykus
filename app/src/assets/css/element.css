@@ -1,6 +1,12 @@
 #app {
     --el-font-family: "Nunito", sans-serif;
 }
+
+#app .el-avatar {
+    --el-avatar-text-color: var(--qp-card-color);
+    --el-avatar-bg-color: var(--qp-card-bg);
+}
+
 #app .el-button {
     --el-button-bg-color: var(--qp-card-bg);
     --el-button-border-color: var(--qp-card-bg);
@@ -13,6 +19,15 @@
     --el-button-active-bg-color: transparent;
     --el-button-active-border-color: rgba(255, 255, 255, 0.03);
     --el-button-active-text-color: var(--qp-primary);
+
+    font-family: "Nunito", sans-serif;
+}
+#app .el-button.is-disabled,
+#app .el-button.is-disabled:hover,
+#app .el-button.is-disabled:active {
+    background-color: var(--qp-card-bg);
+    border-color: var(--qp-card-bg);
+    color: var(--qp-base-disable-color);
 }
 #app .el-button.is-text {
     background-color: transparent;

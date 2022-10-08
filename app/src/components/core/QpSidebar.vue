@@ -1,53 +1,33 @@
 <script setup>
-    import { User } from "@element-plus/icons-vue";
+    import { storeToRefs } from "pinia";
+    import { storeUser } from "@/plugins/store";
+    import QpCreated from "@/components/core/sidebar/QpCreated.vue";
+    import QpLoved from "@/components/core/sidebar/QpLoved.vue";
+    import QpFeatured from "@/components/core/sidebar/QpFeatured.vue";
+
+    const useStoreUser = storeUser()
+    const { rat } = storeToRefs(useStoreUser)
 </script>
 
 <template>
     <div id="qp-sidebar">
         <el-scrollbar height="calc(100vh - 49px)">
             <nav class="qp-sidebar-nav">
-                <ul class="qp-sidebar-nav-list">
-                    <li class="qp-sidebar-nav-list-item">
-                        <el-tooltip placement="left" content="Qalatlán">
-                            <el-button size="large" circle>
-                                <el-avatar :src="''">
-                                    <span>Q</span>
-                                </el-avatar>
-                            </el-button>
-                        </el-tooltip>
-                    </li>
-                    <li class="qp-sidebar-nav-list-item">
-                        <el-tooltip placement="left" content="Hobeon">
-                            <el-button size="large" circle>
-                                <el-avatar :src="''">
-                                    <span>H</span>
-                                </el-avatar>
-                            </el-button>
-                        </el-tooltip>
-                    </li>
-                    <li class="qp-sidebar-nav-list-item">
-                        <el-icon size="large">
-                            <i class="mdi mdi-heart-outline"></i>
-                        </el-icon>
-                    </li>
-                    <li class="qp-sidebar-nav-list-item">
-                        <el-tooltip placement="left" content="Le monde perdu de Rhansidor">
-                            <el-button size="large" circle>
-                                <el-avatar :src="''">
-                                    <span>R</span>
-                                </el-avatar>
-                            </el-button>
-                        </el-tooltip>
-                    </li>
+                <ul v-if="rat" class="qp-sidebar-nav-list">
+                    <QpCreated />
+                    <QpLoved />
+                </ul>
+                <ul v-else class="qp-sidebar-nav-list">
+                    <QpFeatured />
                 </ul>
                 <ul class="qp-sidebar-nav-list">
-                    <li class="qp-sidebar-nav-list-item">
-                        <el-button circle>
+                    <li v-if="rat" class="qp-sidebar-nav-list-item">
+                        <el-button circle disabled>
                             <i class="mdi mdi-plus mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-sidebar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-compass-outline mdi-24px"></i>
                         </el-button>
                     </li>
@@ -91,7 +71,7 @@
     .qp-sidebar-nav-list-item {
         text-align: center;
         list-style: none;
-        padding: 6px 0;
+        padding: 12px 0;
         margin: 0;
     }
     .qp-sidebar-nav-list-item > .el-icon {
@@ -101,14 +81,16 @@
     .qp-sidebar-nav-list-item .el-button:hover,
     .qp-sidebar-nav-list-item .el-button:focus,
     .qp-sidebar-nav-list-item .el-button:active {
-        background-color: transparent;
-        border-color: transparent;
+        background-color: transparent!important;
+        border-color: transparent!important;
     }
     .qp-sidebar-nav-list-item .el-button {
+        width: 32px;
+        height: 32px;
         opacity: 0.6;
         transition: opacity 0.3s;
     }
-    .qp-sidebar-nav-list-item .el-button:hover {
+    .qp-sidebar-nav-list-item .el-button:not(.is-disabled):hover {
         opacity: 1;
     }
     .qp-sidebar-nav-list-item .el-avatar {

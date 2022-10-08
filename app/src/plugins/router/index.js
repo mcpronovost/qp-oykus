@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+//import { storeUser } from "@/plugins/store";
 
 import HomeView from "@/views/HomeView.vue";
 import ErrorView from "@/views/ErrorView.vue";
@@ -23,6 +24,9 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+    //const useStoreUser = storeUser()
+    //const { updateUser } = useStoreUser
+    // updateUser()
     next()
 })
 

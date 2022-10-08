@@ -7,6 +7,7 @@
 
   --qp-base-bg: #1c1c1d;
   --qp-base-color: #7a7a7a;
+  --qp-base-disable-color: #3c3c3c;
 
   --qp-navbar-bg: #141415;
   --qp-topbar-bg: #171718;
@@ -75,6 +76,14 @@ a:hover {
   margin: 0 auto;
 }
 
+.qp-container.qp-centered {
+    text-align: center;
+    display: flex;
+    height: calc(100vh - 49px);
+    align-items: center;
+    justify-content: center;
+}
+
 /* =================================================================================== */
 /* ===--- MAIN --------------------------------------------------------------------=== */
 /* =================================================================================== */
@@ -87,5 +96,6 @@ a:hover {
 @media (max-width: 1199px) {
     #qp-main {
         grid-template-columns: auto;
+        grid-column: 2 / 4;
     }
 }

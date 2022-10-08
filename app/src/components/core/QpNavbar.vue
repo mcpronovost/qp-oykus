@@ -24,29 +24,29 @@
                 </ul>
                 <ul class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-apps mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-chart-box-outline mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-order-bool-descending-variant mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-podium-gold mdi-24px"></i>
                         </el-button>
                     </li>
                 </ul>
                 <ul class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-tune mdi-24px"></i>
                         </el-button>
                     </li>
@@ -96,9 +96,15 @@
     .qp-navbar-nav-list-item .el-button,
     .qp-navbar-nav-list-item .el-button:hover,
     .qp-navbar-nav-list-item .el-button:focus,
-    .qp-navbar-nav-list-item .el-button:active {
-        background-color: transparent;
-        border-color: transparent;
+    .qp-navbar-nav-list-item .el-button:active,
+    .qp-navbar-nav-list-item .el-button.is-disabled,
+    .qp-navbar-nav-list-item .el-button.is-disabled:hover,
+    .qp-navbar-nav-list-item .el-button.is-disabled:focus,
+    .qp-navbar-nav-list-item .el-button.is-disabled:active {
+        background-color: transparent!important;
+        border-color: transparent!important;
+        width: 32px;
+        height: 32px;
     }
     /* ===---=== */
     .qp-navbar-nav-list-item.qp-logo .el-avatar {
