@@ -30,3 +30,6 @@ class qpUserProfile(models.Model):
     class Meta:
         verbose_name = _("Profile")
         verbose_name_plural = _("Profile")
+    
+    def __str__(self):
+        return "%s" % (str(_("Profile")))
