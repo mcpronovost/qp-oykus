@@ -30,5 +30,12 @@
     "Cancel": "Cancel",
     "TheRules": "The Rules",
     "UsePolicies": "The Use Policies",
-    "PrivacyPolicies": "The Privacy Policies"
+    "PrivacyPolicies": "The Privacy Policies",
+    "CreateNewProject": "Create a New Project",
+    "PrimaryColour": "Primary Colour",
+    "FileSizeCanNotExceed": "File size must not exceed {0}.",
+    "UploadAnIcon": "Upload icon",
+    "Caption": "Caption",
+    "Description": "Description",
+    "Create": "Create"
 }

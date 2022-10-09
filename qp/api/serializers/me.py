@@ -1,9 +1,8 @@
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from qp.users.models import (
-    qpUserProfile
-)
+
+from qp.users.models import qpUserProfile
 
 User = get_user_model()
 

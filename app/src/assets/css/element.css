@@ -133,6 +133,11 @@ body .el-col {
     padding: 10px;
 }
 
+body .el-color-picker {
+    --el-border-color: var(--qp-input-bg);
+    --el-text-color-secondary: var(--qp-input-placeholder);
+}
+
 body .el-dialog {
     --el-dialog-bg-color: var(--qp-card-bg);
     --el-text-color-primary: var(--qp-card-color);
@@ -163,9 +168,11 @@ body .el-form .el-form-item__content > .el-col {
 body .el-form .el-form-item__error {
     text-align: left;
     position: relative;
+    top: auto;
 }
 
-body .el-input {
+body .el-input,
+body .el-textarea {
     --el-input-bg-color: var(--qp-input-bg);
 
     --el-input-border: 1px solid var(--el-input-border-color);

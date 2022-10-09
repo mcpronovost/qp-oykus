@@ -31,5 +31,12 @@
     "Cancel": "Annuler",
     "TheRules": "Règlement",
     "UsePolicies": "Conditions d'utilisation",
-    "PrivacyPolicies": "Politiques de confidentialité"
+    "PrivacyPolicies": "Politiques de confidentialité",
+    "CreateNewProject": "Créer un nouveau projet",
+    "PrimaryColour": "Couleur principale",
+    "FileSizeCanNotExceed": "La taille du fichier ne doit pas dépasser {0}.",
+    "UploadAnIcon": "Téléverser un icône",
+    "Caption": "Légende",
+    "Description": "Description",
+    "Create": "Créer"
 }

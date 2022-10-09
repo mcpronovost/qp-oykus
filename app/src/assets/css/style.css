@@ -122,6 +122,9 @@ input:-webkit-autofill:active {
 .qp-center {
     text-align: center;
 }
+.qp-justify-content-center {
+    justify-content: center;
+}
 
 .qp-container {
   max-width: 1200px;
