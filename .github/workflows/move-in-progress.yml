@@ -10,6 +10,8 @@ jobs:
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - uses: actions/add-to-project@main
         id: addItem
         with:
@@ -17,9 +19,10 @@ jobs:
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           labeled: "In Progress"
 
-      - uses: kalgurn/update-project-item-status@main
+      - uses: titoportas/update-project-fields@v0.1.0
         with:
-          project-url: https://github.com/users/mcpronovost/projects/2
+          project-url: https://github.com/users/titoportas/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          item-id: ${{ steps.addItem.outputs.itemId }}
-          status: "In Progress"
+          item-id: ${{ steps.add-project.outputs.itemId }}
+          field-keys: Status
+          field-values: "In Progress"
