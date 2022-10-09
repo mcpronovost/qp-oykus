@@ -8,8 +8,8 @@ jobs:
   move-in-progress:
     runs-on: ubuntu-latest
     steps:
-    - name: In Progress
-      uses: pauldruziak/move-labeled-or-milestoned-pull-request@v1.0.2
+    - name: Move labeled issue
+      uses: alxarno/move-labeled-or-milestoned-issue@5.7
       with:
         action-token: "${{ secrets.MY_GITHUB_TOKEN }}"
         project-url: "https://github.com/users/mcpronovost/projects/2"
