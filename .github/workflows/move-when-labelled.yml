@@ -2,20 +2,37 @@ name: Move When Labelled
 
 on:
   issues:
-    types: [labeled]
-env:
-  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+    types:
+      - labeled
 
 jobs:
-  assign_one_project:
+  add-to-project:
+    name: Move issue when labelled
     runs-on: ubuntu-latest
-    name: Move When Labelled
     steps:
+      - uses: actions/add-to-project@main
+        id: addItem
+        with:
+          project-url: https://github.com/users/mcpronovost/projects/2
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          labeled: "In Progress"
 
-    - name: Assign issues requests with `In Progress` label
-      uses: srggrs/assign-one-project-github-action@1.2.1
-      if: |
-        contains(github.event.issue.labels.*.name, 'In Progress')
-      with:
-        project: 'https://github.com/users/mcpronovost/projects/2'
-        column_name: 'In Progress'
+      - uses: titoportas/update-project-fields@v0.1.0
+        if: |
+          contains(github.event.issue.labels.*.name, 'In Progress')
+        with:
+          project-url: https://github.com/users/mcpronovost/projects/2
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          item-id: ${{ steps.addItem.outputs.itemId }}
+          field-keys: Status
+          field-values: "In Progress"
+
+      - uses: titoportas/update-project-fields@v0.1.0
+        if: |
+          contains(github.event.issue.labels.*.name, 'Feature for future')
+        with:
+          project-url: https://github.com/users/mcpronovost/projects/2
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          item-id: ${{ steps.addItem.outputs.itemId }}
+          field-keys: Status
+          field-values: "In Development"
