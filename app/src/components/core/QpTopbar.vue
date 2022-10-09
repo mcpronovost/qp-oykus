@@ -5,7 +5,7 @@
     import { storeUser } from "@/plugins/store";
 
     const useStoreUser = storeUser()
-    const { rat, username } = storeToRefs(useStoreUser)
+    const { rat, username, name } = storeToRefs(useStoreUser)
 
     const goTo = (obj) => {
         router.push(obj)
@@ -34,7 +34,7 @@
             <div class="qp-topbar-item qp-player">
                 <el-dropdown trigger="click" placement="bottom-end" popper-class="qp-topbar-popper" @command="goTo">
                     <el-avatar>
-                        <span>Q</span>
+                        <span v-text="name?.charAt(0)"></span>
                     </el-avatar>
                     <template #dropdown>
                         <el-dropdown-menu>

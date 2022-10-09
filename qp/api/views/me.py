@@ -17,7 +17,7 @@ class qpMeView(RetrieveAPIView):
 
     def get_object(self):
         try:
-            return self.request.user
+            return self.request.user.profile
         except Exception as e:
             print("Error on qpMeView : ", e)
         return None
