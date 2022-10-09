@@ -1,16 +1,17 @@
-name: Move all issues labeled as "In Progress"
+name: Move issue labeled as "In Progress"
 
 on:
-  issues:
+  pull requests:
     types: [labeled]
 
 jobs:
   move-in-progress:
     runs-on: ubuntu-latest
     steps:
-      - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
-        with:
-          action-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          project-url: "https://github.com/mcpronovost/qp-oykus/projects/2"
-          column-name: "In Progress"
-          label-name: "In Progress"
+    - name: In Progress
+      uses: pauldruziak/move-labeled-or-milestoned-pull-request@v1.0.2
+      with:
+        action-token: "${{ secrets.MY_GITHUB_TOKEN }}"
+        project-url: "https://github.com/users/mcpronovost/projects/2"
+        column-name: "In Progress"
+        label-name: "In Progress"
