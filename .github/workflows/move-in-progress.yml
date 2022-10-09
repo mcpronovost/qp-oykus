@@ -1,17 +1,25 @@
-name: Move issue labeled as "In Progress"
+name: Move In Progress
 
 on:
   issues:
-    types: [labeled]
+    types:
+      - labeled
 
 jobs:
-  move-in-progress:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-    - name: Move labeled issue
-      uses: alxarno/move-labeled-or-milestoned-issue@5.7
-      with:
-        action-token: "${{ secrets.MY_GITHUB_TOKEN }}"
-        project-url: "https://github.com/mcpronovost/qp-oykus/projects/2"
-        column-name: "In Progress"
-        label-name: "In Progress"
+      - uses: actions/add-to-project@main
+        id: addItem
+        with:
+          project-url: https://github.com/users/mcpronovost/projects/2
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          labeled: "In Progress"
+
+      - uses: kalgurn/update-project-item-status@main
+        with:
+          project-url: https://github.com/users/mcpronovost/projects/2
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          item-id: ${{ steps.addItem.outputs.itemId }}
+          status: "In Progress"
