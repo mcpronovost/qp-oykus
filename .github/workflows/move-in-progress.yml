@@ -23,6 +23,6 @@ jobs:
         with:
           project-url: https://github.com/users/titoportas/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          item-id: ${{ steps.add-project.outputs.itemId }}
+          item-id: ${{ steps.addItem.outputs.itemId }}
           field-keys: Status
           field-values: "In Progress"
