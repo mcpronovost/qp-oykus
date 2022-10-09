@@ -1,4 +1,4 @@
-name: Move In Progress
+name: Move In Development
 
 on:
   issues:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   add-to-project:
-    name: Move issue In Progress
+    name: Move issue In Development
     runs-on: ubuntu-latest
     steps:
       - uses: actions/add-to-project@main
@@ -15,7 +15,7 @@ jobs:
         with:
           project-url: https://github.com/users/mcpronovost/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          labeled: "In Progress"
+          labeled: "Feature for future"
 
       - uses: titoportas/update-project-fields@v0.1.0
         with:
@@ -23,4 +23,4 @@ jobs:
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           item-id: ${{ steps.addItem.outputs.itemId }}
           field-keys: Status
-          field-values: "In Progress"
+          field-values: "In Development"
