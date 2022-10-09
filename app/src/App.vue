@@ -19,14 +19,14 @@
 </script>
 
 <template>
-    <div id="qp-app">
+    <div id="qp-app" :class="$route.name && $route.name.startsWith('Auth') ? 'qp-app-auth' : ''">
         <QpAppbar />
-        <QpNavbar />
-        <QpTopbar />
+        <QpNavbar v-if="!$route.name || !$route.name.startsWith('Auth')" />
+        <QpTopbar v-if="!$route.name || !$route.name.startsWith('Auth')" />
         <div id="qp-main">
             <router-view :key="$route.fullPath" />
         </div>
-        <QpSidebar />
+        <QpSidebar v-if="!$route.name || !$route.name.startsWith('Auth')" />
     </div>
 </template>
 
@@ -39,9 +39,16 @@
         min-width: 300px;
         height: 100vh;
     }
+    #qp-app.qp-app-auth {
+        grid-template-columns: 0 auto 0;
+        grid-template-rows: 1px auto;
+    }
     @media (max-width: 767px) {
         #qp-app {
             grid-template-columns: 64px auto;
+        }
+        #qp-app.qp-app-auth {
+            grid-template-columns: 0 auto 0;
         }
     }
 </style>

@@ -1,20 +1,32 @@
 import { createRouter, createWebHistory } from "vue-router";
-//import { storeUser } from "@/plugins/store";
-
-import HomeView from "@/views/HomeView.vue";
-import ErrorView from "@/views/ErrorView.vue";
+import { storeUser } from "@/plugins/store";
 
 const routes = [
     {
       path: "/",
       name: "Home",
-      component: HomeView
+      component: () => import("@/views/HomeView.vue")
+    },
+    {
+      path: "/register",
+      name: "AuthRegister",
+      component: () => import("@/views/AuthView.vue")
+    },
+    {
+      path: "/login",
+      name: "AuthLogin",
+      component: () => import("@/views/AuthView.vue")
+    },
+    {
+      path: "/logout",
+      name: "AuthLogout",
+      component: () => import("@/views/AuthView.vue")
     },
     /* ===--- FALLBACK ---=== */
     {
       path: "/:catchAll(.*)",
       name: "Error",
-      component: ErrorView
+      component: () => import("@/views/ErrorView.vue")
     }
 ]
 
@@ -24,9 +36,9 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-    //const useStoreUser = storeUser()
-    //const { updateUser } = useStoreUser
-    // updateUser()
+    const useStoreUser = storeUser()
+    const { updateUser } = useStoreUser
+    updateUser()
     next()
 })
 

@@ -10,7 +10,7 @@
     const { isSidenavShow, isSideviewShow } = storeToRefs(useStoreApp)
     const { toggleSidenavShow, toggleSideviewShow, setMainviewWidth } = useStoreApp
 
-    const sideviewClass = computed(() => {
+    const mainClasses = computed(() => {
         if ("sidenav" in slots && "sideview" in slots && isSidenavShow.value && isSideviewShow.value) {
             return "qp-bothside-show"
         } else if ("sidenav" in slots && isSidenavShow.value) {
@@ -29,7 +29,7 @@
 </script>
 
 <template>
-    <main :class="sideviewClass">
+    <main :class="mainClasses">
         <div v-if="'sidenav' in slots && isSidenavShow" id="qp-sidenav">
             <el-scrollbar height="100%">
                 <div id="qp-sidenav-toggle">

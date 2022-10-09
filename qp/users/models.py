@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.db import models
+from autoslug import AutoSlugField
 
 class qpUserProfile(models.Model):
     user = models.OneToOneField(
@@ -17,14 +18,15 @@ class qpUserProfile(models.Model):
         blank=False,
         null=False
     )
-    slug = models.SlugField(
+    slug = AutoSlugField(
         verbose_name=_("Slug"),
-        max_length=50,
+        populate_from="name",
         unique=True,
+        editable=True,
         blank=True,
         null=True
     )
 
     class Meta:
-        verbose_name = _("Profile"),
+        verbose_name = _("Profile")
         verbose_name_plural = _("Profile")

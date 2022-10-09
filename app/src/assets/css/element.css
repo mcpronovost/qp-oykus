@@ -1,13 +1,57 @@
-#app {
+body {
     --el-font-family: "Nunito", sans-serif;
+    --el-text-color-primary: var(--qp-base-color);
+
+    --el-mask-color-extra-light: rgba(28, 28, 29, 0.5);
+
+    --el-color-success: var(--qp-success);
+    --el-color-success-daker-3: var(--qp-success-dark-1);
+    --el-color-success-light-5: var(--qp-success-dark-2);
+    --el-color-success-light-7: var(--qp-success-dark-3);
+    --el-color-success-light-8: var(--qp-success-dark-4);
+    --el-color-success-light-9: var(--qp-success-dark-5);
+    --el-color-info: var(--qp-info);
+    --el-color-info-daker-3: var(--qp-info-dark-1);
+    --el-color-info-light-5: var(--qp-info-dark-2);
+    --el-color-info-light-7: var(--qp-info-dark-3);
+    --el-color-info-light-8: var(--qp-info-dark-4);
+    --el-color-info-light-9: var(--qp-info-dark-5);
+    --el-color-warning: var(--qp-warning);
+    --el-color-warning-daker-3: var(--qp-warning-dark-1);
+    --el-color-warning-light-5: var(--qp-warning-dark-2);
+    --el-color-warning-light-7: var(--qp-warning-dark-3);
+    --el-color-warning-light-8: var(--qp-warning-dark-4);
+    --el-color-warning-light-9: var(--qp-warning-dark-5);
+    --el-color-danger: var(--qp-error);
+    --el-color-danger-daker-3: var(--qp-error-dark-1);
+    --el-color-danger-light-5: var(--qp-error-dark-2);
+    --el-color-danger-light-7: var(--qp-error-dark-3);
+    --el-color-danger-light-8: var(--qp-error-dark-4);
+    --el-color-danger-light-9: var(--qp-error-dark-5);
+    --el-color-error: var(--qp-error);
+    --el-color-error-light-3: var(--qp-error-dark-1);
+    --el-color-error-light-5: var(--qp-error-dark-2);
+    --el-color-error-light-7: var(--qp-error-dark-3);
+    --el-color-error-light-8: var(--qp-error-dark-4);
+    --el-color-error-light-9: var(--qp-error-dark-5);
 }
 
-#app .el-avatar {
+body .el-alert {
+    --el-alert-description-font-size: 14px;
+    font-size: 16px;
+    line-height: 120%;
+    text-align: left;
+}
+body .el-alert .el-alert__icon {
+    margin-right: 6px;
+}
+
+body .el-avatar {
     --el-avatar-text-color: var(--qp-card-color);
     --el-avatar-bg-color: var(--qp-card-bg);
 }
 
-#app .el-button {
+body .el-button {
     --el-button-bg-color: var(--qp-card-bg);
     --el-button-border-color: var(--qp-card-bg);
     --el-button-text-color: var(--qp-base-color);
@@ -20,29 +64,64 @@
     --el-button-active-border-color: rgba(255, 255, 255, 0.03);
     --el-button-active-text-color: var(--qp-primary);
 
+    border-radius: 2px;
     font-family: "Nunito", sans-serif;
 }
-#app .el-button.is-disabled,
-#app .el-button.is-disabled:hover,
-#app .el-button.is-disabled:active {
+body .el-button:not(.is-disabled) {
+    background-color: var(--qp-secondary-dark-5);
+    border-color: var(--qp-secondary-dark-5);
+    color: var(--qp-secondary);
+}
+body .el-button:not(.is-disabled):hover,
+body .el-button:not(.is-disabled):focus {
+    background-color: var(--qp-secondary-dark-4);
+    border-color: var(--qp-secondary-dark-4);
+    color: var(--qp-base-color);
+}
+body .el-button:not(.is-disabled):active {
+    background-color: var(--qp-secondary-dark-5);
+    border-color: var(--qp-secondary-dark-5);
+    color: var(--qp-secondary-dark-2);
+}
+body .el-button.is-disabled,
+body .el-button.is-disabled:hover,
+body .el-button.is-disabled:focus,
+body .el-button.is-disabled:active {
     background-color: var(--qp-card-bg);
     border-color: var(--qp-card-bg);
     color: var(--qp-base-disable-color);
 }
-#app .el-button.is-text {
+body .el-button.is-text {
     background-color: transparent;
     border-radius: 1em;
     color: var(--el-button-text-color);
 }
-#app .el-button.is-text:hover {
+body .el-button.is-text:not(.is-disabled):hover,
+body .el-button.is-text:not(.is-disabled):focus {
     background-color: rgba(255, 255, 255, 0.03);
     color: var(--qp-primary);
 }
-#app .el-button > span {
+body .el-button.el-button--primary {
+    background-color: var(--qp-primary-dark-4);
+    border-color: var(--qp-primary-dark-4);
+    color: var(--qp-primary);
+}
+body .el-button.el-button--primary:not(.is-disabled):hover,
+body .el-button.el-button--primary:not(.is-disabled):focus {
+    background-color: var(--qp-primary-dark-3);
+    border-color: var(--qp-primary-dark-3);
+    color: var(--qp-primary);
+}
+body .el-button.el-button--primary:not(.is-disabled):active {
+    background-color: var(--qp-primary-dark-4);
+    border-color: var(--qp-primary-dark-4);
+    color: var(--qp-primary-dark-3);
+}
+body .el-button > span {
     text-overflow: hidden;
 }
 
-#app .el-card {
+body .el-card {
     background-color: var(--qp-card-bg);
     border-color: var(--qp-card-bg);
     border-radius: 0;
@@ -50,8 +129,13 @@
     color: var(--qp-card-color);
 }
 
-#app .el-col {
+body .el-col {
     padding: 10px;
+}
+
+body .el-dialog {
+    --el-dialog-bg-color: var(--qp-card-bg);
+    --el-text-color-primary: var(--qp-card-color);
 }
 
 body .el-dropdown-menu {
@@ -73,11 +157,43 @@ body .el-dropdown-menu .el-divider--horizontal {
     margin: 5px 0;
 }
 
-#app .el-progress {
+body .el-form .el-form-item__content > .el-col {
+    padding: 0;
+}
+body .el-form .el-form-item__error {
+    text-align: left;
+    position: relative;
+}
+
+body .el-input {
+    --el-input-bg-color: var(--qp-input-bg);
+
+    --el-input-border: 1px solid var(--el-input-border-color);
+    --el-input-border-color: var(--qp-input-bg);
+    --el-input-hover-border: var(--qp-input-bg);
+    --el-input-hover-border-color: var(--qp-input-bg);
+    --el-input-focus-border: var(--qp-primary);
+    --el-input-focus-border-color: var(--qp-primary);
+    --el-input-border-radius: 0;
+
+    --el-input-text-color: var(--qp-input-color);
+    --el-input-icon-color: var(--qp-input-placeholder);
+    --el-input-placeholder-color: var(--qp-input-placeholder);
+    --el-input-clear-hover-color: var(--qp-input-clearhover);
+}
+
+body .el-message-box {
+    --el-bg-color: var(--qp-card-bg);
+    --el-border-color-lighter: var(--qp-card-bg);
+    --el-messagebox-title-color: var(--qp-card-color);
+    --el-messagebox-content-color: var(--qp-card-color);
+}
+
+body .el-progress {
     --el-border-color-lighter: rgba(255, 255, 255, 0.05);
 }
 
-#app .el-row {
+body .el-row {
     padding: 0 10px;
     margin-left: 0!important;
     margin-right: 0!important;

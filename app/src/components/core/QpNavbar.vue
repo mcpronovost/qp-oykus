@@ -1,6 +1,11 @@
 <script setup>
+    import { storeToRefs } from "pinia";
+    import { storeUser } from "@/plugins/store";
     import logo from "@/assets/img/logo.png";
     import router from "../../plugins/router";
+
+    const useStoreUser = storeUser()
+    const { rat } = storeToRefs(useStoreUser)
 
     const version = APP_VERSION || "0.1.0"
 
@@ -22,7 +27,8 @@
                         </el-button>
                     </li>
                 </ul>
-                <ul class="qp-navbar-nav-list">
+                <!---->
+                <ul v-if="rat" class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
                         <el-button circle disabled>
                             <i class="mdi mdi-apps mdi-24px"></i>
@@ -44,8 +50,9 @@
                         </el-button>
                     </li>
                 </ul>
+                <!---->
                 <ul class="qp-navbar-nav-list">
-                    <li class="qp-navbar-nav-list-item">
+                    <li v-if="rat" class="qp-navbar-nav-list-item">
                         <el-button circle disabled>
                             <i class="mdi mdi-tune mdi-24px"></i>
                         </el-button>

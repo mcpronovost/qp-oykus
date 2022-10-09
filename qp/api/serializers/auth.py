@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 from rest_framework import serializers
+from qp.users.models import qpUserProfile
 
 User = get_user_model()
 
@@ -24,6 +26,11 @@ class qpUserRegisterSerializer(serializers.ModelSerializer):
             validated_data["username"],
             validated_data["email"],
             validated_data["password"]
+        )
+        qpUserProfile.objects.create(
+            user=user,
+            name=validated_data["name"],
+            slug=slugify(validated_data["name"])
         )
         return user
 

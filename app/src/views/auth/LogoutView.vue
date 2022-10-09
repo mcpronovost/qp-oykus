@@ -1,0 +1,73 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { useI18n } from "vue-i18n";
+import { API } from "@/plugins/store/index";
+import { storeUser } from "@/plugins/store";
+import router from "@/plugins/router";
+
+const { t } = useI18n()
+
+const useStoreUser = storeUser()
+const { rat } = storeToRefs(useStoreUser)
+const { cleanUser } = useStoreUser
+
+const isLoadingLogout = ref(false)
+const hasErrorLogout = ref()
+
+const doLogout = async () => {
+    isLoadingLogout.value = true
+    // ===---
+    let f = await fetch(`${API}/logout/`, {
+        method: "POST",
+        headers: new Headers({"Authorization": `Token ${rat.value}`}),
+        body: null
+    })
+    if ([204,401].includes(f.status)) {
+        cleanUser()
+        goTo({name: "Home"})
+    } else {
+        hasErrorLogout.value = t("AnErrorOccurred")
+        isLoadingLogout.value = false
+    }
+}
+
+const goTo = (obj) => {
+    router.push(obj)
+}
+
+onMounted(() => {
+    doLogout()
+})
+</script>
+
+<template>
+    <el-row id="qp-auth-logout">
+        <el-col>
+            <el-card class="qp-center">
+                <h1 v-text="$t('Logout')"></h1>
+                <el-alert v-if="hasErrorLogout" type="error" show-icon :closable="false">
+                    <p v-html="hasErrorLogout"></p>
+                </el-alert>
+                <div class="qp-form-submit">
+                    <el-button type="primary" :loading="isLoadingLogout" @click="doLogout()">
+                        <span v-text="$t('LogoutMe')"></span>
+                    </el-button>
+                </div>
+            </el-card>
+        </el-col>
+    </el-row>
+</template>
+
+<style scoped>
+#qp-auth-logout .el-card {
+    border-bottom: 2px solid var(--qp-primary);
+    width: 300px;
+}
+#qp-auth-logout .el-alert {
+    margin: 32px auto 0;
+}
+#qp-auth-logout .qp-form-submit {
+    margin: 32px 12px 32px;
+}
+</style>

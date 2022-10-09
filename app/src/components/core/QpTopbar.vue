@@ -59,7 +59,7 @@
                                 <span>Paramètres</span>
                             </el-dropdown-item>
                             <el-divider />
-                            <el-dropdown-item :command="{name:'AuthLogout'}" :disabled="$route.name=='AuthLogout'||true">
+                            <el-dropdown-item :command="{name:'AuthLogout'}" :disabled="$route.name=='AuthLogout'">
                                 <span>Déconnexion</span>
                             </el-dropdown-item>
                         </el-dropdown-menu>
@@ -69,13 +69,13 @@
         </div>
         <div v-else id="qp-topbar-right">
             <div class="qp-topbar-item">
-                <el-button>
+                <el-button @click="goTo({name:'AuthLogin'})">
                     <el-icon class="mdi mdi-login-variant el-icon--left" />
                     <span v-text="$t('Login')"></span>
                 </el-button>
             </div>
             <div class="qp-topbar-item">
-                <el-button>
+                <el-button @click="goTo({name:'AuthRegister'})">
                     <el-icon class="mdi mdi-card-account-details-outline el-icon--left" />
                     <span v-text="$t('Register')"></span>
                 </el-button>

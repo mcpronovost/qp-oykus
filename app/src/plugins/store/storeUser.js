@@ -2,43 +2,42 @@ import { defineStore } from "pinia";
 import { API, QpInitStore } from "@/plugins/store/index";
 
 const initState = {
+    "rat": null,
     "id": null,
     "username": null,
     "email": null,
-    "rat": null,
     "last": new Date().getTime()
 }
 
 export const QpStoreUser = defineStore("storeUser", {
     state: () => { return QpInitStore("user", initState) },
     actions: {
-        updateLast() {
+        updateLast () {
             this.last = new Date().getTime()
         },
-        async updateUser () {
-            let f = await fetch(`${API}/`, {
-                method: "GET"
-            })
-            if (f.status === 200) {
-                let r = await f.json()
-                console.log(r)
-                this.updateLast()
-                return r
-            }
+        updateRat (payload) {
+            this.rat = payload
         },
-        async doRegister (username, name, email, password) {
-            let data = new FormData()
-            if (username) data.append("username", username)
-            if (name) data.append("name", name)
-            if (email) data.append("email", email)
-            if (password) data.append("password", password)
-            let f = await fetch(`${API}/register/`, {
-                method: "POST",
-                body: data
+        cleanUser () {
+            Object.keys(initState).forEach((key) => {
+                this[key] = initState[key]
             })
-            if (f.status === 200) {
-                let r = await f.json()
-                console.log(r)
+            this.updateUser()
+        },
+        async updateUser () {
+            if (this.rat) {
+                let f = await fetch(`${API}/me/`, {
+                    method: "GET",
+                    headers: new Headers({"Authorization": `Token ${this.rat}`})
+                })
+                if (f.status === 200) {
+                    let r = await f.json()
+                    console.log(r)
+                    this.updateLast()
+                    return r
+                } else if (f.status === 401) {
+                    this.cleanUser()
+                }
             }
         }
     }

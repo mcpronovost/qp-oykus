@@ -1,6 +1,6 @@
 <script setup>
 
-    const listFeatures = [1, 2]
+    const listFeatures = []
 
 </script>
 

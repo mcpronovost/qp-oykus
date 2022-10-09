@@ -6,9 +6,8 @@ from qp.users.models import qpUserProfile
 
 User = get_user_model()
 
-class qpUserProfileInline(admin.TabularInline):
+class qpUserProfileInline(admin.StackedInline):
     model = qpUserProfile
-    prepopulated_fields = {"slug": ["name"]}
 
 class qpUserAdmin(UserAdmin):
     list_display = ["username", "is_active"]
@@ -32,7 +31,7 @@ class qpUserAdmin(UserAdmin):
             ]
         })
     )
-    # inlines = [qpUserProfileInline]
+    inlines = [qpUserProfileInline]
 
 admin.site.unregister(User)
 admin.site.register(User, qpUserAdmin)
