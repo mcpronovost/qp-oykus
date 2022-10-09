@@ -1,7 +1,7 @@
-# qp-oykus
-Custom project.
+# Oykus
+Create and manage rpg projects.
 
-## Virtual Environnement
+#### Virtual Environnement
 
 - > py -m venv venv
 - > .\venv\Scripts\activate
