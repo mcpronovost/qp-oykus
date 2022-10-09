@@ -1,7 +1,7 @@
 name: Move issue labeled as "In Progress"
 
 on:
-  pull requests:
+  issues:
     types: [labeled]
 
 jobs:
