@@ -12,23 +12,23 @@ jobs:
     steps:
 
       - uses: titoportas/update-project-fields@v0.1.0
-        id: addItem
+        id: inProgressItem
         if: |
           contains(github.event.issue.labels.*.name, 'In Progress')
         with:
           project-url: https://github.com/users/mcpronovost/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          item-id: ${{ steps.addItem.outputs.itemId }}
+          item-id: ${{ steps.inProgressItem.outputs.itemId }}
           field-keys: Status
           field-values: "In Progress"
 
       - uses: titoportas/update-project-fields@v0.1.0
-        id: addItem
+        id: inFeatureItem
         if: |
           contains(github.event.issue.labels.*.name, 'Feature for future')
         with:
           project-url: https://github.com/users/mcpronovost/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          item-id: ${{ steps.addItem.outputs.itemId }}
+          item-id: ${{ steps.inFeatureItem.outputs.itemId }}
           field-keys: Status
           field-values: "In Development"
