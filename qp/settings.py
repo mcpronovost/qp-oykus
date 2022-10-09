@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "colorfield",
     # ===---
     "qp.users",
+    "qp.projects",
     # ===---
     "django_cleanup.apps.CleanupConfig" # last
 ]
