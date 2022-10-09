@@ -11,13 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - uses: monry/actions-get-project-item-id@v2
+        id: get-project-item-id
+        with:
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          project-owner: 'mcpronovost'
+          project-number: 2
+          issue-repository: 'mcpronovost/qp-oykus'
+          issue-number: ${{ github.event.issue.node_id }}
+
       - uses: titoportas/update-project-fields@v0.1.0
         if: |
           contains(github.event.issue.labels.*.name, 'In Progress')
         with:
           project-url: https://github.com/users/mcpronovost/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          item-id: ${{ github.event.issue.node_id }}
+          item-id: ${{ steps.get-project-item-id.outputs.project-item-id }}
           field-keys: Status
           field-values: "In Progress"
 
@@ -27,6 +36,6 @@ jobs:
         with:
           project-url: https://github.com/users/mcpronovost/projects/2
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          item-id: ${{ github.event.issue.node_id }}
+          item-id: ${{ steps.get-project-item-id.outputs.project-item-id }}
           field-keys: Status
           field-values: "In Development"
