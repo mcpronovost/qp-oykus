@@ -17,5 +17,5 @@ jobs:
       if: |
         contains(github.event.issue.labels.*.name, 'In Progress')
       with:
-        project: 'https://github.com/mcpronovost/qp-oykus/projects/2'
+        project: 'https://github.com/users/mcpronovost/projects/2'
         column_name: 'In Progress'
