@@ -18,7 +18,7 @@ jobs:
           project-owner: 'mcpronovost'
           project-number: 2
           issue-repository: 'mcpronovost/qp-oykus'
-          issue-number: ${{ github.event.issue.node_id }}
+          issue-id: ${{ github.event.issue.node_id }}
 
       - uses: titoportas/update-project-fields@v0.1.0
         if: |
