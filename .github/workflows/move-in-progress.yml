@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
         with:
-          action-token: "${{ secrets.MY_GITHUB_TOKEN }}"
+          action-token: ${{ secrets.MY_GITHUB_TOKEN }}
           project-url: "https://github.com/mcpronovost/qp-oykus/projects/2"
           column-name: "In Progress"
           label-name: "In Progress"
