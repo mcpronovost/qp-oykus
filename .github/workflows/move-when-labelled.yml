@@ -10,14 +10,9 @@ jobs:
     name: Move issue when labelled
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@main
-        id: addItem
-        with:
-          project-url: https://github.com/users/mcpronovost/projects/2
-          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          labeled: "In Progress"
 
       - uses: titoportas/update-project-fields@v0.1.0
+        id: addItem
         if: |
           contains(github.event.issue.labels.*.name, 'In Progress')
         with:
@@ -28,6 +23,7 @@ jobs:
           field-values: "In Progress"
 
       - uses: titoportas/update-project-fields@v0.1.0
+        id: addItem
         if: |
           contains(github.event.issue.labels.*.name, 'Feature for future')
         with:
