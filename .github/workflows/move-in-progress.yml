@@ -10,8 +10,6 @@ jobs:
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
       - uses: actions/add-to-project@main
         id: addItem
         with:
