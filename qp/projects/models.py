@@ -78,6 +78,11 @@ class qpProject(models.Model):
     class Meta:
         verbose_name = _("Project")
         verbose_name_plural = _("Projects")
+        ordering = ["-updated_at"]
     
     def __str__(self):
         return "%s" % (str(self.name))
+    
+    @property
+    def initial(self):
+        return "".join([x[0] for x in self.name.split()[:2]]).upper()

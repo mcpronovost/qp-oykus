@@ -49,6 +49,7 @@ body .el-alert .el-alert__icon {
 body .el-avatar {
     --el-avatar-text-color: var(--qp-card-color);
     --el-avatar-bg-color: var(--qp-card-bg);
+    font-family: "Quicksand", sans-serif;
 }
 
 body .el-button {
@@ -121,7 +122,8 @@ body .el-button > span {
     text-overflow: hidden;
 }
 
-body .el-card {
+body .el-card,
+body .el-card.is-always-shadow {
     background-color: var(--qp-card-bg);
     border-color: var(--qp-card-bg);
     border-radius: 0;

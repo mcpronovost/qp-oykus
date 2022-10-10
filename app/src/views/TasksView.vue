@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { storeApp, storeUser } from "@/plugins/store";
-import QpPage from "@/components/core/QpPage.vue";
+import QpPage from "@/components/QpPage.vue";
 import QpTaskanList from "@/components/taskan/QpTaskanList.vue";
 
 const useStoreApp = storeApp()

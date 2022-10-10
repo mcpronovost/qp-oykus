@@ -9,6 +9,9 @@ import "element-plus/dist/index.css";
 import "@mdi/font/css/materialdesignicons.min.css";
 import "@fontsource/nunito/400.css";
 import "@fontsource/nunito/600.css";
+import "@fontsource/quicksand/300.css";
+import "@fontsource/quicksand/400.css";
+import "@fontsource/quicksand/600.css";
 import "@/assets/css/element.css";
 import "@/assets/css/style.css";
 

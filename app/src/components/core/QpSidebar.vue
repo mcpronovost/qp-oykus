@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { storeUser } from "@/plugins/store";
-import QpCreated from "@/components/core/sidebar/QpCreated.vue";
+import QpOwned from "@/components/core/sidebar/QpOwned.vue";
 import QpLoved from "@/components/core/sidebar/QpLoved.vue";
 import QpFeatured from "@/components/core/sidebar/QpFeatured.vue";
 import QpProjectCreate from "@/components/projects/QpCreate.vue";
@@ -24,7 +24,7 @@ const closeCreateProject = () => {
         <el-scrollbar height="calc(100vh - 49px)">
             <nav class="qp-sidebar-nav">
                 <ul v-if="rat" class="qp-sidebar-nav-list">
-                    <QpCreated />
+                    <QpOwned />
                     <QpLoved />
                 </ul>
                 <ul v-else class="qp-sidebar-nav-list">

@@ -1,6 +1,6 @@
 <script setup>
 import router from "@/plugins/router";
-import QpPage from "@/components/core/QpPage.vue";
+import QpPage from "@/components/QpPage.vue";
 
 const goTo = (obj) => {
     router.push(obj)

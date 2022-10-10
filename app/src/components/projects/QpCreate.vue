@@ -22,7 +22,7 @@ const formProject = reactive({
     name: "",
     caption: "",
     description: "",
-    primary_color: "#89a411",
+    primary_color: "#33391d",
     secondary_color: "#ffffff",
     icon: null,
     icon_file: null

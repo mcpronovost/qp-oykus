@@ -147,7 +147,7 @@ input:-webkit-autofill:active {
     grid-column: 2 / 3;
     grid-row: 3 / 3;
 }
-@media (max-width: 1199px) {
+@media (max-width: 767px) {
     #qp-main {
         grid-template-columns: auto;
         grid-column: 2 / 4;

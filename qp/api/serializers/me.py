@@ -11,14 +11,13 @@ class qpMeProjectsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpProject
-        fields = ["id", "name", "slug"]
+        fields = ["id", "name", "slug", "initial", "primary_color", "icon"]
 
 class qpMeSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True, source="user.id")
     username = serializers.CharField(read_only=True, source="user.username")
-    created_projects = qpMeProjectsSerializer(many=True, source="user.created_projects")
     owned_projects = qpMeProjectsSerializer(many=True, source="user.owned_projects")
 
     class Meta:
         model = qpUserProfile
-        fields = ["id", "username", "name", "slug", "created_projects", "owned_projects"]
+        fields = ["id", "username", "name", "slug", "owned_projects"]

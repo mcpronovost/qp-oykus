@@ -1,5 +1,5 @@
 <script setup>
-import QpPage from "@/components/core/QpPage.vue";
+import QpPage from "@/components/QpPage.vue";
 import logo from "@/assets/img/logo.png";
 </script>
 

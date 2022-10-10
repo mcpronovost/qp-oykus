@@ -1,5 +1,13 @@
 <script setup>
-const listProjects = []
+import { storeToRefs } from "pinia";
+import { storeUser } from "@/plugins/store";
+
+const useStoreUser = storeUser()
+const { owned_projects } = storeToRefs(useStoreUser)
+
+const listProjects = [...new Map([
+    ...owned_projects.value
+].map(item => [item["id"], item])).values()]
 </script>
 
 <template>

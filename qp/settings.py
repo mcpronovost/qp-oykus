@@ -9,13 +9,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "qp")
 
-DEBUG = False #os.getenv("DEBUG", False)
+DEBUG = os.getenv("DEBUG", False)
 
 ###############################################################################
 # CORS settings
 
 ALLOWED_HOSTS = ["*"]
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 #########################################################################################

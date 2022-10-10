@@ -1,5 +1,5 @@
 <script setup>
-import QpPage from "@/components/core/QpPage.vue";
+import QpPage from "@/components/QpPage.vue";
 </script>
 
 <template>

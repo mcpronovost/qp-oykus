@@ -1,20 +1,26 @@
 <script setup>
+import { storeToRefs } from "pinia";
+import { storeUser } from "@/plugins/store";
 
-    const listFeatures = []
+const useStoreUser = storeUser()
+const { owned_projects } = storeToRefs(useStoreUser)
 
+const listProjects = [...new Map([
+    ...owned_projects.value
+].map(item => [item["id"], item])).values()]
 </script>
 
 <template>
-    <li v-if="listFeatures.length" class="qp-sidebar-nav-list-item">
+    <li v-if="listProjects.length" class="qp-sidebar-nav-list-item">
         <el-icon size="large">
             <i class="mdi mdi-heart-outline"></i>
         </el-icon>
     </li>
-    <li v-for="(item, n) in listFeatures" :key="`loved-${n}`" class="qp-sidebar-nav-list-item">
-        <el-tooltip placement="left" content="Le monde perdu de Rhansidor">
+    <li v-for="(project, n) in listProjects" :key="`loved-project-${n}`" class="qp-sidebar-nav-list-item">
+        <el-tooltip placement="left" :content="project.name">
             <el-button size="large" circle>
-                <el-avatar :src="''">
-                    <span v-text="item"></span>
+                <el-avatar :src="project.icon" :size="40" :style="`background-color:${project.icon ? 'transparent' : project.primary_color};color:#fff;`">
+                    <span v-text="project.initial"></span>
                 </el-avatar>
             </el-button>
         </el-tooltip>

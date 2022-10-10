@@ -1,5 +1,5 @@
 <script setup>
-import QpPage from "@/components/core/QpPage.vue";
+import QpPage from "@/components/QpPage.vue";
 import QpRegister from "@/views/auth/RegisterView.vue";
 import QpLogin from "@/views/auth/LoginView.vue";
 import QpLogout from "@/views/auth/LogoutView.vue";
