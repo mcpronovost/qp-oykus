@@ -8,7 +8,25 @@ export default defineConfig(() => {
             port: 3000
         },
         build: {
-            outDir: "bundle"
+            outDir: "../static",
+            rollupOptions: {
+                output: {
+                    chunkFileNames: "static/assets/js/[name]-[hash].js",
+                    entryFileNames: "static/assets/js/[name]-[hash].js",
+                    assetFileNames: ({name}) => {
+                      if (/\.(gif|jpe?g|png|svg)$/.test(name ?? "")){
+                          return "static/assets/img/[name]-[hash][extname]";
+                      }
+                      if (/\.(woff|woff2|eot|ttf)$/.test(name ?? "")){
+                          return "static/assets/font/[name]-[hash][extname]";
+                      }
+                      if (/\.css$/.test(name ?? "")) {
+                          return "static/assets/css/[name]-[hash][extname]";   
+                      }
+                      return "static/assets/[name]-[hash][extname]";
+                    }
+                }
+            }
         },
         css: {
             devSourcemap: true
