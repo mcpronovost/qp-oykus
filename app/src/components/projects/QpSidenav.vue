@@ -1,5 +1,6 @@
 <script setup>
 import { storeToRefs } from "pinia";
+import router from "@/plugins/router";
 import { storeUser } from "@/plugins/store";
 
 const useStoreUser = storeUser()

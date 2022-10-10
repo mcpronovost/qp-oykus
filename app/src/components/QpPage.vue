@@ -22,7 +22,6 @@ const mainClasses = computed(() => {
 })
 
 onMounted(() => {
-    console.log(props.sidenavTitle)
     new ResizeObserver((entries) => {
         setMainviewWidth(entries[0].contentRect.width)
     }).observe(document.getElementById("qp-mainview"))

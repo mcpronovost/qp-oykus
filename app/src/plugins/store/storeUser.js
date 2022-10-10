@@ -8,6 +8,7 @@ const initState = {
     "email": null,
     "name": null,
     "owned_projects": [],
+    "notifications": [],
     "last": new Date().getTime()
 }
 
@@ -46,6 +47,7 @@ export const QpStoreUser = defineStore("storeUser", {
                         state.email = r.email
                         state.name = r.name
                         state.owned_projects = r.owned_projects
+                        state.notifications = r.notifications
                     })
                     this.updateLast()
                     return r

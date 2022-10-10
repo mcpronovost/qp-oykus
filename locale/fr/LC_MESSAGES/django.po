@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 10:55-0400\n"
+"POT-Creation-Date: 2022-10-10 17:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,14 +22,68 @@ msgstr ""
 msgid "Invalid details."
 msgstr "Informations invalides."
 
-#: .\qp\api\views\projects.py:19
 # python-format
+#: .\qp\api\views\projects.py:21
+#, python-format
 msgid "You've reached your limit of owned project (%s)."
 msgstr "Vous avez atteint votre limite de projets (%s)."
+
+#: .\qp\api\views\projects.py:30
+#, python-format
+msgid "Project « %s » created successfully!"
+msgstr "Projet « %s » créé avec succès !"
 
 #: .\qp\middleware.py:25
 msgid "Tokens"
 msgstr "Jetons"
+
+#: .\qp\notifications\models.py:6
+msgid "Success"
+msgstr "Succès"
+
+#: .\qp\notifications\models.py:7
+msgid "Error"
+msgstr "Erreur"
+
+#: .\qp\notifications\models.py:15
+msgid "To User"
+msgstr "À"
+
+#: .\qp\notifications\models.py:23
+msgid "From User"
+msgstr "De"
+
+#: .\qp\notifications\models.py:31
+msgid "From Project"
+msgstr "Projet"
+
+#: .\qp\notifications\models.py:36
+msgid "Content"
+msgstr "Contenu"
+
+#: .\qp\notifications\models.py:41
+msgid "Type"
+msgstr "Type"
+
+#: .\qp\notifications\models.py:48
+msgid "Seen"
+msgstr "Vu"
+
+#: .\qp\notifications\models.py:52 .\qp\projects\models.py:72
+msgid "Created at"
+msgstr "Créé le"
+
+#: .\qp\notifications\models.py:56 .\qp\projects\models.py:76
+msgid "Updated at"
+msgstr "Mis à jour le"
+
+#: .\qp\notifications\models.py:61 .\qp\notifications\models.py:66
+msgid "Notification"
+msgstr "Notification"
+
+#: .\qp\notifications\models.py:62
+msgid "Notifications"
+msgstr "Notifications"
 
 #: .\qp\projects\models.py:9 .\qp\users\models.py:16
 msgid "Name"
@@ -86,14 +140,6 @@ msgid ""
 msgstr ""
 "Précise si ce projet est considéré comme actif. Décochez ceci plutôt que de "
 "le supprimer."
-
-#: .\qp\projects\models.py:72
-msgid "Created at"
-msgstr "Créé le"
-
-#: .\qp\projects\models.py:76
-msgid "Updated at"
-msgstr "Mis à jour le"
 
 #: .\qp\projects\models.py:81
 msgid "Project"

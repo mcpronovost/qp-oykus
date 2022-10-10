@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from qp.projects.models import qpProject
 from qp.api.serializers.projects import qpProjectsCreateSerializer
 
+from qp.notifications.models import qpNotification
+
 class qpProjectsCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = qpProject.objects.all()
@@ -20,5 +22,13 @@ class qpProjectsCreateView(CreateAPIView):
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
-        serializer.save(creator=self.request.user)
-        serializer.save(owner=self.request.user)
+        serializer.save(creator=self.request.user, owner=self.request.user)
+        try:
+            qpNotification.objects.create(
+                user_to=self.request.user,
+                project_from=qpProject.objects.get(pk=serializer.data["id"]),
+                content=str(_("Project « %s » created successfully!") % (str(serializer.data["name"]))),
+                has_type="success"
+            )
+        except Exception as e:
+            print('Error on "qpProjectsCreateView" > creating notification : ', e)

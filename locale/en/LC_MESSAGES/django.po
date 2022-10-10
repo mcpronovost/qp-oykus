@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 10:55-0400\n"
+"POT-Creation-Date: 2022-10-10 17:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,14 +22,68 @@ msgstr ""
 msgid "Invalid details."
 msgstr "Invalid details."
 
-#: .\qp\api\views\projects.py:19
 # python-format
+#: .\qp\api\views\projects.py:21
+#, python-format
 msgid "You've reached your limit of owned project (%s)."
 msgstr "You've reached your limit of owned project (%s)."
+
+#: .\qp\api\views\projects.py:30
+#, python-format
+msgid "Project « %s » created successfully!"
+msgstr "Project « %s » created successfully!"
 
 #: .\qp\middleware.py:25
 msgid "Tokens"
 msgstr "Tokens"
+
+#: .\qp\notifications\models.py:6
+msgid "Success"
+msgstr "Success"
+
+#: .\qp\notifications\models.py:7
+msgid "Error"
+msgstr "Error"
+
+#: .\qp\notifications\models.py:15
+msgid "To User"
+msgstr "To User"
+
+#: .\qp\notifications\models.py:23
+msgid "From User"
+msgstr "From User"
+
+#: .\qp\notifications\models.py:31
+msgid "From Project"
+msgstr "From Project"
+
+#: .\qp\notifications\models.py:36
+msgid "Content"
+msgstr "Content"
+
+#: .\qp\notifications\models.py:41
+msgid "Type"
+msgstr "Type"
+
+#: .\qp\notifications\models.py:48
+msgid "Seen"
+msgstr "Seen"
+
+#: .\qp\notifications\models.py:52 .\qp\projects\models.py:72
+msgid "Created at"
+msgstr "Created at"
+
+#: .\qp\notifications\models.py:56 .\qp\projects\models.py:76
+msgid "Updated at"
+msgstr "Updated at"
+
+#: .\qp\notifications\models.py:61 .\qp\notifications\models.py:66
+msgid "Notification"
+msgstr "Notification"
+
+#: .\qp\notifications\models.py:62
+msgid "Notifications"
+msgstr "Notifications"
 
 #: .\qp\projects\models.py:9 .\qp\users\models.py:16
 msgid "Name"
@@ -49,7 +103,7 @@ msgstr "Owner"
 
 #: .\qp\projects\models.py:39
 msgid "Caption"
-msgstr ""
+msgstr "Caption"
 
 #: .\qp\projects\models.py:45
 msgid "Description"
@@ -86,14 +140,6 @@ msgid ""
 msgstr ""
 "Designates whether this project should be treated as active. Unselect this "
 "instead of deleting project."
-
-#: .\qp\projects\models.py:72
-msgid "Created at"
-msgstr "Created at"
-
-#: .\qp\projects\models.py:76
-msgid "Updated at"
-msgstr "Updated at"
 
 #: .\qp\projects\models.py:81
 msgid "Project"

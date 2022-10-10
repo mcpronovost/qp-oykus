@@ -1,5 +1,6 @@
 body {
     --el-font-family: "Nunito", sans-serif;
+    --el-font-size-base: 16px;
     --el-text-color-primary: var(--qp-base-color);
 
     --el-mask-color-extra-light: rgba(28, 28, 29, 0.5);
@@ -119,7 +120,7 @@ body .el-button.el-button--primary:not(.is-disabled):active {
     color: var(--qp-primary-dark-3);
 }
 body .el-button > span {
-    text-overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 body .el-card,
@@ -191,6 +192,10 @@ body .el-textarea {
     --el-input-clear-hover-color: var(--qp-input-clearhover);
 }
 
+body .el-link {
+    font-size: inherit;
+}
+
 body .el-menu {
     --el-menu-bg-color: transparent;
     --el-menu-border-color: transparent;
@@ -234,18 +239,3 @@ body .el-popper.is-dark {
     background-color: var(--qp-sidebar-bg);
     border-color: var(--qp-sidebar-bg);
 }
-body .el-popper.qp-topbar-popper {
-    --el-bg-color-overlay: var(--qp-navbar-bg);
-    --el-border-color-light: var(--qp-navbar-bg);
-    --el-text-color-primary: var(--qp-navbar-bg);
-    background-color: var(--qp-navbar-bg);
-    border-color: var(--qp-navbar-bg);
-}
-body .el-popper.qp-topbar-popper .el-dropdown-menu {
-    --el-bg-color-overlay: var(--qp-sidebar-bg);
-    --el-text-color-regular: #acadac;
-    --el-text-color-disabled: #5e5f5e;
-    background-color: transparent;
-    border-color: transparent;
-}
-

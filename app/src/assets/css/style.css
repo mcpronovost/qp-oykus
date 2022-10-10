@@ -119,8 +119,14 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: var(--qp-input-color)!important;
 }
 
+.qp-left {
+    text-align: left;
+}
 .qp-center {
     text-align: center;
+}
+.qp-right {
+    text-align: right;
 }
 .qp-justify-content-center {
     justify-content: center;
@@ -152,4 +158,76 @@ input:-webkit-autofill:active {
         grid-template-columns: auto;
         grid-column: 2 / 4;
     }
+}
+
+/* =================================================================================== */
+/* ===--- POPPER ------------------------------------------------------------------=== */
+/* =================================================================================== */
+
+body .el-popper.qp-topbar-popper {
+    --el-bg-color-overlay: var(--qp-navbar-bg);
+    --el-border-color-light: var(--qp-navbar-bg);
+    --el-text-color-primary: var(--qp-navbar-bg);
+    background-color: var(--qp-navbar-bg);
+    border-color: var(--qp-navbar-bg);
+}
+body .el-popper.qp-topbar-popper .el-dropdown-menu {
+    --el-bg-color-overlay: var(--qp-sidebar-bg);
+    --el-text-color-regular: #acadac;
+    --el-text-color-disabled: #5e5f5e;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* ========================================= */
+/* ===--- NOTIFICATIONS -----------------=== */
+/* ========================================= */
+
+body .el-popper.qp-topbar-popper-notifications {
+    width: 400px;
+    max-width: 90vw;
+}
+
+body .el-popper.qp-topbar-popper-notifications .el-dropdown-menu__item {
+    white-space: break-spaces;
+}
+body .el-popper.qp-topbar-popper-notifications .el-alert {
+    opacity: 1;
+    padding: 12px;
+}
+body .el-popper.qp-topbar-popper-notifications .el-alert:hover {
+    opacity: 0.6;
+}
+body .el-popper.qp-topbar-popper-notifications .el-alert__content,
+body .el-popper.qp-topbar-popper-notifications .el-alert__description,
+body .el-popper.qp-topbar-popper-notifications .el-alert .el-row,
+body .el-popper.qp-topbar-popper-notifications .el-alert .el-col {
+    padding: 0;
+    margin: 0;
+}
+body .el-popper.qp-topbar-popper-notifications .el-alert__content {
+    width: 100%;
+}
+body .el-popper.qp-topbar-popper-notifications .el-alert__description {
+    display: flex;
+}
+body .qp-topbar-popper-notifications-icon {
+    flex: 0 1 48px;
+}
+body .el-popper.qp-topbar-popper-notifications .el-alert p {
+    font-size: 14px;
+    line-height: 120%;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+body .el-popper.qp-topbar-popper-notifications .el-icon {
+    font-size: 20px;
+    line-height: 100%;
+    margin: 0;
+}
+body .el-popper.qp-topbar-popper-notifications .el-button {
+    font-size: 14px;
+    width: calc(100% - 24px);
+    margin: 0 12px 6px;
 }

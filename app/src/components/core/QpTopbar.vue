@@ -5,7 +5,7 @@
     import { storeUser } from "@/plugins/store";
 
     const useStoreUser = storeUser()
-    const { rat, username, name } = storeToRefs(useStoreUser)
+    const { rat, username, name, notifications } = storeToRefs(useStoreUser)
 
     const goTo = (obj) => {
         router.push(obj)
@@ -27,9 +27,45 @@
                 </el-badge>
             </div>
             <div class="qp-topbar-item">
-                <el-badge :value="0" :hidden="true">
-                    <el-button :icon="Bell" round disabled></el-button>
-                </el-badge>
+                <el-dropdown :hide-on-click="false" trigger="click" placement="bottom-end" @command="goTo" popper-class="qp-topbar-popper qp-topbar-popper-notifications">
+                    <el-badge :value="notifications.length" :hidden="notifications.length < 1">
+                        <el-button :icon="Bell" round></el-button>
+                    </el-badge>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-row>
+                                <el-col :span="12" class="qp-left">
+                                    <span v-text="$t('Notifications')"></span>
+                                </el-col>
+                                <el-col :span="12" class="qp-right">
+                                    <el-link :underline="false">
+                                        <span v-text="$t('MarkAllAsRead')"></span>
+                                    </el-link>
+                                </el-col>
+                            </el-row>
+                            <el-scrollbar :max-height="210">
+                                <el-dropdown-item v-for="(notification, n) in notifications" :key="`notification-${n}`" :command="{name:'Profile'}">
+                                    <el-alert :type="notification.has_type ? notification.has_type : 'info'" :closable="false">
+                                        <div v-if="notification.initial || notification.has_type" class="qp-topbar-popper-notifications-icon">
+                                            <el-avatar :src="notification.icon" :size="32" :style="`background-color:${notification.icon ? 'transparent' : notification.primary_color};color:#fff;`">
+                                                <span v-if="notification.initial" v-text="notification.initial"></span>
+                                                <el-icon v-else :class="`mdi ${
+                                                    notification.has_type == 'success' ? 'mdi-check-circle-outline'
+                                                    : notification.has_type == 'error' ? 'mdi-alert-circle-outline'
+                                                    : 'mdi-bell'
+                                                }`" :style="`color:var(--qp-${notification.has_type});`" />
+                                            </el-avatar>
+                                        </div>
+                                        <div>
+                                            <p v-text="notification.content"></p>
+                                        </div>
+                                    </el-alert>
+                                </el-dropdown-item>
+                            </el-scrollbar>
+                        </el-dropdown-menu>
+                        <el-button text>Voir toutes les notifications</el-button>
+                    </template>
+                </el-dropdown>
             </div>
             <div class="qp-topbar-item qp-player">
                 <el-dropdown trigger="click" placement="bottom-end" popper-class="qp-topbar-popper" @command="goTo">

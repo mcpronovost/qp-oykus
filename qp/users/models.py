@@ -39,3 +39,7 @@ class qpUserProfile(models.Model):
     
     def __str__(self):
         return "%s" % (str(_("Profile")))
+    
+    @property
+    def initial(self):
+        return "".join([x[0] for x in self.name.split()[:2]]).upper()

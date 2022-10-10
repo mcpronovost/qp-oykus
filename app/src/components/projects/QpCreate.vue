@@ -2,6 +2,7 @@
 import { computed, reactive, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
+import router from "@/plugins/router";
 import { API } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
 import { ElMessage } from "element-plus";
@@ -93,6 +94,8 @@ const doCreateProject = async () => {
     })
     if (f.status === 201) {
         isLoading.value = false
+        goTo({name: "Projects"})
+        doClose()
     } else if (f.status === 429) {
         let r = await f.json()
         hasError.value = r.msg
