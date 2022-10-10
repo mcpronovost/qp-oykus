@@ -69,9 +69,11 @@ class qpProject(models.Model):
         help_text=_("Designates whether this project should be treated as active. Unselect this instead of deleting project.")
     )
     created_at = models.DateTimeField(
+        verbose_name=_("Created at"),
         auto_now_add=True
     )
     updated_at = models.DateTimeField(
+        verbose_name=_("Updated at"),
         auto_now=True
     )
 
