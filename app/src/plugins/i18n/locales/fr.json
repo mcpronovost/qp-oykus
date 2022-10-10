@@ -38,5 +38,9 @@
     "UploadAnIcon": "Téléverser un icône",
     "Caption": "Légende",
     "Description": "Description",
-    "Create": "Créer"
+    "Create": "Créer",
+    "Project": "Projet",
+    "Projects": "Projets",
+    "Task": "Tâche",
+    "Tasks": "Tâches"
 }

@@ -30,22 +30,22 @@
                 <!---->
                 <ul v-if="rat" class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle disabled>
+                        <el-button circle :disabled="$route.name=='Projects'" @click="goTo({name:'Projects'})">
                             <i class="mdi mdi-apps mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle disabled>
+                        <el-button circle>
                             <i class="mdi mdi-chart-box-outline mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle disabled>
+                        <el-button circle :disabled="$route.name=='Tasks'" @click="goTo({name:'Tasks'})">
                             <i class="mdi mdi-order-bool-descending-variant mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle disabled>
+                        <el-button circle>
                             <i class="mdi mdi-podium-gold mdi-24px"></i>
                         </el-button>
                     </li>
@@ -53,7 +53,7 @@
                 <!---->
                 <ul class="qp-navbar-nav-list">
                     <li v-if="rat" class="qp-navbar-nav-list-item">
-                        <el-button circle disabled>
+                        <el-button circle :disabled="$route.name=='Settings'" @click="goTo({name:'Settings'})">
                             <i class="mdi mdi-tune mdi-24px"></i>
                         </el-button>
                     </li>

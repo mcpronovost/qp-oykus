@@ -37,5 +37,9 @@
     "UploadAnIcon": "Upload icon",
     "Caption": "Caption",
     "Description": "Description",
-    "Create": "Create"
+    "Create": "Create",
+    "Project": "Project",
+    "Projects": "Projects",
+    "Task": "Task",
+    "Tasks": "Tasks"
 }

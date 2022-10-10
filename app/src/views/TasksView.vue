@@ -91,17 +91,5 @@ const taskanSpan = computed(() => {
                 </el-col>
             </el-row>
         </div>
-        <template #sidenav-title>
-            Projets
-        </template>
-        <template #sidenav>
-            sidenav
-        </template>
-        <template #sideview-title>
-            sideview
-        </template>
-        <template #sideview>
-            sideview
-        </template>
     </QpPage>
 </template>

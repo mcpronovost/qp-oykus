@@ -189,6 +189,24 @@ body .el-textarea {
     --el-input-clear-hover-color: var(--qp-input-clearhover);
 }
 
+body .el-menu {
+    --el-menu-bg-color: transparent;
+    --el-menu-border-color: transparent;
+    --el-menu-hover-bg-color: transparent;
+    --el-menu-text-color: var(--qp-base-color);
+    --el-text-color-secondary: var(--qp-secondary);
+}
+body .el-sub-menu__title:hover,
+body .el-menu-item:hover {
+    color: var(--qp-primary);
+}
+body .el-menu-item > span {
+    line-height: 120%;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
+}
+
 body .el-message-box {
     --el-bg-color: var(--qp-card-bg);
     --el-border-color-lighter: var(--qp-card-bg);

@@ -22,6 +22,26 @@ const routes = [
       name: "AuthLogout",
       component: () => import("@/views/AuthView.vue")
     },
+    {
+      path: "/profile",
+      name: "Profile",
+      component: () => import("@/views/ProfileView.vue")
+    },
+    {
+      path: "/projects",
+      name: "Projects",
+      component: () => import("@/views/ProjectsView.vue")
+    },
+    {
+      path: "/tasks",
+      name: "Tasks",
+      component: () => import("@/views/TasksView.vue")
+    },
+    {
+      path: "/settings",
+      name: "Settings",
+      component: () => import("@/views/SettingsView.vue")
+    },
     /* ===--- FALLBACK ---=== */
     {
       path: "/:catchAll(.*)",

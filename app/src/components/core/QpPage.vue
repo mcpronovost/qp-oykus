@@ -4,7 +4,7 @@
     import { storeApp } from "@/plugins/store";
 
     const slots = useSlots()
-    const props = defineProps([])
+    const props = defineProps(["sidenavTitle"])
 
     const useStoreApp = storeApp()
     const { isSidenavShow, isSideviewShow } = storeToRefs(useStoreApp)
@@ -22,6 +22,7 @@
     })
 
     onMounted(() => {
+        console.log(props.sidenavTitle)
         new ResizeObserver((entries) => {
             setMainviewWidth(entries[0].contentRect.width)
         }).observe(document.getElementById("qp-mainview"))
@@ -30,15 +31,20 @@
 
 <template>
     <main :class="mainClasses">
-        <div v-if="'sidenav' in slots && isSidenavShow" id="qp-sidenav">
-            <el-scrollbar height="100%">
+        <div v-if="'sidenav' in slots" id="qp-sidenav">
+            <div id="qp-sidenav-toggle-open">
+                <el-button @click="toggleSidenavShow()">
+                    <el-icon class="mdi mdi-arrow-collapse-right" />
+                </el-button>
+            </div>
+            <el-scrollbar v-if="isSidenavShow" height="100%">
                 <div id="qp-sidenav-toggle">
                     <el-button @click="toggleSidenavShow()">
                         <el-icon class="mdi mdi-arrow-collapse-left" />
                     </el-button>
                 </div>
-                <div id="qp-sidenav-header">
-                    <slot name="sidenav-title"></slot>
+                <div v-if="props.sidenavTitle" id="qp-sidenav-header">
+                    <span v-text="props.sidenavTitle"></span>
                 </div>
                 <div id="qp-sidenav-wrapper">
                     <slot name="sidenav"></slot>
@@ -57,8 +63,8 @@
                         <el-icon class="mdi mdi-arrow-collapse-right" />
                     </el-button>
                 </div>
-                <div id="qp-sideview-header">
-                    <slot name="sideview-title"></slot>
+                <div v-if="props.sideviewTitle" id="qp-sideview-header">
+                    <span v-text="props.sideviewTitle"></span>
                 </div>
                 <div id="qp-sideview-wrapper">
                     <slot name="sideview"></slot>
@@ -93,13 +99,15 @@
         right: 0;
     }
     #qp-sidenav-toggle .el-button,
-    #qp-sideview-toggle .el-button {
+    #qp-sideview-toggle .el-button,
+    #qp-sidenav-toggle-open .el-button {
         background-color: transparent;
         border-color: transparent;
         color: #6e6f6e;
     }
     #qp-sidenav-toggle .el-button:hover,
-    #qp-sideview-toggle .el-button:hover {
+    #qp-sideview-toggle .el-button:hover,
+    #qp-sidenav-toggle-open .el-button:hover {
         color: var(--qp-primary);
     }
     #qp-sidenav-header,
@@ -115,18 +123,25 @@
     /* ===---=== */
     #qp-sidenav {
         background-color: var(--qp-sidenav-bg);
-        grid-column: 1 / 2;
+        grid-column: 1 / 1;
         grid-row: 1 / 2;
+        width: 0;
         height: calc(100vh - 49px);
         position: relative;
     }
-    #qp-main main.qp-bothside-show #qp-sidenav {
-        grid-column: 1 / 2;
+    #qp-sidenav-toggle-open {
+        position: absolute;
+        top: -40px;
+        left: 100%;
+        z-index: 4;
     }
+    #qp-main main.qp-bothside-show #qp-sidenav,
     #qp-main main.qp-sidenav-show #qp-sidenav {
         grid-column: 1 / 2;
+        width: auto;
     }
-    #qp-main main.qp-sideview-show #qp-sidenav {
+    #qp-main main.qp-bothside-show #qp-sidenav #qp-sidenav-toggle-open,
+    #qp-main main.qp-sidenav-show #qp-sidenav #qp-sidenav-toggle-open {
         display: none;
     }
     /* ===---=== */
@@ -165,7 +180,8 @@
         #qp-main main {
             grid-template-columns: auto!important;
         }
-        #qp-sidenav {
+        #qp-main main.qp-bothside-show #qp-sidenav,
+        #qp-main main.qp-sidenav-show #qp-sidenav {
             box-shadow: -2px 0 2px rgba(0, 0, 0, 0.1);
             width: calc(100vw - 128px);
             max-width: 260px;

@@ -45,17 +45,17 @@
                                 </div>
                             </el-dropdown-item>
                             <el-divider />
-                            <el-dropdown-item :command="{name:'MeProfil'}" :disabled="$route.name=='MeProfil'||true">
+                            <el-dropdown-item :command="{name:'Profile'}" :disabled="$route.name=='Profile'">
                                 <span>Mon profil</span>
                             </el-dropdown-item>
-                            <el-dropdown-item :command="{name:'MeProjects'}" :disabled="$route.name=='MeProjects'||true">
+                            <el-dropdown-item :command="{name:'Projects'}" :disabled="$route.name=='Projects'">
                                 <span>Mes projets</span>
                             </el-dropdown-item>
-                            <el-dropdown-item :command="{name:'MeTasks'}" :disabled="$route.name=='MeTasks'||true">
+                            <el-dropdown-item :command="{name:'Tasks'}" :disabled="$route.name=='Tasks'">
                                 <span>Mes tâches</span>
                             </el-dropdown-item>
                             <el-divider />
-                            <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'||true">
+                            <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'">
                                 <span>Paramètres</span>
                             </el-dropdown-item>
                             <el-divider />
