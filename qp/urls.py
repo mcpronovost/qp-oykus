@@ -11,5 +11,5 @@ urlpatterns = [
     re_path(r"^api/auth/", include("knox.urls")),
     re_path(r"^api/", include("qp.api.urls")),
 ] + static(STATIC_URL, document_root=STATIC_ROOT) + static(MEDIA_URL, document_root=MEDIA_ROOT) + [
-    #re_path(r"^", app)
+    re_path(r"^", app)
 ]

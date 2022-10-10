@@ -23,8 +23,8 @@ def app(request):
         template_name = static("index.html").replace("/static/", "")
         with storage_class().open(template_name) as f:
             template = str(f.read(), "utf-8")
-            template = re.sub(r'href="(.+)"', toStaticHref, template)
-            template = re.sub(r'src="(.+)"', toStaticSrc, template)
+        #    template = re.sub(r'href="(.+)"', toStaticHref, template)
+        #    template = re.sub(r'src="(.+)"', toStaticSrc, template)
     except Exception as e:
         print(e)
     return HttpResponse(template)
