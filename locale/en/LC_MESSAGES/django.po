@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-09 23:31-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\qp\api\serializers\auth.py:45
+msgid "Invalid details."
+msgstr "Invalid details."
+
+#: .\qp\api\views\projects.py:20
+msgid "You've reached your limit of owned project."
+msgstr "You've reached your limit of owned project."
+
+#: .\qp\middleware.py:25
+msgid "Tokens"
+msgstr "Tokens"
+
+#: .\qp\projects\models.py:9 .\qp\users\models.py:16
+msgid "Name"
+msgstr "Name"
+
+#: .\qp\projects\models.py:15 .\qp\users\models.py:22
+msgid "Slug"
+msgstr "Slug"
+
+#: .\qp\projects\models.py:26
+msgid "Creator"
+msgstr "Creator"
+
+#: .\qp\projects\models.py:34
+msgid "Owner"
+msgstr "Owner"
+
+#: .\qp\projects\models.py:39
+msgid "Caption"
+msgstr ""
+
+#: .\qp\projects\models.py:45
+msgid "Description"
+msgstr "Description"
+
+#: .\qp\projects\models.py:50
+msgid "Primary Colour"
+msgstr "Primary Colour"
+
+#: .\qp\projects\models.py:56
+msgid "Icon"
+msgstr "Icon"
+
+#: .\qp\projects\models.py:62
+msgid "Public"
+msgstr "Public"
+
+#: .\qp\projects\models.py:64
+msgid ""
+"Designates whether this project should be visible for everyone. Unselect "
+"this to make it visible only for staff."
+msgstr ""
+"Designates whether this project should be visible for everyone. Unselect "
+"this to make it visible only for staff."
+
+#: .\qp\projects\models.py:67
+msgid "Active"
+msgstr "Active"
+
+#: .\qp\projects\models.py:69
+msgid ""
+"Designates whether this project should be treated as active. Unselect this "
+"instead of deleting project."
+msgstr ""
+"Designates whether this project should be treated as active. Unselect this "
+"instead of deleting project."
+
+#: .\qp\projects\models.py:72
+msgid "Created at"
+msgstr "Created at"
+
+#: .\qp\projects\models.py:76
+msgid "Updated at"
+msgstr "Updated at"
+
+#: .\qp\projects\models.py:81
+msgid "Project"
+msgstr "Project"
+
+#: .\qp\projects\models.py:82
+msgid "Projects"
+msgstr "Projects"
+
+#: .\qp\users\models.py:11
+msgid "User"
+msgstr "User"
+
+#: .\qp\users\models.py:31 .\qp\users\models.py:32 .\qp\users\models.py:35
+msgid "Profile"
+msgstr "Profile"
