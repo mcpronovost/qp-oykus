@@ -26,6 +26,12 @@ class qpUserProfile(models.Model):
         blank=True,
         null=True
     )
+    limit_max_projects = models.PositiveSmallIntegerField(
+        verbose_name=_("Max Projects"),
+        default=2,
+        blank=False,
+        null=False
+    )
 
     class Meta:
         verbose_name = _("Profile")

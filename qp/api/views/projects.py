@@ -7,17 +7,16 @@ from rest_framework.response import Response
 from qp.projects.models import qpProject
 from qp.api.serializers.projects import qpProjectsCreateSerializer
 
-
 class qpProjectsCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = qpProject.objects.all()
     serializer_class = qpProjectsCreateSerializer
     
     def post(self, request, *args, **kwargs):
-        max_projects = 2
+        max_projects = request.user.profile.limit_max_projects
         count_projects = request.user.owned_projects.filter(is_active=True).count()
         if count_projects >= max_projects:
-            return Response({"msg": _("You've reached your limit of owned project.")}, status=HTTP_429_TOO_MANY_REQUESTS, headers={})
+            return Response({"msg": _("You've reached your limit of owned project (%s).") % (max_projects)}, status=HTTP_429_TOO_MANY_REQUESTS, headers={})
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):

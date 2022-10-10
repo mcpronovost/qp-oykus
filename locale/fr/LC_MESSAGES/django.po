@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-09 23:31-0400\n"
+"POT-Creation-Date: 2022-10-10 10:55-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,10 @@ msgstr ""
 msgid "Invalid details."
 msgstr "Informations invalides."
 
-#: .\qp\api\views\projects.py:20
-msgid "You've reached your limit of owned project."
-msgstr "Vous avez atteint votre limite de projets."
+#: .\qp\api\views\projects.py:19
+# python-format
+msgid "You've reached your limit of owned project (%s)."
+msgstr "Vous avez atteint votre limite de projets (%s)."
 
 #: .\qp\middleware.py:25
 msgid "Tokens"
@@ -106,6 +107,10 @@ msgstr "Projets"
 msgid "User"
 msgstr "Utilisateur"
 
-#: .\qp\users\models.py:31 .\qp\users\models.py:32 .\qp\users\models.py:35
+#: .\qp\users\models.py:30
+msgid "Max Projects"
+msgstr "Projets Maximum"
+
+#: .\qp\users\models.py:37 .\qp\users\models.py:38 .\qp\users\models.py:41
 msgid "Profile"
 msgstr "Profil"
