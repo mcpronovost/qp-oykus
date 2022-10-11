@@ -50,5 +50,9 @@
     "UnderDevelopment": "En développement",
     "Settings": "Paramètres",
     "Profile": "Profil",
-    "Leaderboard": "Classement"
+    "Leaderboard": "Classement",
+    "MyProfile": "Mon profil",
+    "MyProjects": "Mes projets",
+    "MyTasks": "Mes tâches",
+    "SignedInAs": "Connecté en tant que"
 }

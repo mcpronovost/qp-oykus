@@ -3,14 +3,14 @@ import { computed, reactive, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import router from "@/plugins/router";
-import { API } from "@/plugins/store/index";
+import { API, QpStoreHeaders } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
 import { ElMessage } from "element-plus";
 
 const { t } = useI18n()
 
 const useStoreUser = storeUser()
-const { rat } = storeToRefs(useStoreUser)
+const { rat, lang } = storeToRefs(useStoreUser)
 const { updateUser } = useStoreUser
 
 const props = defineProps(["show"])
@@ -92,7 +92,7 @@ const doCreateProject = async () => {
     // ===---
     let f = await fetch(`${API}/projects/create/`, {
         method: "POST",
-        headers: new Headers({"Authorization": `Token ${rat.value}`}),
+        headers: QpStoreHeaders(rat.value, lang.value),
         body: data
     })
     if (f.status === 201) {

@@ -5,6 +5,19 @@ import { QpStoreUser } from "./storeUser";
 
 export const API = "http://localhost:8000/api"
 
+export const QpStoreHeaders = (rat, lang) => {
+    if (rat) {
+        return new Headers({
+            "Authorization": `Token ${rat}`,
+            "Accept-Language": `${lang||"fr"}`
+        })
+    } else {
+        return new Headers({
+            "Accept-Language": `${lang||"fr"}`
+        })
+    }
+}
+
 export const QpInitStore = (store, payload) => {
     if (localStorage.getItem(`qp-oykus-${store}`)) {
         try { return QpFromStore(store) } catch (e) {

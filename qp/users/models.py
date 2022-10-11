@@ -3,6 +3,11 @@ from django.db import models
 from autoslug import AutoSlugField
 from django.contrib.auth import get_user_model
 
+CHOIX_LANGS = [
+    ("fr", _("French")),
+    ("en", _("English"))
+]
+
 class qpUserProfile(models.Model):
     user = models.OneToOneField(
         get_user_model(),
@@ -25,6 +30,14 @@ class qpUserProfile(models.Model):
         editable=True,
         blank=True,
         null=True
+    )
+    lang = models.CharField(
+        verbose_name=_("Language"),
+        max_length=6,
+        choices=CHOIX_LANGS,
+        default="fr",
+        blank=False,
+        null=False
     )
     limit_max_projects = models.PositiveSmallIntegerField(
         verbose_name=_("Max Projects"),

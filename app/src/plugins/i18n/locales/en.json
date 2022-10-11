@@ -49,5 +49,9 @@
     "UnderDevelopment": "Under Development",
     "Settings": "Settings",
     "Profile": "Profile",
-    "Leaderboard": "Leaderboard"
+    "Leaderboard": "Leaderboard",
+    "MyProfile": "My Profile",
+    "MyProjects": "My Projects",
+    "MyTasks": "My Tasks",
+    "SignedInAs": "Signed in as"
 }

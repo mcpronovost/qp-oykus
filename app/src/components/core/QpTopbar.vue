@@ -26,7 +26,7 @@
                     <el-button :icon="Message" round disabled></el-button>
                 </el-badge>
             </div>
-            <div class="qp-topbar-item">
+            <div v-if="notifications" class="qp-topbar-item">
                 <el-dropdown :hide-on-click="false" trigger="click" placement="bottom-end" @command="goTo" popper-class="qp-topbar-popper qp-topbar-popper-notifications">
                     <el-badge :value="notifications.length" :hidden="notifications.length < 1">
                         <el-button :icon="Bell" round></el-button>
@@ -76,27 +76,27 @@
                         <el-dropdown-menu>
                             <el-dropdown-item class="qp-dropdown-text" disabled>
                                 <div>
-                                    <div>Connecté en tant que</div>
+                                    <div v-text="$t('SignedInAs')"></div>
                                     <div v-text="username"></div>
                                 </div>
                             </el-dropdown-item>
                             <el-divider />
                             <el-dropdown-item :command="{name:'Profile'}" :disabled="$route.name=='Profile'">
-                                <span>Mon profil</span>
+                                <span v-text="$t('MyProfile')"></span>
                             </el-dropdown-item>
                             <el-dropdown-item :command="{name:'Projects'}" :disabled="$route.name=='Projects'">
-                                <span>Mes projets</span>
+                                <span v-text="$t('MyProjects')"></span>
                             </el-dropdown-item>
                             <el-dropdown-item :command="{name:'Tasks'}" :disabled="$route.name=='Tasks'">
-                                <span>Mes tâches</span>
+                                <span v-text="$t('MyTasks')"></span>
                             </el-dropdown-item>
                             <el-divider />
                             <el-dropdown-item :command="{name:'Settings'}" :disabled="$route.name=='Settings'">
-                                <span>Paramètres</span>
+                                <span v-text="$t('Settings')"></span>
                             </el-dropdown-item>
                             <el-divider />
                             <el-dropdown-item :command="{name:'AuthLogout'}" :disabled="$route.name=='AuthLogout'">
-                                <span>Déconnexion</span>
+                                <span v-text="$t('Logout')"></span>
                             </el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
