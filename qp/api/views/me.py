@@ -1,6 +1,5 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import RetrieveAPIView
-from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 
 from qp.api.serializers.me import qpMeSerializer
