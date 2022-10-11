@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { storeUser } from "@/plugins/store";
+import { storeApp, storeUser } from "@/plugins/store";
 
 const routes = [
     {
@@ -61,10 +61,19 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+    const useStoreApp = storeApp()
+    const { updateIsLoading } = useStoreApp
     const useStoreUser = storeUser()
     const { updateUser } = useStoreUser
+    updateIsLoading(true)
     updateUser()
     next()
+})
+
+router.afterEach(async (to, from, next) => {
+    const useStoreApp = storeApp()
+    const { updateIsLoading } = useStoreApp
+    updateIsLoading(false)
 })
 
 export default router

@@ -1,10 +1,14 @@
 <script setup>
-    //
+import { storeApp } from "@/plugins/store";
+import { storeToRefs } from "pinia";
+
+const useStoreApp = storeApp()
+const { isLoading } = storeToRefs(useStoreApp)
 </script>
 
 <template>
     <div id="qp-appbar">
-        <el-progress :percentage="100" :indeterminate="false" :stroke-width="2" :show-text="false" />
+        <el-progress :percentage="100" :indeterminate="isLoading" :stroke-width="2" :show-text="false" />
     </div>
 </template>
 

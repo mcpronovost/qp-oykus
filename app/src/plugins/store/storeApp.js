@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { QpInitStore } from "./index";
 
 const initState = {
+    "isLoading": false,
     "theme": "dark",
     "isSidenavShow": true,
     "isSideviewShow": true,
@@ -11,17 +12,25 @@ const initState = {
 export const QpStoreApp = defineStore("storeApp", {
     state: () => { return QpInitStore("app", initState) },
     actions: {
-        toggleTheme() {
-            this.theme = (this.theme == "dark" ? "light" : "dark")
+        updateIsLoading (payload) {
+            this.$patch((state) => {
+                state.isLoading = payload
+            })
+        },
+        updateMainviewWidth(payload) {
+            this.$patch((state) => {
+                state.mainviewWidth = payload
+            })
         },
         toggleSidenavShow() {
-            this.isSidenavShow = !this.isSidenavShow
+            this.$patch((state) => {
+                state.isSidenavShow = !state.isSidenavShow
+            })
         },
         toggleSideviewShow() {
-            this.isSideviewShow = !this.isSideviewShow
-        },
-        setMainviewWidth(payload) {
-            this.mainviewWidth = payload
+            this.$patch((state) => {
+                state.isSideviewShow = !state.isSideviewShow
+            })
         }
     }
 })
