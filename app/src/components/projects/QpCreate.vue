@@ -11,6 +11,7 @@ const { t } = useI18n()
 
 const useStoreUser = storeUser()
 const { rat } = storeToRefs(useStoreUser)
+const { updateUser } = useStoreUser
 
 const props = defineProps(["show"])
 const emits = defineEmits(["close"])
@@ -40,11 +41,13 @@ const rulesProject = reactive({
 })
 
 const initial = computed(() => {
-    let value = formProject.name.match(/\b(\w)/g)
-    if (value) {
-        return value.slice(0, 2).join('').toUpperCase()
+    if (formProject.name) {
+        let values = formProject.name.split(" ").map((k) => k[0])
+        let initials = values.slice(0,2).join("").toUpperCase()
+        return initials
+    } else {
+        return ""
     }
-    return ""
 })
 
 const doChangeIcon = (event) => {
@@ -94,6 +97,7 @@ const doCreateProject = async () => {
     })
     if (f.status === 201) {
         isLoading.value = false
+        updateUser()
         goTo({name: "Projects"})
         doClose()
     } else if (f.status === 429) {
