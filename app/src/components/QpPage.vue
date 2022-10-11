@@ -8,7 +8,7 @@ const props = defineProps(["sidenavTitle"])
 
 const useStoreApp = storeApp()
 const { isSidenavShow, isSideviewShow } = storeToRefs(useStoreApp)
-const { toggleSidenavShow, toggleSideviewShow, setMainviewWidth } = useStoreApp
+const { toggleSidenavShow, toggleSideviewShow, updateMainviewWidth } = useStoreApp
 
 const mainClasses = computed(() => {
     if ("sidenav" in slots && "sideview" in slots && isSidenavShow.value && isSideviewShow.value) {
@@ -23,7 +23,7 @@ const mainClasses = computed(() => {
 
 onMounted(() => {
     new ResizeObserver((entries) => {
-        setMainviewWidth(entries[0].contentRect.width)
+        updateMainviewWidth(entries[0].contentRect.width)
     }).observe(document.getElementById("qp-mainview"))
 })
 </script>
