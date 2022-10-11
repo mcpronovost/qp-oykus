@@ -27,7 +27,8 @@ class AdminMiddleware():
             else:
                 qplist.append(a)
             # ===---
-        qpauth_app["models"] = qpauth_mod
+        if qpauth_app is not None:
+            qpauth_app["models"] = qpauth_mod
         qplist.insert(0, qpauth_app)
         app_list = qplist
         return app_list
