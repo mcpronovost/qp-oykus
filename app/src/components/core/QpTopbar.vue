@@ -1,15 +1,40 @@
 <script setup>
-    import { storeToRefs } from "pinia";
-    import router from "../../plugins/router";
-    import { Bell, Message } from "@element-plus/icons-vue";
-    import { storeUser } from "@/plugins/store";
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import router from "../../plugins/router";
+import { API, QpStoreHeaders } from "@/plugins/store/index";
+import { storeUser } from "@/plugins/store";
+import { Bell, Message } from "@element-plus/icons-vue";
 
-    const useStoreUser = storeUser()
-    const { rat, username, name, notifications } = storeToRefs(useStoreUser)
+const useStoreUser = storeUser()
+const { rat, username, name, notifications, lang } = storeToRefs(useStoreUser)
+const { updateUser } = useStoreUser
 
-    const goTo = (obj) => {
-        router.push(obj)
-    }
+const isLoadingNotifications = ref(false)
+
+const doNotificationSeen = async (id) => {
+    isLoadingNotifications.value = true
+    let f = await fetch(`${API}/notifications/${id}/seen/`, {
+        method: "PATCH",
+        headers: QpStoreHeaders(rat.value, lang.value)
+    })
+    if (f.status === 200) {updateUser()}
+    isLoadingNotifications.value = false
+}
+
+const doNotificationAllSeen = async () => {
+    isLoadingNotifications.value = true
+    let f = await fetch(`${API}/notifications/seen/`, {
+        method: "PATCH",
+        headers: QpStoreHeaders(rat.value, lang.value)
+    })
+    if (f.status === 200) {updateUser()}
+    isLoadingNotifications.value = false
+}
+
+const goTo = (obj) => {
+    router.push(obj)
+}
 </script>
 
 <template>
@@ -27,24 +52,24 @@
                 </el-badge>
             </div>
             <div v-if="notifications" class="qp-topbar-item">
-                <el-dropdown :hide-on-click="false" trigger="click" placement="bottom-end" @command="goTo" popper-class="qp-topbar-popper qp-topbar-popper-notifications">
+                <el-dropdown :hide-on-click="false" trigger="click" placement="bottom-end" @command="doNotificationSeen" popper-class="qp-topbar-popper qp-topbar-popper-notifications">
                     <el-badge :value="notifications.length" :hidden="notifications.length < 1">
                         <el-button :icon="Bell" round></el-button>
                     </el-badge>
                     <template #dropdown>
-                        <el-dropdown-menu>
+                        <el-dropdown-menu v-loading="isLoadingNotifications">
                             <el-row>
                                 <el-col :span="12" class="qp-left">
                                     <span v-text="$t('Notifications')"></span>
                                 </el-col>
                                 <el-col :span="12" class="qp-right">
-                                    <el-link :underline="false">
+                                    <el-link v-if="notifications.length > 1" :underline="false" @click="doNotificationAllSeen()">
                                         <span v-text="$t('MarkAllAsRead')"></span>
                                     </el-link>
                                 </el-col>
                             </el-row>
-                            <el-scrollbar :max-height="210">
-                                <el-dropdown-item v-for="(notification, n) in notifications" :key="`notification-${n}`" :command="{name:'Profile'}">
+                            <el-scrollbar v-if="notifications.length" :max-height="210">
+                                <el-dropdown-item v-for="(notification, n) in notifications" :key="`notification-${n}`" :command="notification.id">
                                     <el-alert :type="notification.has_type ? notification.has_type : 'info'" :closable="false">
                                         <div v-if="notification.initial || notification.has_type" class="qp-topbar-popper-notifications-icon">
                                             <el-avatar :src="notification.icon" :size="32" :style="`background-color:${notification.icon ? 'transparent' : notification.primary_color};color:#fff;`">
@@ -62,8 +87,21 @@
                                     </el-alert>
                                 </el-dropdown-item>
                             </el-scrollbar>
+                            <el-row v-else>
+                                <el-col class="qp-center">
+                                    <el-card>
+                                        <el-result :title="$t('NoNotificationYet')">
+                                            <template #icon>
+                                                <el-icon :size="48" class="mdi mdi-sleep" />
+                                            </template>
+                                        </el-result>
+                                    </el-card>
+                                </el-col>
+                            </el-row>
                         </el-dropdown-menu>
-                        <el-button text>Voir toutes les notifications</el-button>
+                        <el-button v-if="false" text>
+                            <span v-text="$t('ShowAllNotifications')"></span>
+                        </el-button>
                     </template>
                 </el-dropdown>
             </div>

@@ -6,9 +6,7 @@ import { storeUser } from "@/plugins/store";
 const useStoreUser = storeUser()
 const { owned_projects } = storeToRefs(useStoreUser)
 
-const listProjects = computed(() => [...new Map([
-    ...owned_projects.value
-].map(item => [item["id"], item])).values()])
+const listProjects = computed(() => [])
 </script>
 
 <template>

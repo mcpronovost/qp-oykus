@@ -54,5 +54,7 @@
     "MyProfile": "Mon profil",
     "MyProjects": "Mes projets",
     "MyTasks": "Mes tâches",
-    "SignedInAs": "Connecté en tant que"
+    "SignedInAs": "Connecté en tant que",
+    "ShowAllNotifications": "Voir toutes les notifications",
+    "NoNotificationYet": "Aucune notification pour l'instant"
 }

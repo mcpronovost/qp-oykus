@@ -53,5 +53,7 @@
     "MyProfile": "My Profile",
     "MyProjects": "My Projects",
     "MyTasks": "My Tasks",
-    "SignedInAs": "Signed in as"
+    "SignedInAs": "Signed in as",
+    "ShowAllNotifications": "Show All Notifications",
+    "NoNotificationYet": "No notification yet"
 }

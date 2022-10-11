@@ -196,6 +196,10 @@ body .el-link {
     font-size: inherit;
 }
 
+body .el-loading-mask {
+    background-color: rgba(30, 30, 32, 0.8);
+}
+
 body .el-menu {
     --el-menu-bg-color: transparent;
     --el-menu-border-color: transparent;
@@ -223,6 +227,10 @@ body .el-message-box {
 
 body .el-progress {
     --el-border-color-lighter: rgba(255, 255, 255, 0.05);
+}
+
+body .el-result__title p {
+    color: var(--qp-card-color);
 }
 
 body .el-row {
