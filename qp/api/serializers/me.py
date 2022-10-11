@@ -49,7 +49,7 @@ class qpMeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpUserProfile
-        fields = ["id", "username", "name", "slug", "lang", "owned_projects", "notifications"]
+        fields = ["id", "username", "name", "slug", "lang", "avatar", "owned_projects", "notifications"]
     
     def get_notifications(self, obj):
         results = qpNotification.objects.filter(user_to=obj.user, is_seen=False)[0:12]

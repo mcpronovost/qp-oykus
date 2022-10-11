@@ -8,6 +8,7 @@ const initState = {
     "username": null,
     "email": null,
     "name": null,
+    "avatar": null,
     "owned_projects": [],
     "notifications": [],
     "lang": "fr",
@@ -55,6 +56,7 @@ export const QpStoreUser = defineStore("storeUser", {
                         state.username = r.username
                         state.email = r.email
                         state.name = r.name
+                        state.avatar = r.avatar
                         state.owned_projects = r.owned_projects
                         state.notifications = r.notifications
                     })

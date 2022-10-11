@@ -7,7 +7,7 @@ import { storeUser } from "@/plugins/store";
 import { Bell, Message } from "@element-plus/icons-vue";
 
 const useStoreUser = storeUser()
-const { rat, username, name, notifications, lang } = storeToRefs(useStoreUser)
+const { rat, username, name, avatar, notifications, lang } = storeToRefs(useStoreUser)
 const { updateUser } = useStoreUser
 
 const isLoadingNotifications = ref(false)
@@ -107,7 +107,7 @@ const goTo = (obj) => {
             </div>
             <div class="qp-topbar-item qp-player">
                 <el-dropdown trigger="click" placement="bottom-end" popper-class="qp-topbar-popper" @command="goTo">
-                    <el-avatar>
+                    <el-avatar :src="avatar">
                         <span v-text="name?.charAt(0)"></span>
                     </el-avatar>
                     <template #dropdown>

@@ -39,6 +39,12 @@ class qpUserProfile(models.Model):
         blank=False,
         null=False
     )
+    avatar = models.ImageField(
+        verbose_name=_("Avatar"),
+        upload_to="users/avatars",
+        blank=True,
+        null=True
+    )
     limit_max_projects = models.PositiveSmallIntegerField(
         verbose_name=_("Max Projects"),
         default=2,
