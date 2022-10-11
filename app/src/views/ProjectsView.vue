@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { storeUser } from "@/plugins/store";
 import QpPage from "@/components/QpPage.vue";
@@ -7,9 +8,9 @@ import QpHeader from "@/components/QpHeader.vue";
 const useStoreUser = storeUser()
 const { owned_projects } = storeToRefs(useStoreUser)
 
-const listProjects = [...new Map([
+const listProjects = computed(() => [...new Map([
     ...owned_projects.value
-].map(item => [item["id"], item])).values()]
+].map(item => [item["id"], item])).values()])
 
 const goTo = (obj) => {
     router.push(obj)
