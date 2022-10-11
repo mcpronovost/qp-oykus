@@ -48,30 +48,15 @@
   --qp-topbar-bg: #171718;
   --qp-sidebar-bg: #19191a;
   --qp-sidenav-bg: #19191a;
-  --qp-sideview-bg: #1e1e20;
+  --qp-sideview-bg: #1f1f20; /* 1e1e20 */
 
-  --qp-card-bg: #1e1e20;
+  --qp-card-bg: #1f1f20; /* 1e1e20 */
   --qp-card-color: #b2b2b2;
 
   --qp-input-bg: #252527;
   --qp-input-color: #b2b2b2;
   --qp-input-placeholder: #666;
   --qp-input-clearhover: #f00;
-
-  /* light
-  
-  --qp-base-bg: #e6e7e6;
-  --qp-base-color: rgba(0, 0, 0, 0.87);
-  --qp-navbar-bg: #1c1d1c;
-  --qp-topbar-bg: #222322;
-  --qp-sidebar-bg: #f0f1f0;
-  --qp-sidenav-bg: #f0f1f0;
-  --qp-sideview-bg: #f0f1f0;
-
-  --qp-card-bg: #f0f1f0;
-  --qp-card-color: rgba(0, 0, 0, 0.87);
-
-  */
 
   --el-color-primary: var(--qp-primary);
 }
