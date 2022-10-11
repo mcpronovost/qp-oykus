@@ -35,7 +35,7 @@
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle disabled>
                             <i class="mdi mdi-chart-box-outline mdi-24px"></i>
                         </el-button>
                     </li>
@@ -45,7 +45,7 @@
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle>
+                        <el-button circle :disabled="$route.name=='Leaderboard'" @click="goTo({name:'Leaderboard'})">
                             <i class="mdi mdi-podium-gold mdi-24px"></i>
                         </el-button>
                     </li>

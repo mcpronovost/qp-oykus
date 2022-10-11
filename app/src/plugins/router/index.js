@@ -38,6 +38,11 @@ const routes = [
       component: () => import("@/views/TasksView.vue")
     },
     {
+      path: "/leaderboard",
+      name: "Leaderboard",
+      component: () => import("@/views/LeaderboardView.vue")
+    },
+    {
       path: "/settings",
       name: "Settings",
       component: () => import("@/views/SettingsView.vue")

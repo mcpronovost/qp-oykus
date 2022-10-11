@@ -42,5 +42,13 @@
     "Project": "Projet",
     "Projects": "Projets",
     "Task": "Tâche",
-    "Tasks": "Tâches"
+    "Tasks": "Tâches",
+    "MarkAllAsRead": "Marquer tout comme lu",
+    "Notification": "Notification",
+    "Notifications": "Notification",
+    "Allyourprojects": "Tout vos projects",
+    "UnderDevelopment": "En développement",
+    "Settings": "Paramètres",
+    "Profile": "Profil",
+    "Leaderboard": "Classement"
 }
