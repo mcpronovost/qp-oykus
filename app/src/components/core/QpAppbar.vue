@@ -3,13 +3,19 @@
 </script>
 
 <template>
-    <div id="qp-appbar"></div>
+    <div id="qp-appbar">
+        <el-progress :percentage="100" :indeterminate="false" :stroke-width="2" :show-text="false" />
+    </div>
 </template>
 
-<style scoped>
+<style>
     #qp-appbar {
-        background-color: #89A411;
+        background-color: transparent;
         grid-column: 1 / 4;
         grid-row: 1 / 2;
+    }
+    #qp-appbar .el-progress-bar__outer,
+    #qp-appbar .el-progress-bar__inner {
+        border-radius: 0;
     }
 </style>
