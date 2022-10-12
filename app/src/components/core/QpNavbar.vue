@@ -1,17 +1,19 @@
 <script setup>
-    import { storeToRefs } from "pinia";
-    import { storeUser } from "@/plugins/store";
-    import logo from "@/assets/img/logo.png";
-    import router from "../../plugins/router";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+import { storeUser } from "@/plugins/store";
+import logo from "@/assets/img/logo.png";
 
-    const useStoreUser = storeUser()
-    const { rat } = storeToRefs(useStoreUser)
+const router = useRouter()
 
-    const version = APP_VERSION || "0.1.0"
+const useStoreUser = storeUser()
+const { rat } = storeToRefs(useStoreUser)
 
-    const goTo = (obj) => {
-        router.push(obj)
-    }
+const version = APP_VERSION || "0.1.0"
+
+const goTo = (obj) => {
+    router.push(obj)
+}
 </script>
 
 <template>

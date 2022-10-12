@@ -2,12 +2,14 @@
 import { computed, reactive, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
-import router from "@/plugins/router";
+import { useRouter } from "vue-router";
 import { API, HEADERS } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
 import { ElMessage } from "element-plus";
 
 const { t } = useI18n()
+
+const router = useRouter()
 
 const useStoreUser = storeUser()
 const { rat, lang } = storeToRefs(useStoreUser)

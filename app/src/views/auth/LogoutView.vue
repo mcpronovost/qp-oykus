@@ -2,11 +2,13 @@
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import { API } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
-import router from "@/plugins/router";
 
 const { t } = useI18n()
+
+const router = useRouter()
 
 const useStoreUser = storeUser()
 const { rat } = storeToRefs(useStoreUser)

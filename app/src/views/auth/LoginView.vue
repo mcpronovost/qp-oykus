@@ -1,12 +1,14 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import { API } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
 import { Lock, User } from "@element-plus/icons-vue";
-import router from "@/plugins/router";
 
 const { t } = useI18n()
+
+const router = useRouter()
 
 const useStoreUser = storeUser()
 const { updateRat } = useStoreUser

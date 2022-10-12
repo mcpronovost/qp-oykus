@@ -1,12 +1,14 @@
 <script setup>
 import { h, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import { API } from "@/plugins/store/index";
 import { ElMessageBox } from "element-plus";
 import { EditPen, Lock, Message, User } from "@element-plus/icons-vue";
-import router from "@/plugins/router";
 
 const { t } = useI18n()
+
+const router = useRouter()
 
 const isLoadingRegister = ref(false)
 const hasErrorRegister = ref()

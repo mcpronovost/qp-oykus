@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import router from "../../plugins/router";
-import { API, HEADERS } from "@/plugins/store/index";
+import { useRouter } from "vue-router";
 import { storeUser } from "@/plugins/store";
+import { API, HEADERS } from "@/plugins/store/index";
 import { Bell, Message } from "@element-plus/icons-vue";
+
+const router = useRouter()
 
 const useStoreUser = storeUser()
 const { rat, username, name, avatar, notifications, lang } = storeToRefs(useStoreUser)

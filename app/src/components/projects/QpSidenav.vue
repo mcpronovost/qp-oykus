@@ -1,7 +1,9 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import router from "@/plugins/router";
+import { useRouter } from "vue-router";
 import { storeUser } from "@/plugins/store";
+
+const router = useRouter()
 
 const useStoreUser = storeUser()
 const { created_projects, owned_projects } = storeToRefs(useStoreUser)

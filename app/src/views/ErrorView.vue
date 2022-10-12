@@ -1,5 +1,7 @@
 <script setup>
-import router from "@/plugins/router";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const goTo = (obj) => {
     router.push(obj)
