@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import i18n from "@/plugins/i18n";
-import { API, QpStoreHeaders, QpInitStore } from "@/plugins/store/index";
+import { API, HEADERS, QpInitStore } from "@/plugins/store/index";
 
 const initState = {
     "rat": null,
@@ -47,9 +47,11 @@ export const QpStoreUser = defineStore("storeUser", {
             if (this.rat) {
                 let f = await fetch(`${API}/me/`, {
                     method: "GET",
-                    headers: QpStoreHeaders(this.rat, this.lang)
+                    headers: HEADERS(this.rat, this.lang)
+                }).catch((e) => {
+                    console.log(e)
                 })
-                if (f.status === 200) {
+                if (f?.status === 200) {
                     let r = await f.json()
                     this.$patch((state) => {
                         state.id = r.id
@@ -63,7 +65,7 @@ export const QpStoreUser = defineStore("storeUser", {
                     this.updateLang(r.lang)
                     this.updateLast()
                     return r
-                } else if (f.status === 401) {
+                } else if (f?.status === 401) {
                     this.cleanUser()
                 }
             }

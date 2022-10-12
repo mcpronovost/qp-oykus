@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import router from "../../plugins/router";
-import { API, QpStoreHeaders } from "@/plugins/store/index";
+import { API, HEADERS } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
 import { Bell, Message } from "@element-plus/icons-vue";
 
@@ -16,7 +16,7 @@ const doNotificationSeen = async (id) => {
     isLoadingNotifications.value = true
     let f = await fetch(`${API}/notifications/${id}/seen/`, {
         method: "PATCH",
-        headers: QpStoreHeaders(rat.value, lang.value)
+        headers: HEADERS(rat.value, lang.value)
     })
     if (f.status === 200) {updateUser()}
     isLoadingNotifications.value = false
@@ -26,7 +26,7 @@ const doNotificationAllSeen = async () => {
     isLoadingNotifications.value = true
     let f = await fetch(`${API}/notifications/seen/`, {
         method: "PATCH",
-        headers: QpStoreHeaders(rat.value, lang.value)
+        headers: HEADERS(rat.value, lang.value)
     })
     if (f.status === 200) {updateUser()}
     isLoadingNotifications.value = false

@@ -5,7 +5,7 @@ import { QpStoreUser } from "./storeUser";
 
 export const API = "http://localhost:8000/api"
 
-export const QpStoreHeaders = (rat, lang) => {
+export const HEADERS = (rat, lang) => {
     if (rat) {
         return new Headers({
             "Authorization": `Token ${rat}`,

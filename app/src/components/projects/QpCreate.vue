@@ -3,7 +3,7 @@ import { computed, reactive, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import router from "@/plugins/router";
-import { API, QpStoreHeaders } from "@/plugins/store/index";
+import { API, HEADERS } from "@/plugins/store/index";
 import { storeUser } from "@/plugins/store";
 import { ElMessage } from "element-plus";
 
@@ -92,7 +92,7 @@ const doCreateProject = async () => {
     // ===---
     let f = await fetch(`${API}/projects/create/`, {
         method: "POST",
-        headers: QpStoreHeaders(rat.value, lang.value),
+        headers: HEADERS(rat.value, lang.value),
         body: data
     })
     if (f.status === 201) {
