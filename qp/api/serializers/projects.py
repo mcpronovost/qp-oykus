@@ -9,3 +9,17 @@ class qpProjectsCreateSerializer(serializers.ModelSerializer):
         model = qpProject
         fields = ["id", "slug", "name", "caption", "description", "primary_color", "creator", "owner"]
         read_only_fields = ["id", "slug"]
+
+class qpProjectsDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpProject
+        fields = ["id", "slug", "name", "caption", "description", "primary_color", "owner"]
+        read_only_fields = ["id", "slug", "name", "caption", "description", "primary_color", "owner"]
+
+class qpProjectsDetailOwnerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpProject
+        fields = ["id", "slug", "name", "caption", "description", "primary_color", "creator", "owner"]
+        read_only_fields = ["id", "slug"]

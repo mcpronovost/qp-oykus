@@ -55,8 +55,13 @@ onMounted(() => {
                 <slot></slot>
             </el-scrollbar>
         </div>
-        <div v-if="'sideview' in slots && isSideviewShow" id="qp-sideview">
-            <el-scrollbar height="100%">
+        <div v-if="'sideview' in slots" id="qp-sideview">
+            <div id="qp-sideview-toggle-open">
+                <el-button @click="toggleSideviewShow()">
+                    <el-icon class="mdi mdi-arrow-collapse-left" />
+                </el-button>
+            </div>
+            <el-scrollbar v-if="isSideviewShow" height="100%">
                 <div id="qp-sideview-toggle">
                     <el-button @click="toggleSideviewShow()">
                         <el-icon class="mdi mdi-arrow-collapse-right" />
@@ -76,7 +81,7 @@ onMounted(() => {
 <style scoped>
 #qp-main main {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 0 auto 0;
     width: 100%;
     height: 100%;
     position: relative;
@@ -87,11 +92,11 @@ onMounted(() => {
 }
 
 #qp-main main.qp-sidenav-show {
-    grid-template-columns: 300px auto;
+    grid-template-columns: 300px auto 0;
 }
 
 #qp-main main.qp-sideview-show {
-    grid-template-columns: auto 300px;
+    grid-template-columns: 0 auto 300px;
 }
 
 /* ===---=== */
@@ -104,7 +109,8 @@ onMounted(() => {
 
 #qp-sidenav-toggle .el-button,
 #qp-sideview-toggle .el-button,
-#qp-sidenav-toggle-open .el-button {
+#qp-sidenav-toggle-open .el-button,
+#qp-sideview-toggle-open .el-button {
     background-color: transparent;
     border-color: transparent;
     color: #6e6f6e;
@@ -112,7 +118,8 @@ onMounted(() => {
 
 #qp-sidenav-toggle .el-button:hover,
 #qp-sideview-toggle .el-button:hover,
-#qp-sidenav-toggle-open .el-button:hover {
+#qp-sidenav-toggle-open .el-button:hover,
+#qp-sideview-toggle-open .el-button:hover {
     color: var(--qp-primary);
 }
 
@@ -131,7 +138,7 @@ onMounted(() => {
 /* ===---=== */
 #qp-sidenav {
     background-color: var(--qp-sidenav-bg);
-    grid-column: 1 / 1;
+    grid-column: 1 / 2;
     grid-row: 1 / 2;
     width: 0;
     height: calc(100vh - 49px);
@@ -147,7 +154,6 @@ onMounted(() => {
 
 #qp-main main.qp-bothside-show #qp-sidenav,
 #qp-main main.qp-sidenav-show #qp-sidenav {
-    grid-column: 1 / 2;
     width: auto;
 }
 
@@ -158,21 +164,9 @@ onMounted(() => {
 
 /* ===---=== */
 #qp-mainview {
-    grid-column: 1 / 2;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
     height: calc(100vh - 49px);
-}
-
-#qp-main main.qp-bothside-show #qp-mainview {
-    grid-column: 2 / 3;
-}
-
-#qp-main main.qp-sidenav-show #qp-mainview {
-    grid-column: 2 / 3;
-}
-
-#qp-main main.qp-sideview-show #qp-mainview {
-    grid-column: 1 / 2;
 }
 
 /* ===---=== */
@@ -180,20 +174,26 @@ onMounted(() => {
     background-color: var(--qp-sideview-bg);
     grid-column: 3 / 4;
     grid-row: 1 / 2;
+    width: 0;
     height: calc(100vh - 49px);
     position: relative;
 }
 
-#qp-main main.qp-bothside-show #qp-sideview {
-    grid-column: 3 / 4;
+#qp-sideview-toggle-open {
+    position: absolute;
+    top: 24px;
+    right: 100%;
+    z-index: 4;
 }
 
-#qp-main main.qp-sidenav-show #qp-sideview {
-    display: none;
-}
-
+#qp-main main.qp-bothside-show #qp-sideview,
 #qp-main main.qp-sideview-show #qp-sideview {
-    grid-column: 2 / 3;
+    width: auto;
+}
+
+#qp-main main.qp-bothside-show #qp-sideview #qp-sideview-toggle-open,
+#qp-main main.qp-sideview-show #qp-sideview #qp-sideview-toggle-open {
+    display: none;
 }
 
 @media (max-width: 1199px) {
