@@ -2,7 +2,6 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { storeApp, storeUser } from "@/plugins/store";
-import QpPage from "@/components/QpPage.vue";
 import QpTaskanList from "@/components/taskan/QpTaskanList.vue";
 
 const useStoreApp = storeApp()
@@ -68,7 +67,7 @@ const taskanSpan = computed(() => {
 </script>
 
 <template>
-    <QpPage>
+    <qp-page>
         <div class="qp-container">
             <el-row>
                 <el-col>
@@ -91,5 +90,5 @@ const taskanSpan = computed(() => {
                 </el-col>
             </el-row>
         </div>
-    </QpPage>
+    </qp-page>
 </template>

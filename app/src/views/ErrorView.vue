@@ -1,6 +1,5 @@
 <script setup>
 import router from "@/plugins/router";
-import QpPage from "@/components/QpPage.vue";
 
 const goTo = (obj) => {
     router.push(obj)
@@ -8,7 +7,7 @@ const goTo = (obj) => {
 </script>
 
 <template>
-    <QpPage>
+    <qp-page>
         <div class="qp-container qp-centered">
             <el-row>
                 <el-col style="text-align:center;">
@@ -22,5 +21,5 @@ const goTo = (obj) => {
                 </el-col>
             </el-row>
         </div>
-    </QpPage>
+    </qp-page>
 </template>

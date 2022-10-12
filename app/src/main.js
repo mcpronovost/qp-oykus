@@ -15,7 +15,13 @@ import "@fontsource/quicksand/600.css";
 import "@/assets/css/element.css";
 import "@/assets/css/style.css";
 
+import QpPage from "@/components/QpPage.vue";
+import QpHeader from "@/components/QpHeader.vue";
+
 const app = createApp(App);
+
+app.component("QpPage", QpPage);
+app.component("QpHeader", QpHeader);
 
 app.use(i18n);
 app.use(router);

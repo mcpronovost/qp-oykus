@@ -1,9 +1,9 @@
 <script setup>
-import QpPage from "@/components/QpPage.vue";
+//
 </script>
 
 <template>
-    <QpPage>
+    <qp-page>
         <div class="qp-container qp-centered">
             <el-row>
                 <el-col style="text-align:center;">
@@ -15,5 +15,5 @@ import QpPage from "@/components/QpPage.vue";
                 </el-col>
             </el-row>
         </div>
-    </QpPage>
+    </qp-page>
 </template>

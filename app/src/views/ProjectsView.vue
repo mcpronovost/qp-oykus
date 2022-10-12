@@ -2,8 +2,6 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { storeUser } from "@/plugins/store";
-import QpPage from "@/components/QpPage.vue";
-import QpHeader from "@/components/QpHeader.vue";
 
 const useStoreUser = storeUser()
 const { owned_projects } = storeToRefs(useStoreUser)
@@ -18,11 +16,11 @@ const goTo = (obj) => {
 </script>
 
 <template>
-    <QpPage :sidenav-title="$t('Projects')">
+    <qp-page :sidenav-title="$t('Projects')">
         <div class="qp-container">
             <el-row>
                 <el-col>
-                    <QpHeader :title="$t('Projects')" :content="$t('Allyourprojects')" />
+                    <qp-header :title="$t('Projects')" :content="$t('Allyourprojects')" />
                 </el-col>
             </el-row>
             <el-row>
@@ -42,7 +40,7 @@ const goTo = (obj) => {
                 </el-col>
             </el-row>
         </div>
-    </QpPage>
+    </qp-page>
 </template>
 
 <style>

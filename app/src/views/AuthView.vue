@@ -1,5 +1,4 @@
 <script setup>
-import QpPage from "@/components/QpPage.vue";
 import QpRegister from "@/views/auth/RegisterView.vue";
 import QpLogin from "@/views/auth/LoginView.vue";
 import QpLogout from "@/views/auth/LogoutView.vue";
@@ -7,13 +6,13 @@ import QpLogout from "@/views/auth/LogoutView.vue";
 </script>
 
 <template>
-    <QpPage>
+    <qp-page>
         <div class="qp-container qp-centered">
             <QpRegister v-if="$route.name && $route.name == 'AuthRegister'" />
             <QpLogin v-else-if="$route.name && $route.name == 'AuthLogin'" />
             <QpLogout v-else-if="$route.name && $route.name == 'AuthLogout'" />
         </div>
-    </QpPage>
+    </qp-page>
 </template>
 
 <style>
