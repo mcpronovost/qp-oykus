@@ -1,10 +1,12 @@
-<script setup>
+<script setup lang="ts">
+import type { FormInstance, FormRules } from "element-plus";
+import type { AuthLoginForm } from "../../types/auth";
 import { reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { API } from "@/plugins/store/index";
-import { storeUser } from "@/plugins/store";
 import { Lock, User } from "@element-plus/icons-vue";
+import { API } from "../../plugins/store/index";
+import { storeUser } from "../../plugins/store";
 
 const { t } = useI18n()
 
@@ -13,16 +15,16 @@ const router = useRouter()
 const useStoreUser = storeUser()
 const { updateRat } = useStoreUser
 
-const isLoadingLogin = ref(false)
-const hasErrorLogin = ref()
-const refLogin = ref()
+const isLoadingLogin = ref<boolean>(false)
+const hasErrorLogin = ref<string|null>(null)
+const refLogin = ref<FormInstance>()
 
-const formLogin = reactive({
+const formLogin = reactive<AuthLoginForm>({
     username: "",
     password: ""
 })
 
-const rulesLogin = reactive({
+const rulesLogin = reactive<FormRules>({
     username: [
         { required: true, message: t("Thisfieldisrequired"), trigger: "blur" },
         { min: 5, max: 150, message: t("LengthshouldbebetweenXandX", [5, 150]), trigger: "blur" }
@@ -36,7 +38,7 @@ const rulesLogin = reactive({
 const doSubmitLogin = async () => {
     isLoadingLogin.value = true
     hasErrorLogin.value = null
-    await refLogin.value.validate((valid) => {
+    await refLogin.value?.validate((valid) => {
         if (valid) {
             doLogin()
         } else {
@@ -59,7 +61,7 @@ const doLogin = async () => {
     if (f.status === 200) {
         let r = await f.json()
         updateRat(r.token)
-        goTo({name: "Home"})
+        router.push({name: "Home"})
     } else if (f.status === 400) {
         hasErrorLogin.value = t("InvalidCredentials")
         isLoadingLogin.value = false
@@ -67,10 +69,6 @@ const doLogin = async () => {
         hasErrorLogin.value = t("AnErrorOccurred")
         isLoadingLogin.value = false
     }
-}
-
-const goTo = (obj) => {
-    router.push(obj)
 }
 </script>
 
@@ -95,7 +93,7 @@ const goTo = (obj) => {
                         </el-button>
                     </el-form-item>
                     <el-form-item class="qp-form-switchauth">
-                        <el-button text size="small" :disabled="isLoadingLogin" @click="goTo({name:'AuthRegister'})">
+                        <el-button text size="small" :disabled="isLoadingLogin" @click="$router.push({name:'AuthRegister'})">
                             <span v-text="$t('Donthaveanaccount')"></span>
                         </el-button>
                     </el-form-item>

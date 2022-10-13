@@ -1,23 +1,25 @@
-<script setup>
+<script setup lang="ts">
+import type { FormInstance, FormRules } from "element-plus";
+import type { AuthRegisterForm } from "../../types/auth";
 import { h, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { API } from "@/plugins/store/index";
 import { ElMessageBox } from "element-plus";
 import { EditPen, Lock, Message, User } from "@element-plus/icons-vue";
+import { API } from "../../plugins/store/index";
 
 const { t } = useI18n()
 
 const router = useRouter()
 
-const isLoadingRegister = ref(false)
-const hasErrorRegister = ref()
-const showRules = ref(false)
-const showUsePolicies = ref(false)
-const showPrivacyPolicies = ref(false)
-const refRegister = ref()
+const isLoadingRegister = ref<boolean>(false)
+const hasErrorRegister = ref<string|null>(null)
+const showRules = ref<boolean>(false)
+const showUsePolicies = ref<boolean>(false)
+const showPrivacyPolicies = ref<boolean>(false)
+const refRegister = ref<FormInstance>()
 
-const formRegister = reactive({
+const formRegister = reactive<AuthRegisterForm>({
     username: "",
     email: "",
     name: "",
@@ -25,7 +27,7 @@ const formRegister = reactive({
     password_confirm: ""
 })
 
-const ruleValidatorUsername = (rule, value, callback) => {
+const ruleValidatorUsername = (rule: any, value: any, callback: any) => {
     const regstr = /^[A-Za-z0-9_-]+$/
     if (value === "") {
         callback(new Error(t("Thisfieldisrequired")))
@@ -36,7 +38,7 @@ const ruleValidatorUsername = (rule, value, callback) => {
     }
 }
 
-const ruleValidatorEmail = (rule, value, callback) => {
+const ruleValidatorEmail = (rule: any, value: any, callback: any) => {
     const regstr = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (value === "") {
         callback(new Error(t("Thisfieldisrequired")))
@@ -47,7 +49,7 @@ const ruleValidatorEmail = (rule, value, callback) => {
     }
 }
 
-const ruleValidatorName = (rule, value, callback) => {
+const ruleValidatorName = (rule: any, value: any, callback: any) => {
     const regstr = /^[A-Za-z- ]+$/
     if (value === "") {
         callback(new Error(t("Thisfieldisrequired")))
@@ -58,7 +60,7 @@ const ruleValidatorName = (rule, value, callback) => {
     }
 }
 
-const ruleValidatorConfirm = (rule, value, callback) => {
+const ruleValidatorConfirm = (rule: any, value: any, callback: any) => {
     if (value === "") {
         callback(new Error(t("Thisfieldisrequired")))
     } else if (value !== formRegister.password) {
@@ -68,7 +70,7 @@ const ruleValidatorConfirm = (rule, value, callback) => {
     }
 }
 
-const rulesRegister = reactive({
+const rulesRegister = reactive<FormRules>({
     username: [
         { required: true, message: t("Thisfieldisrequired"), trigger: "blur" },
         { min: 5, max: 150, message: t("LengthshouldbebetweenXandX", [5, 150]), trigger: "blur" },
@@ -98,7 +100,7 @@ const rulesRegister = reactive({
 const doSubmitRegister = async () => {
     isLoadingRegister.value = true
     hasErrorRegister.value = null
-    await refRegister.value.validate((valid) => {
+    await refRegister.value?.validate((valid) => {
         if (valid) {
             ElMessageBox.confirm(
                 h("div", null, [
@@ -154,7 +156,7 @@ const doRegister = async () => {
         body: data
     })
     if (f.status === 200) {
-        goTo({name: "AuthLogin"})
+        router.push({name: "AuthLogin"})
     } else if (f.status === 400) {
         hasErrorRegister.value = t("InvalidCredentials")
         isLoadingRegister.value = false
@@ -162,10 +164,6 @@ const doRegister = async () => {
         hasErrorRegister.value = t("AnErrorOccurred")
         isLoadingRegister.value = false
     }
-}
-
-const goTo = (obj) => {
-    router.push(obj)
 }
 </script>
 
@@ -201,7 +199,7 @@ const goTo = (obj) => {
                         </el-button>
                     </el-form-item>
                     <el-form-item class="qp-form-switchauth">
-                        <el-button text size="small" :disabled="isLoadingRegister" @click="goTo({name:'AuthLogin'})">
+                        <el-button text size="small" :disabled="isLoadingRegister" @click="$router.push({name:'AuthLogin'})">
                             <span v-text="$t('Alreadyhaveanaccount')"></span>
                         </el-button>
                     </el-form-item>

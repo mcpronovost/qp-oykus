@@ -1,21 +1,20 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import { storeUser } from "@/plugins/store";
-
-const router = useRouter()
+import { storeUser } from "../plugins/store";
 
 const useStoreUser = storeUser()
 const { owned_projects } = storeToRefs(useStoreUser)
 
-const listProjects = computed(() => [...new Map([
+const listProjects = computed<{
+    name: string,
+    slug: string,
+    initial: string,
+    primary_color: string,
+    icon?: string
+}[]>(() => [...new Map([
     ...owned_projects.value
 ].map(item => [item["id"], item])).values()])
-
-const goTo = (obj) => {
-    router.push(obj)
-}
 </script>
 
 <template>
@@ -28,7 +27,7 @@ const goTo = (obj) => {
             </el-row>
             <el-row>
                 <el-col v-for="(project, n) in listProjects" :key="`project-${n}`" :span="24" :sm="12" :md="8" :lg="6">
-                    <el-card class="qp-projects-list-item" @click="goTo({name: 'ProjectsDetail', params: {slug: project.slug}})">
+                    <el-card class="qp-projects-list-item" @click="$router.push({name: 'ProjectsDetail', params: {slug: project.slug}})">
                         <div class="qp-projects-list-item-wrapper">
                             <div class="qp-projects-list-item-header">
                                 <el-avatar :src="project.icon" :size="64" shape="square" :style="`background-color:${project.icon ? 'transparent' : project.primary_color};color:#fff;`">

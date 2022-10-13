@@ -1,19 +1,20 @@
-<script setup>
-import { reactive, ref, onMounted } from "vue";
+<script setup lang="ts">
+import type { TypeProjectSimple } from "../../types/projects";
+import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import { API, HEADERS } from "@/plugins/store/index";
-import { storeUser } from "@/plugins/store";
+import { API, HEADERS } from "../../plugins/store/index";
+import { storeUser } from "../../plugins/store";
 
 const route = useRoute()
 
 const useStoreUser = storeUser()
 const { rat, lang } = storeToRefs(useStoreUser)
 
-const isLoading = ref(true)
-const hasError = ref(null)
+const isLoading = ref<boolean>(true)
+const hasError = ref<string|null>(null)
 
-const project = ref(null)
+const project = ref<TypeProjectSimple|null>(null)
 
 const getProject = async () => {
     isLoading.value = true
@@ -29,7 +30,7 @@ const getProject = async () => {
         isLoading.value = false
     } else {
         isLoading.value = false
-        hasError.value = 404
+        hasError.value = `${f.status}`
     }
 }
 

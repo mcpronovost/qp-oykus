@@ -1,8 +1,9 @@
+import type { TypeUserStore } from "./_types";
 import { defineStore } from "pinia";
-import i18n from "@/plugins/i18n";
-import { API, HEADERS, QpInitStore } from "@/plugins/store/index";
+import { API, HEADERS, QpInitStore } from "./index";
+import i18n from "../i18n";
 
-const initState = {
+const initState: TypeUserStore = {
     "rat": null,
     "id": null,
     "username": null,
@@ -16,17 +17,17 @@ const initState = {
 }
 
 export const QpStoreUser = defineStore("storeUser", {
-    state: () => { return QpInitStore("user", initState) },
+    state: () => { return QpInitStore("user", initState) as TypeUserStore },
     actions: {
-        updateRat (payload) {
+        updateRat (payload: string|null) {
             this.$patch((state) => {
                 state.rat = payload
             })
         },
-        updateLang (payload) {
+        updateLang (payload: string) {
             this.$patch((state) => {
                 state.lang = payload
-                i18n.global.locale.value = payload
+                i18n.global.locale = payload
                 document.documentElement.setAttribute("lang", payload)
             })
         },
@@ -36,11 +37,7 @@ export const QpStoreUser = defineStore("storeUser", {
             })
         },
         cleanUser () {
-            this.$patch((state) => {
-                Object.keys(initState).forEach((key) => {
-                    state[key] = initState[key]
-                })
-            })
+            Object.assign(this, initState)
             this.updateUser()
         },
         async updateUser () {
@@ -48,8 +45,6 @@ export const QpStoreUser = defineStore("storeUser", {
                 let f = await fetch(`${API}/me/`, {
                     method: "GET",
                     headers: HEADERS(this.rat, this.lang)
-                }).catch((e) => {
-                    console.log(e)
                 })
                 if (f?.status === 200) {
                     let r = await f.json()

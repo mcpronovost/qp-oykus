@@ -1,23 +1,23 @@
+import type { TypeAppStore } from "./_types";
 import { defineStore } from "pinia";
 import { QpInitStore } from "./index";
 
 const initState = {
     "isLoading": false,
-    "theme": "dark",
     "isSidenavShow": true,
     "isSideviewShow": true,
     "mainviewWidth": 1200
 }
 
 export const QpStoreApp = defineStore("storeApp", {
-    state: () => { return QpInitStore("app", initState) },
+    state: () => { return QpInitStore("app", initState) as TypeAppStore },
     actions: {
-        updateIsLoading (payload) {
+        updateIsLoading (payload: boolean) {
             this.$patch((state) => {
                 state.isLoading = payload
             })
         },
-        updateMainviewWidth(payload) {
+        updateMainviewWidth(payload: number) {
             this.$patch((state) => {
                 state.mainviewWidth = payload
             })

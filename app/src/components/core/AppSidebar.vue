@@ -1,16 +1,16 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import { storeUser } from "@/plugins/store";
-import QpOwned from "@/components/core/sidebar/QpOwned.vue";
-import QpLoved from "@/components/core/sidebar/QpLoved.vue";
-import QpFeatured from "@/components/core/sidebar/QpFeatured.vue";
-import QpProjectCreate from "@/components/projects/QpCreate.vue";
+import { storeUser } from "../../plugins/store";
+import QpOwned from "@/components/core/AppSidebarOwned.vue";
+import QpLoved from "@/components/core/AppSidebarLoved.vue";
+import QpFeatured from "@/components/core/AppSidebarFeatured.vue";
+import QpProjectCreate from "@/components/ProjectCreate.vue";
 
 const useStoreUser = storeUser()
 const { rat } = storeToRefs(useStoreUser)
 
-const showCreateProject = ref(false)
+const showCreateProject = ref<boolean>(false)
 const openCreateProject = () => {
     showCreateProject.value = true
 }

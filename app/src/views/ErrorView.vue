@@ -1,11 +1,5 @@
-<script setup>
-import { useRouter } from "vue-router";
-
-const router = useRouter()
-
-const goTo = (obj) => {
-    router.push(obj)
-}
+<script setup lang="ts">
+//
 </script>
 
 <template>
@@ -15,7 +9,7 @@ const goTo = (obj) => {
                 <el-col style="text-align:center;">
                     <el-result icon="error" :title="$t('ContentNotFound')">
                         <template #extra>
-                            <el-button @click="goTo({name:'Home'})">
+                            <el-button @click="$router.push({name:'Home'})">
                                 <span v-text="$t('BackToHome')"></span>
                             </el-button>
                         </template>

@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, useSlots } from "vue";
 import { storeToRefs } from "pinia";
-import { storeApp } from "@/plugins/store";
+import { storeApp } from "../plugins/store";
 
 const slots = useSlots()
 const props = defineProps(["sidenavTitle"])
@@ -22,9 +22,12 @@ const mainClasses = computed(() => {
 })
 
 onMounted(() => {
-    new ResizeObserver((entries) => {
-        updateMainviewWidth(entries[0].contentRect.width)
-    }).observe(document.getElementById("qp-mainview"))
+    const ElQpMainview = document.getElementById("qp-mainview")
+    if (ElQpMainview) {
+        new ResizeObserver((entries) => {
+            updateMainviewWidth(entries[0].contentRect.width)
+        }).observe(ElQpMainview)
+    }
 })
 </script>
 

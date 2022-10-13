@@ -1,14 +1,5 @@
-<script setup>
-import { computed } from "vue";
-import { storeToRefs } from "pinia";
-import { storeUser } from "@/plugins/store";
-
-const useStoreUser = storeUser()
-const { owned_projects } = storeToRefs(useStoreUser)
-
-const listProjects = computed(() => [...new Map([
-    ...owned_projects.value
-].map(item => [item["id"], item])).values()])
+<script setup lang="ts">
+const listProjects: Array<any> = []
 </script>
 
 <template>

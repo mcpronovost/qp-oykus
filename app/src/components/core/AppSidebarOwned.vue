@@ -1,5 +1,15 @@
-<script setup>
-const listProjects = []
+<script setup lang="ts">
+import type { TypeProjectSimple } from "../../types/projects";
+import { computed } from "vue";
+import { storeToRefs } from "pinia";
+import { storeUser } from "../../plugins/store";
+
+const useStoreUser = storeUser()
+const { owned_projects } = storeToRefs(useStoreUser)
+
+const listProjects = computed<Array<TypeProjectSimple>>(() => [...new Map([
+    ...owned_projects.value
+].map(item => [item["id"], item])).values()])
 </script>
 
 <template>

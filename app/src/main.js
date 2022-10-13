@@ -15,8 +15,8 @@ import "@fontsource/quicksand/600.css";
 import "@/assets/css/element.css";
 import "@/assets/css/style.css";
 
-import QpPage from "@/components/QpPage.vue";
-import QpHeader from "@/components/QpHeader.vue";
+import QpPage from "@/components/BasePage.vue";
+import QpHeader from "@/components/BaseHeader.vue";
 
 const app = createApp(App);
 

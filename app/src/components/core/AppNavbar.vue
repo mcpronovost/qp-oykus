@@ -1,19 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import { storeUser } from "@/plugins/store";
+import { storeUser } from "../../plugins/store";
 import logo from "@/assets/img/logo.png";
-
-const router = useRouter()
 
 const useStoreUser = storeUser()
 const { rat } = storeToRefs(useStoreUser)
 
-const version = APP_VERSION || "0.1.0"
-
-const goTo = (obj) => {
-    router.push(obj)
-}
+const version = (APP_VERSION || "0.1.0")
 </script>
 
 <template>
@@ -22,7 +15,7 @@ const goTo = (obj) => {
             <nav class="qp-navbar-nav">
                 <ul class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item qp-logo">
-                        <el-button circle @click="goTo({name:'Home'})">
+                        <el-button circle @click="$router.push({name:'Home'})">
                             <el-avatar :src="logo">
                                 <span>Oykus</span>
                             </el-avatar>
@@ -32,7 +25,7 @@ const goTo = (obj) => {
                 <!---->
                 <ul v-if="rat" class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle :disabled="$route.name=='Projects'" @click="goTo({name:'Projects'})">
+                        <el-button circle :disabled="$route.name=='Projects'" @click="$router.push({name:'Projects'})">
                             <i class="mdi mdi-apps mdi-24px"></i>
                         </el-button>
                     </li>
@@ -42,12 +35,12 @@ const goTo = (obj) => {
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle :disabled="$route.name=='Tasks'" @click="goTo({name:'Tasks'})">
+                        <el-button circle :disabled="$route.name=='Tasks'" @click="$router.push({name:'Tasks'})">
                             <i class="mdi mdi-order-bool-descending-variant mdi-24px"></i>
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle :disabled="$route.name=='Leaderboard'" @click="goTo({name:'Leaderboard'})">
+                        <el-button circle :disabled="$route.name=='Leaderboard'" @click="$router.push({name:'Leaderboard'})">
                             <i class="mdi mdi-podium-gold mdi-24px"></i>
                         </el-button>
                     </li>
@@ -55,7 +48,7 @@ const goTo = (obj) => {
                 <!---->
                 <ul class="qp-navbar-nav-list">
                     <li v-if="rat" class="qp-navbar-nav-list-item">
-                        <el-button circle :disabled="$route.name=='Settings'" @click="goTo({name:'Settings'})">
+                        <el-button circle :disabled="$route.name=='Settings'" @click="$router.push({name:'Settings'})">
                             <i class="mdi mdi-tune mdi-24px"></i>
                         </el-button>
                     </li>

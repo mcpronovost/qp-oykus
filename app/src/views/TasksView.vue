@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
-import { storeApp, storeUser } from "@/plugins/store";
-import QpTaskanList from "@/components/taskan/QpTaskanList.vue";
+import { storeApp, storeUser } from "../plugins/store";
+import QpTasksList from "@/components/tasks/TasksList.vue";
 
 const useStoreApp = storeApp()
 const { mainviewWidth } = storeToRefs(useStoreApp)
@@ -80,13 +80,13 @@ const taskanSpan = computed(() => {
             </el-row>
             <el-row>
                 <el-col :span="taskanSpan">
-                    <QpTaskanList :type="'todo'" :items="listTaskansTodo" />
+                    <QpTasksList :type="'todo'" :items="listTaskansTodo" />
                 </el-col>
                 <el-col :span="taskanSpan">
-                    <QpTaskanList :type="'inprogress'" :items="listTaskansInProgress" />
+                    <QpTasksList :type="'inprogress'" :items="listTaskansInProgress" />
                 </el-col>
                 <el-col :span="taskanSpan">
-                    <QpTaskanList :type="'completed'" :items="listTaskansCompleted" />
+                    <QpTasksList :type="'completed'" :items="listTaskansCompleted" />
                 </el-col>
             </el-row>
         </div>

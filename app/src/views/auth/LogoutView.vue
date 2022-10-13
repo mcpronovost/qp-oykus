@@ -1,12 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { API } from "@/plugins/store/index";
-import { storeUser } from "@/plugins/store";
-
-const { t } = useI18n()
+import { API, HEADERS } from "../../plugins/store/index";
+import { storeUser } from "../../plugins/store";
 
 const router = useRouter()
 
@@ -20,22 +17,13 @@ const hasErrorLogout = ref()
 const doLogout = async () => {
     isLoadingLogout.value = true
     // ===---
-    let f = await fetch(`${API}/logout/`, {
+    await fetch(`${API}/logout/`, {
         method: "POST",
-        headers: new Headers({"Authorization": `Token ${rat.value}`}),
+        headers: HEADERS(rat.value),
         body: null
     })
-    if ([204,401].includes(f.status)) {
-        cleanUser()
-        goTo({name: "Home"})
-    } else {
-        hasErrorLogout.value = t("AnErrorOccurred")
-        isLoadingLogout.value = false
-    }
-}
-
-const goTo = (obj) => {
-    router.push(obj)
+    cleanUser()
+    router.push({name: "Home"})
 }
 
 onMounted(() => {

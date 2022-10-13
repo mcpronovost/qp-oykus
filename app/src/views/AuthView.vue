@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import QpRegister from "@/views/auth/RegisterView.vue";
 import QpLogin from "@/views/auth/LoginView.vue";
 import QpLogout from "@/views/auth/LogoutView.vue";

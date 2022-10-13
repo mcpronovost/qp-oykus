@@ -1,5 +1,5 @@
-<script setup>
-import { storeApp } from "@/plugins/store";
+<script setup lang="ts">
+import { storeApp } from "../../plugins/store";
 import { storeToRefs } from "pinia";
 
 const useStoreApp = storeApp()

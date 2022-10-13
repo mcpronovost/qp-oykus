@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { storeApp, storeUser } from "@/plugins/store";
-import i18n from "@/plugins/i18n";
+import type { RouteRecordRaw } from "vue-router";
+import type { TypeRouteMeta } from "./_types";
+import { storeApp, storeUser } from "../store";
+import i18n from "../i18n";
 
 const { t } = i18n.global;
 
@@ -95,23 +97,23 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes
+    routes: routes as RouteRecordRaw[]
 })
 
-const setMeta = (meta) => {
+const setMeta = (meta: TypeRouteMeta) => {
   if (meta.title) {
     document.title = `${t(meta.title)} - ${APPNAME}`
   } else  {
     document.title = APPNAME
   }
   if (meta.desc) {
-    document.querySelector('meta[name="description"]').setAttribute("content", meta.desc)
+    document.querySelector('meta[name="description"]')?.setAttribute("content", meta.desc)
   } else {
-    document.querySelector('meta[name="description"]').setAttribute("content", t(APPDESC))
+    document.querySelector('meta[name="description"]')?.setAttribute("content", t(APPDESC))
   }
 }
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
     const useStoreApp = storeApp()
     const { updateIsLoading } = useStoreApp
     const useStoreUser = storeUser()
@@ -122,7 +124,7 @@ router.beforeEach(async (to, from, next) => {
     next()
 })
 
-router.afterEach(async (to, from, next) => {
+router.afterEach((to, from, next) => {
     const useStoreApp = storeApp()
     const { updateIsLoading } = useStoreApp
     updateIsLoading(false)

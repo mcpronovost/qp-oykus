@@ -1,12 +1,13 @@
-<script setup>
+<script setup lang="ts">
+import type { TypeProjectSimple } from "../../types/projects";
 import { computed } from "vue";
-import { storeToRefs } from "pinia";
-import { storeUser } from "@/plugins/store";
+// import { storeToRefs } from "pinia";
+// import { storeUser } from "../../plugins/store";
 
-const useStoreUser = storeUser()
-const { owned_projects } = storeToRefs(useStoreUser)
+// const useStoreUser = storeUser()
+// const { owned_projects } = storeToRefs(useStoreUser)
 
-const listProjects = computed(() => [])
+const listProjects = computed<Array<TypeProjectSimple>>(() => [])
 </script>
 
 <template>

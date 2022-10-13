@@ -1,5 +1,5 @@
-<script setup>
-    import QpTaskanItem from "@/components/taskan/QpTaskanItem.vue";
+<script setup lang="ts">
+    import QpTasksItem from "@/components/tasks/TasksListItem.vue";
 
     const props = defineProps(["title", "type", "items"])
 
@@ -19,7 +19,7 @@
                 <span>Ajouter une tâche</span>
             </el-button>
         </header>
-        <QpTaskanItem v-for="(item, n) in props.items" :key="`qp-taskan-item-${n}`" :item="item" />
+        <QpTasksItem v-for="(item, n) in props.items" :key="`qp-taskan-item-${n}`" :item="item" />
     </div>
 </template>
 

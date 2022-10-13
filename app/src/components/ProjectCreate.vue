@@ -1,11 +1,13 @@
-<script setup>
+<script setup lang="ts">
+import type { UploadRawFile, UploadInstance, UploadProps, FormInstance, FormRules } from "element-plus";
+import type { ProjectsCreateForm } from "../types/projects";
 import { computed, reactive, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { API, HEADERS } from "@/plugins/store/index";
-import { storeUser } from "@/plugins/store";
 import { ElMessage } from "element-plus";
+import { API, HEADERS } from "../plugins/store/index";
+import { storeUser } from "../plugins/store";
 
 const { t } = useI18n()
 
@@ -18,11 +20,11 @@ const { updateUser } = useStoreUser
 const props = defineProps(["show"])
 const emits = defineEmits(["close"])
 
-const isLoading = ref(false)
-const hasError = ref()
-const refProject = ref()
-const refProjectIcon = ref()
-const formProject = reactive({
+const isLoading = ref<boolean>(false)
+const hasError = ref<string|null>(null)
+const refProject = ref<FormInstance>()
+const refProjectIcon = ref<UploadInstance>()
+const formProject = reactive<ProjectsCreateForm>({
     name: "",
     caption: "",
     description: "",
@@ -32,7 +34,7 @@ const formProject = reactive({
     icon_file: null
 })
 
-const rulesProject = reactive({
+const rulesProject = reactive<FormRules>({
     name: [
         { required: true, message: t("Thisfieldisrequired"), trigger: "blur" },
         { min: 1, max: 32, message: t("LengthshouldbebetweenXandX", [1, 32]), trigger: "blur" }
@@ -52,27 +54,31 @@ const initial = computed(() => {
     }
 })
 
-const doChangeIcon = (event) => {
-    if (!["image/jpeg","image/png"].includes(event.raw.type)) {
-        ElMessage.error(t("FileFormatMustBeJPGORPNG"))
-        return false
-    } else if (event.raw.size / 1024 > 50) {
-        ElMessage.error(t("FileSizeCanNotExceed", ["50ko"]))
-        return false
-    }
-    formProject.icon_file = URL.createObjectURL(event.raw)
-    formProject.icon = event.raw
+const doChangeIcon: UploadProps["onChange"] = (event) => {
+    if (event && event.raw) {
+        if (!["image/jpeg","image/png"].includes(event.raw.type)) {
+            ElMessage.error(t("FileFormatMustBeJPGORPNG"))
+            return false
+        } else if (event.raw.size / 1024 > 50) {
+            ElMessage.error(t("FileSizeCanNotExceed", ["50ko"]))
+            return false
+        }
+        formProject.icon_file = URL.createObjectURL(event.raw)
+        formProject.icon = event.raw
+    } else { return false}
+    return true
 }
 
-const doExceedIcon = (event) => {
-    refProjectIcon.value.clearFiles()
-    refProjectIcon.value.handleStart(event[0])
+const doExceedIcon: UploadProps["onExceed"] = (files) => {
+    const file = files[0] as UploadRawFile
+    refProjectIcon.value?.clearFiles()
+    refProjectIcon.value?.handleStart(file)
 }
 
 const doSubmitProject = async () => {
     isLoading.value = true
     hasError.value = null
-    await refProject.value.validate((valid) => {
+    await refProject.value?.validate((valid) => {
         if (valid) {
             doCreateProject()
         } else {
@@ -115,11 +121,11 @@ const doCreateProject = async () => {
 const doClose = () => {
     isLoading.value = false
     hasError.value = null
-    refProject.value.resetFields()
+    refProject.value?.resetFields()
     emits("close")
 }
 
-const goTo = (obj) => {
+const goTo = (obj: any) => {
     router.push(obj)
 }
 </script>
@@ -177,28 +183,28 @@ const goTo = (obj) => {
 </template>
 
 <style>
-    .qp-dialog-projects-create {
-        --el-dialog-width: 90%;
-        max-width: 700px;
-    }
-    .qp-form-projects-create-icon {
-        text-align: center;
-        margin: 0 0 32px;
-    }
-    .qp-form-projects-create-icon > .el-form-item__content {
-        justify-content: center;
-    }
-    .qp-form-projects-create-icon .el-avatar {
-        color: #fff;
-        font-size: 32px;
-        line-height: 100%;
-        text-align: center;
-    }
-    .qp-form-projects-create .el-color-picker,
-    .qp-form-projects-create .el-color-picker__trigger {
-        width: 100%;
-    }
-    .qp-justify-content-center > .el-form-item__content {
-        justify-content: center;
-    }
+.qp-dialog-projects-create {
+    --el-dialog-width: 90%;
+    max-width: 700px;
+}
+.qp-form-projects-create-icon {
+    text-align: center;
+    margin: 0 0 32px;
+}
+.qp-form-projects-create-icon > .el-form-item__content {
+    justify-content: center;
+}
+.qp-form-projects-create-icon .el-avatar {
+    color: #fff;
+    font-size: 32px;
+    line-height: 100%;
+    text-align: center;
+}
+.qp-form-projects-create .el-color-picker,
+.qp-form-projects-create .el-color-picker__trigger {
+    width: 100%;
+}
+.qp-justify-content-center > .el-form-item__content {
+    justify-content: center;
+}
 </style>

@@ -1,32 +1,39 @@
-<script setup>
-    import { onMounted } from "vue";
-    import QpAppbar from "@/components/core/QpAppbar.vue";
-    import QpNavbar from "@/components/core/QpNavbar.vue";
-    import QpTopbar from "@/components/core/QpTopbar.vue";
-    import QpSidebar from "@/components/core/QpSidebar.vue";
+<script setup lang="ts">
+import { computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import QpAppbar from "@/components/core/AppSystembar.vue";
+import QpNavbar from "@/components/core/AppNavbar.vue";
+import QpTopbar from "@/components/core/AppTopbar.vue";
+import QpSidebar from "@/components/core/AppSidebar.vue";
 
-    const setVH = () => {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty("--vh", `${vh}px`);
-    }
+const route = useRoute()
 
-    onMounted(() => {
+const routeName = computed<string|null>(() => {
+    return (route?.name?.toString() || null)
+})
+
+const setVH = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
+
+onMounted(() => {
+    setVH()
+    addEventListener("resize", () => {
         setVH()
-        addEventListener("resize", () => {
-            setVH()
-        })
     })
+})
 </script>
 
 <template>
-    <div id="qp-app" :class="$route.name && $route.name.startsWith('Auth') ? 'qp-app-auth' : ''">
+    <div id="qp-app" :class="routeName?.startsWith('Auth') ? 'qp-app-auth' : ''">
         <QpAppbar />
-        <QpNavbar v-if="!$route.name || !$route.name.startsWith('Auth')" />
-        <QpTopbar v-if="!$route.name || !$route.name.startsWith('Auth')" />
+        <QpNavbar v-if="routeName || !routeName?.startsWith('Auth')" />
+        <QpTopbar v-if="routeName || !routeName?.startsWith('Auth')" />
         <div id="qp-main">
             <router-view :key="$route.fullPath" />
         </div>
-        <QpSidebar v-if="!$route.name || !$route.name.startsWith('Auth')" />
+        <QpSidebar v-if="routeName || !routeName?.startsWith('Auth')" />
     </div>
 </template>
 

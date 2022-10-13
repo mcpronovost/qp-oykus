@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import { storeUser } from "@/plugins/store";
-import { API, HEADERS } from "@/plugins/store/index";
 import { Bell, Message } from "@element-plus/icons-vue";
+import { storeUser } from "../../plugins/store";
+import { API, HEADERS } from "../../plugins/store/index";
 
 const router = useRouter()
 
@@ -12,9 +12,9 @@ const useStoreUser = storeUser()
 const { rat, username, name, avatar, notifications, lang } = storeToRefs(useStoreUser)
 const { updateUser } = useStoreUser
 
-const isLoadingNotifications = ref(false)
+const isLoadingNotifications = ref<boolean>(false)
 
-const doNotificationSeen = async (id) => {
+const doNotificationSeen = async (id: number) => {
     isLoadingNotifications.value = true
     let f = await fetch(`${API}/notifications/${id}/seen/`, {
         method: "PATCH",
@@ -34,7 +34,7 @@ const doNotificationAllSeen = async () => {
     isLoadingNotifications.value = false
 }
 
-const goTo = (obj) => {
+const goTo = (obj: any) => {
     router.push(obj)
 }
 </script>
