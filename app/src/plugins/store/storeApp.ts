@@ -1,4 +1,4 @@
-import type { TypeAppStore } from "./_types";
+import type { TypeAppStore } from "./types";
 import { defineStore } from "pinia";
 import { QpInitStore } from "./index";
 

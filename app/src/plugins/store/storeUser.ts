@@ -1,4 +1,4 @@
-import type { TypeUserStore } from "./_types";
+import type { TypeUserStore } from "./types";
 import { defineStore } from "pinia";
 import { API, HEADERS, QpInitStore } from "./index";
 import i18n from "../i18n";

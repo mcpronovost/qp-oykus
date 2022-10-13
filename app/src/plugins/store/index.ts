@@ -1,5 +1,3 @@
-import type { TypeAppStore, TypeUserStore } from "./_types";
-import type { Store } from "pinia";
 import { createPinia } from "pinia";
 import { Buffer } from "buffer";
 import { QpStoreApp } from "./storeApp";

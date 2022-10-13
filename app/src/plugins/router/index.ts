@@ -1,8 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
-import type { TypeRouteMeta } from "./_types";
+import type { TypeRouteMeta } from "./types";
+import { createRouter, createWebHistory } from "vue-router";
 import { storeApp, storeUser } from "../store";
 import i18n from "../i18n";
+
+import { routeAuth } from "./routeAuth";
+import { routeProjects } from "./routeProjects";
 
 const { t } = i18n.global;
 
@@ -15,30 +18,7 @@ const routes = [
       name: "Home",
       component: () => import("@/views/HomeView.vue")
     },
-    {
-      path: "/register",
-      name: "AuthRegister",
-      component: () => import("@/views/AuthView.vue"),
-      meta: {
-        title: "Register"
-      }
-    },
-    {
-      path: "/login",
-      name: "AuthLogin",
-      component: () => import("@/views/AuthView.vue"),
-      meta: {
-        title: "Login"
-      }
-    },
-    {
-      path: "/logout",
-      name: "AuthLogout",
-      component: () => import("@/views/AuthView.vue"),
-      meta: {
-        title: "Logout"
-      }
-    },
+    ...routeAuth,
     {
       path: "/profile",
       name: "Profile",
@@ -47,19 +27,7 @@ const routes = [
         title: "Profile"
       }
     },
-    {
-      path: "/projects",
-      name: "Projects",
-      component: () => import("@/views/ProjectsView.vue"),
-      meta: {
-        title: "Projects"
-      }
-    },
-    {
-      path: "/projects/:slug",
-      name: "ProjectsDetail",
-      component: () => import("@/views/projects/DetailView.vue")
-    },
+    ...routeProjects,
     {
       path: "/tasks",
       name: "Tasks",
