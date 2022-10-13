@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { UploadRawFile, UploadInstance, UploadProps, FormInstance, FormRules } from "element-plus";
-import type { ProjectsCreateForm } from "../types/projects";
+import type { ProjectsCreateForm } from "../../types/projects";
 import { computed, reactive, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { API, HEADERS } from "../plugins/store/index";
-import { storeUser } from "../plugins/store";
+import { API, HEADERS } from "../../plugins/store/index";
+import { storeUser } from "../../plugins/store";
 
 const { t } = useI18n()
 

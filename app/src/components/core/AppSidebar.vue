@@ -5,7 +5,7 @@ import { storeUser } from "../../plugins/store";
 import QpOwned from "@/components/core/AppSidebarOwned.vue";
 import QpLoved from "@/components/core/AppSidebarLoved.vue";
 import QpFeatured from "@/components/core/AppSidebarFeatured.vue";
-import QpProjectCreate from "@/components/ProjectCreate.vue";
+import QpProjectCreate from "@/components/projects/ProjectCreate.vue";
 
 const useStoreUser = storeUser()
 const { rat } = storeToRefs(useStoreUser)
