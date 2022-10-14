@@ -87,7 +87,6 @@ router.beforeEach((to, from, next) => {
     const useStoreUser = storeUser()
     const { updateUser } = useStoreUser
     updateIsLoading(true)
-    setMeta(to.meta)
     updateUser()
     next()
 })
@@ -95,6 +94,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from, next) => {
     const useStoreApp = storeApp()
     const { updateIsLoading } = useStoreApp
+    setMeta(to.meta)
     updateIsLoading(false)
 })
 

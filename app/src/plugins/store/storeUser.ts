@@ -27,8 +27,8 @@ export const QpStoreUser = defineStore("storeUser", {
         updateLang (payload: string) {
             this.$patch((state) => {
                 state.lang = payload
-                i18n.global.locale = payload
                 document.documentElement.setAttribute("lang", payload)
+                i18n.global.locale.value = "en"
             })
         },
         updateLast () {
