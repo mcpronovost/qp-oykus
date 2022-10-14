@@ -243,6 +243,10 @@ body .el-row {
     margin-right: 0!important;
 }
 
+body .el-tabs__nav-wrap::after {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
 body .el-popper.is-light,
 body .el-popper.is-dark {
     --el-bg-color-overlay: var(--qp-sidebar-bg);
