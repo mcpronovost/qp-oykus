@@ -1,20 +1,34 @@
 <script setup lang="ts">
-import { useSlots } from "vue";
-
-// const slots = useSlots()
-const props = defineProps(["title", "content"])
+const props = defineProps({
+    title: {
+        type: String,
+        required: false
+    },
+    content: {
+        type: String,
+        required: false
+    },
+    hideDivider: {
+        type: Boolean,
+        required: false
+    }
+})
 </script>
 
 <template>
-    <header class="qp-header">
-        <h1 v-if="props.title" class="qp-header-title">
-            <span v-text="props.title"></span>
-        </h1>
-        <div v-if="props.content" class="qp-header-content">
-            <p v-text="props.content"></p>
-        </div>
-        <hr class="qp-header-divider" />
-    </header>
+    <el-row>
+        <el-col>
+            <header class="qp-header">
+                <h1 v-if="props.title" class="qp-header-title">
+                    <span v-text="props.title"></span>
+                </h1>
+                <div v-if="props.content" class="qp-header-content">
+                    <p v-text="props.content"></p>
+                </div>
+                <hr v-if="!hideDivider" class="qp-header-divider" />
+            </header>
+        </el-col>
+    </el-row>
 </template>
 
 <style scoped>

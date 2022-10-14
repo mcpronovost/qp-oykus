@@ -6,8 +6,6 @@ import { storeUser } from "../../plugins/store";
 const useStoreUser = storeUser()
 const { id } = storeToRefs(useStoreUser)
 
-console.log(id)
-
 const props = defineProps({
     projects: {
         type: Array<TypeProjectSimple>,
@@ -18,11 +16,7 @@ const props = defineProps({
 
 <template>
     <div class="qp-container">
-        <el-row>
-            <el-col>
-                <qp-header :title="$t('Projects')" :content="$t('Allyourprojects')" />
-            </el-col>
-        </el-row>
+        <qp-header :title="$t('Projects')" :content="$t('Allyourprojects')" />
         <el-row>
             <el-col v-for="(project, n) in props.projects" :key="`project-${n}`" :span="24" :sm="12" :md="8" :lg="6">
                 <el-card class="qp-projects-list-item" @click="$router.push({name: 'ProjectsDetail', params: {slug: project.slug}})">

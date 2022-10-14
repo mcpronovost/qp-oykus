@@ -57,11 +57,7 @@ onMounted(() => getProject())
 
 <template>
     <div v-if="!isLoading && !hasError && project" class="qp-container">
-        <el-row>
-            <el-col>
-                <qp-header :title="project.name" :content="project.caption" />
-            </el-col>
-        </el-row>
+        <qp-header :title="project.name" :content="project.caption" />
         <el-row>
             <el-col>
                 <el-button @click="doDeleteProject()"></el-button>
