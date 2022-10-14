@@ -1,12 +1,15 @@
 import type { UploadRawFile } from "element-plus";
+import type { TypeUserSimple } from "./users";
 
 export interface TypeProjectSimple {
   name: string,
+  slug: string,
   caption?: string,
   description?: string,
   initial: string,
   primary_color: string,
-  icon: string|null
+  icon: string|null,
+  owner: TypeUserSimple|null
 }
 
 export interface ProjectsCreateForm {
