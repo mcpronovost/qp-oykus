@@ -54,6 +54,11 @@ const props = defineProps({
     height: 100%;
     padding: 0;
 }
+.qp-projects-list-item:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04)!important;
+    cursor: pointer;
+    transform: translateY(-4px);
+}
 .qp-projects-list-item-wrapper {
     display: flex;
     width: 100%;
