@@ -7,7 +7,9 @@ from qp.api.views.me import qpMeView
 from qp.api.views.notifications import qpNotificationsSeenView, qpNotificationsAllSeenView
 from qp.api.views.projects import (
     qpProjectsCreateView,
-    qpProjectsDetailView
+    qpProjectsListView,
+    qpProjectsDetailView,
+    qpProjectsDeleteView
 )
 
 urlpatterns = [
@@ -17,8 +19,10 @@ urlpatterns = [
     path("notifications/seen/", qpNotificationsAllSeenView.as_view()),
     path("notifications/<int:pk>/seen/", qpNotificationsSeenView.as_view()),
 
+    path("projects/", qpProjectsListView.as_view()),
     path("projects/create/", qpProjectsCreateView.as_view()),
     path("projects/<slug:slug>/", qpProjectsDetailView.as_view()),
+    path("projects/<slug:slug>/delete/", qpProjectsDeleteView.as_view()),
 
     path("register/", qpRegisterView.as_view(), name="auth_register"),
     path("login/", qpLoginView.as_view()),

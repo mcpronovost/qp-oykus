@@ -104,10 +104,11 @@ const doCreateProject = async () => {
         body: data
     })
     if (f.status === 201) {
-        isLoading.value = false
+        let r = await f.json()
         updateUser()
-        goTo({name: "Projects"})
+        goTo({name: "ProjectsDetail", params: {slug: r.slug}})
         doClose()
+        isLoading.value = false
     } else if (f.status === 429) {
         let r = await f.json()
         hasError.value = r.msg
