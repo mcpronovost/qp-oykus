@@ -17,11 +17,15 @@ import "@/assets/css/style.css";
 
 import QpPage from "@/components/BasePage.vue";
 import QpHeader from "@/components/BaseHeader.vue";
+import QpNotFound from "@/components/BaseResultNotFound.vue";
+import QpUnderConstruction from "@/components/BaseResultUnderConstruction.vue";
 
 const app = createApp(App);
 
 app.component("QpPage", QpPage);
 app.component("QpHeader", QpHeader);
+app.component("QpNotfound", QpNotFound);
+app.component("QpUnderconstruction", QpUnderConstruction);
 
 app.use(i18n);
 app.use(router);

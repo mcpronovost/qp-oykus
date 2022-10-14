@@ -30,11 +30,6 @@ const version = (APP_VERSION || "0.1.0")
                         </el-button>
                     </li>
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle disabled>
-                            <i class="mdi mdi-chart-box-outline mdi-24px"></i>
-                        </el-button>
-                    </li>
-                    <li class="qp-navbar-nav-list-item">
                         <el-button circle :disabled="$route.name=='Tasks'" @click="$router.push({name:'Tasks'})">
                             <i class="mdi mdi-order-bool-descending-variant mdi-24px"></i>
                         </el-button>

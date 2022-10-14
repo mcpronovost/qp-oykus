@@ -6,6 +6,7 @@ import i18n from "../i18n";
 
 import { routeAuth } from "./routeAuth";
 import { routeProjects } from "./routeProjects";
+import { routeSettings } from "./routeSettings";
 
 const { t } = i18n.global;
 
@@ -44,14 +45,7 @@ const routes = [
         title: "Leaderboard"
       }
     },
-    {
-      path: "/settings",
-      name: "Settings",
-      component: () => import("@/views/SettingsView.vue"),
-      meta: {
-        title: "Settings"
-      }
-    },
+    ...routeSettings,
     /* ===--- FALLBACK ---=== */
     {
       path: "/:catchAll(.*)",

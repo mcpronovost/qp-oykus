@@ -60,5 +60,9 @@
     "NoNotificationYet": "Aucune notification pour l'instant",
     "Error": "Erreur",
     "Dashboard": "Tableau de bord",
-    "Overview": "Vue d'ensemble"
+    "Overview": "Vue d'ensemble",
+    "Account": "Compte",
+    "UserAccount": "Compte d'utilisateur",
+    "ContentUnderDevelopment": "Contenu en développement",
+    "ComeBackLater": "Revenez plus tard"
 }

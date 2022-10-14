@@ -213,7 +213,8 @@ body .el-menu-item:hover {
     color: var(--qp-primary);
 }
 body .el-menu-item > span {
-    line-height: 120%;
+    font-size: 16px;
+    line-height: 100%;
     white-space: normal;
     word-break: break-word;
     max-width: 100%;

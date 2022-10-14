@@ -59,5 +59,9 @@
     "NoNotificationYet": "No notification yet",
     "Error": "Error",
     "Dashboard": "Dashboard",
-    "Overview": "Vue d'ensemble"
+    "Overview": "Vue d'ensemble",
+    "Account": "Account",
+    "UserAccount": "User Account",
+    "ContentUnderDevelopment": "Content Under Development",
+    "ComeBackLater": "Come back later"
 }
