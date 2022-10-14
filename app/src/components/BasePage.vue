@@ -4,7 +4,16 @@ import { storeToRefs } from "pinia";
 import { storeApp } from "../plugins/store";
 
 const slots = useSlots()
-const props = defineProps(["sidenavTitle"])
+const props = defineProps({
+    sidenavTitle: {
+        type: String,
+        required: false
+    },
+    sideviewTitle: {
+        type: String,
+        required: false
+    }
+})
 
 const useStoreApp = storeApp()
 const { isSidenavShow, isSideviewShow } = storeToRefs(useStoreApp)
