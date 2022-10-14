@@ -132,7 +132,7 @@ const goTo = (obj: any) => {
 </script>
 
 <template>
-    <el-dialog v-model="show" :title="$t('CreateNewProject')" @close="doClose()" class="qp-dialog-projects-create">
+    <el-dialog v-model="props.show" :title="$t('CreateNewProject')" @close="doClose()" class="qp-dialog-projects-create">
         <el-form ref="refProject" :model="formProject" :rules="rulesProject" status-icon class="qp-form-projects-create">
             <el-row>
                 <el-col :span="24" :md="12" :lg="14">
