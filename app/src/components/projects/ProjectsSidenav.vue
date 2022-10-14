@@ -15,6 +15,17 @@ const props = defineProps({
             <el-menu-item :index="`/projects/${project.slug}`">
                 <span v-text="$t('Overview')"></span>
             </el-menu-item>
+            <el-menu-item :index="`/projects/${project.slug}/tasks`">
+                <span v-text="$t('Tasks')"></span>
+            </el-menu-item>
+            <el-menu-item-group title="Les indispensables">
+                <el-menu-item>
+                    <span v-text="$t('Règlement')"></span>
+                </el-menu-item>
+                <el-menu-item>
+                    <span v-text="$t('Contexte')"></span>
+                </el-menu-item>
+            </el-menu-item-group>
         </el-sub-menu>
     </el-menu>
 </template>

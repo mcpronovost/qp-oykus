@@ -146,6 +146,11 @@ body .el-dialog {
     --el-text-color-primary: var(--qp-card-color);
 }
 
+body .el-divider--horizontal {
+    border-color: rgba(255, 255, 255, 0.05);
+    margin: 5px 0;
+}
+
 body .el-dropdown-menu {
     --el-bg-color-overlay: var(--qp-sidebar-bg);
     --el-text-color-regular: #acadac;
@@ -159,10 +164,6 @@ body .el-dropdown-menu__item.is-disabled.qp-dropdown-text {
 }
 body .el-dropdown-menu__item:not(.is-disabled):focus {
     background-color: rgba(255, 255, 255, 0.02);
-}
-body .el-dropdown-menu .el-divider--horizontal {
-    border-color: rgba(255, 255, 255, 0.05);
-    margin: 5px 0;
 }
 
 body .el-form .el-form-item__content > .el-col {
@@ -216,6 +217,9 @@ body .el-menu-item > span {
     white-space: normal;
     word-break: break-word;
     max-width: 100%;
+}
+body .el-menu-item-group__title {
+    padding: 17px 0;
 }
 
 body .el-message-box {
