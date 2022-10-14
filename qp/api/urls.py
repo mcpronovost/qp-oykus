@@ -3,7 +3,11 @@ from knox import views as knox_views
 
 from qp.api.views import qpPingView
 from qp.api.views.auth import qpRegisterView, qpLoginView
-from qp.api.views.me import qpMeView
+from qp.api.views.me import (
+    qpMeView,
+    qpMeSettingsAccountUpdateView,
+    qpMeSettingsProfileUpdateView
+)
 from qp.api.views.notifications import qpNotificationsSeenView, qpNotificationsAllSeenView
 from qp.api.views.projects import (
     qpProjectsCreateView,
@@ -15,6 +19,8 @@ from qp.api.views.projects import (
 urlpatterns = [
     path("", qpPingView.as_view()),
     path("me/", qpMeView.as_view()),
+    path("me/settings/account/edit/", qpMeSettingsAccountUpdateView.as_view()),
+    path("me/settings/profile/edit/", qpMeSettingsProfileUpdateView.as_view()),
 
     path("notifications/seen/", qpNotificationsAllSeenView.as_view()),
     path("notifications/<int:pk>/seen/", qpNotificationsSeenView.as_view()),

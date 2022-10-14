@@ -11,6 +11,7 @@ export interface TypeUserStore {
   "username": string|null,
   "email": string|null,
   "name": string|null,
+  "initial": string|null,
   "avatar": string|null,
   "owned_projects": Array<TypeUserProjectsOwned>,
   "notifications": Array<TypeUserNotification>,

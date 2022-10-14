@@ -9,6 +9,7 @@ const initState: TypeUserStore = {
     "username": null,
     "email": null,
     "name": null,
+    "initial": null,
     "avatar": null,
     "owned_projects": [],
     "notifications": [],
@@ -28,7 +29,7 @@ export const QpStoreUser = defineStore("storeUser", {
             this.$patch((state) => {
                 state.lang = payload
                 document.documentElement.setAttribute("lang", payload)
-                i18n.global.locale.value = "en"
+                i18n.global.locale.value = payload
             })
         },
         updateLast () {
@@ -53,6 +54,7 @@ export const QpStoreUser = defineStore("storeUser", {
                         state.username = r.username
                         state.email = r.email
                         state.name = r.name
+                        state.initial = r.initial
                         state.avatar = r.avatar
                         state.owned_projects = r.owned_projects
                         state.notifications = r.notifications

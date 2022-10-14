@@ -166,6 +166,9 @@ body .el-dropdown-menu__item:not(.is-disabled):focus {
     background-color: rgba(255, 255, 255, 0.02);
 }
 
+body .el-form-item__label {
+    color: var(--qp-base-color);
+}
 body .el-form .el-form-item__content > .el-col {
     padding: 0;
 }
@@ -191,6 +194,10 @@ body .el-textarea {
     --el-input-icon-color: var(--qp-input-placeholder);
     --el-input-placeholder-color: var(--qp-input-placeholder);
     --el-input-clear-hover-color: var(--qp-input-clearhover);
+
+    --el-disabled-bg-color: var(--qp-input-bg);
+    --el-disabled-border-color: var(--qp-input-bg);
+    --el-disabled-text-color: var(--qp-input-placeholder);
 }
 
 body .el-link {
@@ -242,6 +249,14 @@ body .el-row {
     padding: 0 10px;
     margin-left: 0!important;
     margin-right: 0!important;
+}
+
+body .el-select {
+    width: 100%;
+}
+body .el-select-dropdown__item.hover,
+body .el-select-dropdown__item:hover {
+    background-color: rgba(255, 255, 255, 0.02);
 }
 
 body .el-tabs__nav-wrap::after {

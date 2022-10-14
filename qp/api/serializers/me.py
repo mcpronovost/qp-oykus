@@ -44,13 +44,26 @@ class qpMeqpNotificationsSerializer(serializers.ModelSerializer):
 class qpMeSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True, source="user.id")
     username = serializers.CharField(read_only=True, source="user.username")
+    email = serializers.CharField(read_only=True, source="user.email")
     owned_projects = qpMeProjectsSerializer(many=True, source="user.owned_projects")
     notifications = serializers.SerializerMethodField()
 
     class Meta:
         model = qpUserProfile
-        fields = ["id", "username", "name", "slug", "lang", "avatar", "owned_projects", "notifications"]
+        fields = ["id", "username", "email", "name", "initial", "slug", "lang", "avatar", "owned_projects", "notifications"]
     
     def get_notifications(self, obj):
         results = qpNotification.objects.filter(user_to=obj.user, is_seen=False)[0:12]
         return qpMeqpNotificationsSerializer(results, many=True, context={"request": self.context["request"]}).data
+
+class qpMeSettingsAccountUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpUserProfile
+        fields = ["lang"]
+
+class qpMeSettingsProfileUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpUserProfile
+        fields = ["name", "avatar"]
