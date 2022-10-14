@@ -57,5 +57,7 @@
     "SignedInAs": "Signed in as",
     "ShowAllNotifications": "Show All Notifications",
     "NoNotificationYet": "No notification yet",
-    "Error": "Error"
+    "Error": "Error",
+    "Dashboard": "Dashboard",
+    "Overview": "Vue d'ensemble"
 }
