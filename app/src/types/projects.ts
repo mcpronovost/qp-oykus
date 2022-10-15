@@ -9,7 +9,8 @@ export interface TypeProjectSimple {
   initial: string,
   primary_color: string,
   icon: string|null,
-  owner: TypeUserSimple|null
+  owner: TypeUserSimple|null,
+  created_at: string
 }
 
 export interface ProjectsCreateForm {

@@ -1,7 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.utils.serializer_helpers import ReturnDict
 
 from qp.users.models import qpUserProfile
 from qp.projects.models import qpProject
@@ -50,7 +49,7 @@ class qpMeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpUserProfile
-        fields = ["id", "username", "email", "name", "initial", "slug", "lang", "avatar", "owned_projects", "notifications"]
+        fields = ["id", "username", "email", "name", "initial", "slug", "lang", "timezone", "avatar", "owned_projects", "notifications"]
     
     def get_notifications(self, obj):
         results = qpNotification.objects.filter(user_to=obj.user, is_seen=False)[0:12]
@@ -60,7 +59,7 @@ class qpMeSettingsAccountUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpUserProfile
-        fields = ["lang"]
+        fields = ["lang", "timezone"]
 
 class qpMeSettingsProfileUpdateSerializer(serializers.ModelSerializer):
 

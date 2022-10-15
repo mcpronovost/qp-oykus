@@ -16,6 +16,7 @@ export interface TypeUserStore {
   "owned_projects": Array<TypeUserProjectsOwned>,
   "notifications": Array<TypeUserNotification>,
   "lang": string,
+  "tz": string,
   "last": number
 }
 
@@ -29,11 +30,11 @@ export interface TypeUserProjectsOwned {
 }
 
 export interface TypeUserNotification {
-    id: number,
-    user_from: number|null,
-    project_from: number|null,
-    initial: string|null,
-    icon: string|null,
-    content: string|null,
-    has_type: string|null
+    "id": number,
+    "user_from": number|null,
+    "project_from": number|null,
+    "initial": string|null,
+    "icon": string|null,
+    "content": string|null,
+    "has_type": string|null
 }

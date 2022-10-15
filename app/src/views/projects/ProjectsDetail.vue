@@ -10,7 +10,7 @@ const route = useRoute()
 const router = useRouter()
 
 const useStoreUser = storeUser()
-const { rat, lang } = storeToRefs(useStoreUser)
+const { rat, lang, tz } = storeToRefs(useStoreUser)
 
 const isLoading = ref<boolean>(true)
 const hasError = ref<string|null>(null)
@@ -60,7 +60,7 @@ onMounted(() => getProject())
         <qp-header :title="project.name" :content="project.caption" />
         <el-row>
             <el-col>
-                <el-button @click="doDeleteProject()"></el-button>
+                <pre>qpdated ({{tz}}) : {{$f.qpDate(project.created_at, tz)}}</pre>
             </el-col>
         </el-row>
     </div>
