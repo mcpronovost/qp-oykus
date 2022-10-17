@@ -28,13 +28,14 @@ const props = defineProps({
                                 </el-avatar>
                                 <el-avatar v-if="project.owner?.id !== id" :src="project.owner?.avatar" :size="32" class="qp-projects-list-item-owner">
                                     <span v-if="project.owner" v-text="project.owner?.initial"></span>
-                                    <span v-else>?</span>
+                                    <span v-else>
+                                        <el-icon class="mdi mdi-account-outline" />
+                                    </span>
                                 </el-avatar>
                             </div>
                             <h3 class="qp-projects-list-item-name">
                                 <span v-text="project.name"></span>
                             </h3>
-                            {{project}}
                         </div>
                     </div>
                 </el-card>

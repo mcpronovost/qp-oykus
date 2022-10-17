@@ -82,10 +82,13 @@ class qpProjectsDetailView(RetrieveAPIView):
     lookup_field = "slug"
 
     def get_object(self, slug):
+        print("get_object : ")
         try:
-            instance = qpProject.objects.get(slug=slug, is_active=True)
-            if instance.is_public or (instance.owner == self.request.user):
-                return instance
+            instance = qpProject.objects.get(
+                Q(owner=self.request.user) | Q(permissions__user=self.request.user) | Q(is_public=True),
+                slug=slug, is_active=True
+            )
+            return instance
         except Exception as e:
             print("Error on qpProjectsDetailView > get_object : ", e)
         raise Http404
@@ -93,7 +96,7 @@ class qpProjectsDetailView(RetrieveAPIView):
     def get(self, request, slug):
         try:
             instance = self.get_object(slug)
-            if instance.owner == self.request.user:
+            if instance.owner == self.request.user or instance.permissions.filter(user=self.request.user).count() > 0:
                 serializer = qpProjectsDetailOwnerSerializer(instance)
             else:
                 serializer = qpProjectsDetailSerializer(instance)
