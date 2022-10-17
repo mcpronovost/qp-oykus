@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import type { TypeProjectSimple } from "../../types/projects";
+import type { TypeProject } from "../../types/projects";
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
 import { API, HEADERS } from "../../plugins/store/index";
 import { storeUser } from "../../plugins/store";
+
+const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
@@ -15,7 +19,7 @@ const { rat, lang } = storeToRefs(useStoreUser)
 const isLoading = ref<boolean>(true)
 const hasError = ref<string|null>(null)
 
-const project = ref<TypeProjectSimple|null>(null)
+const project = ref<TypeProject|null>(null)
 
 const getProject = async () => {
     isLoading.value = true
@@ -44,11 +48,12 @@ const doDeleteProject = async () => {
         headers: HEADERS(rat.value, lang.value),
     })
     if (f.status === 204) {
+        ElMessage.success(t("Projectdeletedsuccessfully"))
         router.push({name: "Projects"})
         isLoading.value = false
     } else {
         isLoading.value = false
-        hasError.value = `${f.status}`
+        ElMessage.error(t("Youdoesnthavetherighttodothat"))
     }
 }
 

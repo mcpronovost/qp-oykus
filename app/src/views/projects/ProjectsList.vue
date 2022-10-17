@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TypeProjectSimple } from "../../types/projects";
+import type { TypeProject } from "../../types/projects";
 import { storeToRefs } from "pinia";
 import { storeUser } from "../../plugins/store";
 
@@ -8,7 +8,7 @@ const { id } = storeToRefs(useStoreUser)
 
 const props = defineProps({
     projects: {
-        type: Array<TypeProjectSimple>,
+        type: Array<TypeProject>,
         required: false
     }
 })
@@ -27,12 +27,14 @@ const props = defineProps({
                                     <span v-text="project.initial"></span>
                                 </el-avatar>
                                 <el-avatar v-if="project.owner?.id !== id" :src="project.owner?.avatar" :size="32" class="qp-projects-list-item-owner">
-                                    <span v-text="project.owner?.initial"></span>
+                                    <span v-if="project.owner" v-text="project.owner?.initial"></span>
+                                    <span v-else>?</span>
                                 </el-avatar>
                             </div>
                             <h3 class="qp-projects-list-item-name">
                                 <span v-text="project.name"></span>
                             </h3>
+                            {{project}}
                         </div>
                     </div>
                 </el-card>
@@ -81,13 +83,17 @@ const props = defineProps({
 }
 .qp-projects-list-item-owner {
     border: 4px solid var(--qp-card-bg);
+    box-shadow: 0 0 0 2px var(--qp-card-bg) inset;
     position: absolute;
     top: 40px;
     left: 40px;
 }
 .qp-projects-list-item-owner span {
+    background-color: var(--qp-card-bg-light-1);
     font-size: 12px;
-    line-height: 120%;
+    line-height: 24px;
+    width: 100%;
+    height: 100%;
 }
 .qp-projects-list-item-name {
     font-size: 18px;

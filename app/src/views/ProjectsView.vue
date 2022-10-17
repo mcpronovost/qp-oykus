@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TypeProjectSimple } from "../types/projects";
+import type { TypeProject } from "../types/projects";
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { API, HEADERS } from "../plugins/store/index";
@@ -12,7 +12,7 @@ const { rat, lang } = storeToRefs(useStoreUser)
 const isLoading = ref<boolean>(true)
 const hasError = ref<string|null>(null)
 
-const listProjects = ref<Array<TypeProjectSimple>>([])
+const listProjects = ref<Array<TypeProject>>([])
 
 const getProjects = async () => {
     isLoading.value = true

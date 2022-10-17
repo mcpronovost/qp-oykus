@@ -12,6 +12,7 @@ const initState: TypeUserStore = {
     "initial": null,
     "avatar": null,
     "owned_projects": [],
+    "staff_projects": [],
     "notifications": [],
     "lang": "fr",
     "last": new Date().getTime()
@@ -57,6 +58,7 @@ export const QpStoreUser = defineStore("storeUser", {
                         state.initial = r.initial
                         state.avatar = r.avatar
                         state.owned_projects = r.owned_projects
+                        state.staff_projects = r.staff_projects
                         state.notifications = r.notifications
                     })
                     this.updateLang(r.lang)

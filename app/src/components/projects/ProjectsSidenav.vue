@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { TypeProjectSimple } from "../../types/projects";
+import type { TypeProject } from "../../types/projects";
 const props = defineProps({
     projects: {
-        type: Array<TypeProjectSimple>,
+        type: Array<TypeProject>,
         required: false
     }
 })
@@ -20,10 +20,10 @@ const props = defineProps({
             </el-menu-item>
             <el-menu-item-group title="Les indispensables">
                 <el-menu-item>
-                    <span v-text="$t('Règlement')"></span>
+                    <span v-text="'Règlement'"></span>
                 </el-menu-item>
                 <el-menu-item>
-                    <span v-text="$t('Contexte')"></span>
+                    <span v-text="'Contexte'"></span>
                 </el-menu-item>
             </el-menu-item-group>
         </el-sub-menu>

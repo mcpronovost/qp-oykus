@@ -4,6 +4,9 @@ from autoslug import AutoSlugField
 from colorfield.fields import ColorField
 from django.contrib.auth import get_user_model
 
+from qp.projects.utils import get_score
+
+
 class qpProject(models.Model):
     name = models.CharField(
         verbose_name=_("Name"),
@@ -68,6 +71,12 @@ class qpProject(models.Model):
         default=True,
         help_text=_("Designates whether this project should be treated as active. Unselect this instead of deleting project.")
     )
+    score = models.PositiveSmallIntegerField(
+        verbose_name=_("Score"),
+        default=0,
+        blank=False,
+        null=False
+    )
     created_at = models.DateTimeField(
         verbose_name=_("Created at"),
         auto_now_add=True
@@ -88,3 +97,54 @@ class qpProject(models.Model):
     @property
     def initial(self):
         return "".join([x[0] for x in self.name.split()[:2]]).upper()
+
+    def save(self, *args, **kwargs):
+        self.score = get_score(self)
+        super(qpProject, self).save(*args, **kwargs)
+
+
+class qpProjectPermissions(models.Model):
+    project = models.ForeignKey(
+        qpProject,
+        on_delete=models.CASCADE,
+        related_name="permissions",
+        verbose_name=_("Permissions"),
+        blank=False,
+        null=False
+    )
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="project_permissions",
+        verbose_name=_("User"),
+        blank=False,
+        null=False
+    )
+    can_create_task = models.BooleanField(
+        verbose_name=_("Create Task"),
+        default=False
+    )
+    can_edit_task = models.BooleanField(
+        verbose_name=_("Edit Task"),
+        default=False
+    )
+    can_delete_task = models.BooleanField(
+        verbose_name=_("Delete Task"),
+        default=False
+    )
+    created_at = models.DateTimeField(
+        verbose_name=_("Created at"),
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Updated at"),
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = _("Permissions")
+        verbose_name_plural = _("Permissions")
+        ordering = ["project"]
+    
+    def __str__(self):
+        return _("%s's Permissions") % (str(self.user.profile.name))

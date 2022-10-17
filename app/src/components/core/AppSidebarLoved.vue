@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import type { TypeProjectSimple } from "../../types/projects";
+import type { TypeProject } from "../../types/projects";
 import { computed } from "vue";
-// import { storeToRefs } from "pinia";
-// import { storeUser } from "../../plugins/store";
 
-// const useStoreUser = storeUser()
-// const { owned_projects } = storeToRefs(useStoreUser)
-
-const listProjects = computed<Array<TypeProjectSimple>>(() => [])
+const listProjects = computed<Array<TypeProject>>(() => [])
 </script>
 
 <template>
@@ -18,7 +13,7 @@ const listProjects = computed<Array<TypeProjectSimple>>(() => [])
     </li>
     <li v-for="(project, n) in listProjects" :key="`loved-project-${n}`" class="qp-sidebar-nav-list-item">
         <el-tooltip placement="left" :content="project.name">
-            <el-button size="large" circle>
+            <el-button size="large" circle @click="$router.push({name:'ProjectsDetail', params:{slug:`${project.slug}`}})">
                 <el-avatar :src="project.icon" :size="40" :style="`background-color:${project.icon ? 'transparent' : project.primary_color};color:#fff;`">
                     <span v-text="project.initial"></span>
                 </el-avatar>

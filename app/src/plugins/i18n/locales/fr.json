@@ -78,5 +78,7 @@
     "soon": "bientôt",
     "ChangeAvatar": "Modifier l'avatar",
     "ImageSizeMustBe": "La dimension de l'image doit être de {0}.",
-    "Dimensions:": "Dimension {0}"
+    "Dimensions:": "Dimension {0}",
+    "Youdoesnthavetherighttodothat": "Vous n'avez pas la permission d'effectuer cette action.",
+    "Projectdeletedsuccessfully": "Projet supprimé avec succès !"
 }

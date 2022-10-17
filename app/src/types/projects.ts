@@ -1,7 +1,7 @@
 import type { UploadRawFile } from "element-plus";
 import type { TypeUserSimple } from "./users";
 
-export interface TypeProjectSimple {
+export interface TypeProject {
   name: string,
   slug: string,
   caption?: string,
@@ -9,6 +9,7 @@ export interface TypeProjectSimple {
   initial: string,
   primary_color: string,
   icon: string|null,
+  creator: string|null,
   owner: TypeUserSimple|null
 }
 

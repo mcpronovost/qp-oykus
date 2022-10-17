@@ -1,4 +1,7 @@
+import random
+
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
 from django.db.models.functions import Lower
 from django.http import Http404
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -48,7 +51,27 @@ class qpProjectsListView(ListAPIView):
 
     def get_queryset(self):
         queryset = super(qpProjectsListView, self).get_queryset()
-        queryset = queryset.filter(is_active=True, owner=self.request.user).order_by(Lower("name"))
+        queryset = queryset.filter(
+            Q(owner=self.request.user) | Q(permissions__user=self.request.user),
+            is_active=True
+        ).order_by(Lower("name"))
+        return queryset
+
+
+class qpProjectsListFeaturedView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = qpProject.objects.all()
+    serializer_class = qpProjectsDetailSerializer
+    pagination_size = 6
+
+    def get_queryset(self):
+        queryset = super(qpProjectsListFeaturedView, self).get_queryset()
+        queryset = queryset.filter(
+            is_active=True, is_public=True
+        ).exclude(
+            Q(owner=self.request.user) | Q(permissions__user=self.request.user)
+        ).order_by("-score")[:20]
+        queryset = sorted(queryset, key=lambda x: random.random())
         return queryset
 
 

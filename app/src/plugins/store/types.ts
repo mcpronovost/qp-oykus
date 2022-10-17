@@ -13,13 +13,14 @@ export interface TypeUserStore {
   "name": string|null,
   "initial": string|null,
   "avatar": string|null,
-  "owned_projects": Array<TypeUserProjectsOwned>,
+  "owned_projects": Array<TypeUserProjects>,
+  "staff_projects": Array<TypeUserProjects>,
   "notifications": Array<TypeUserNotification>,
   "lang": string,
   "last": number
 }
 
-export interface TypeUserProjectsOwned {
+export interface TypeUserProjects {
     "id": number,
     "name": string,
     "slug": string,

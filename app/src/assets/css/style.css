@@ -48,9 +48,10 @@
   --qp-topbar-bg: #171718;
   --qp-sidebar-bg: #19191a;
   --qp-sidenav-bg: #19191a;
-  --qp-sideview-bg: #1f1f20; /* 1e1e20 */
+  --qp-sideview-bg: #1f1f20;
 
-  --qp-card-bg: #1f1f20; /* 1e1e20 */
+  --qp-card-bg: #1f1f20;
+  --qp-card-bg-light-1: #2a2a2b;
   --qp-card-color: #b2b2b2;
 
   --qp-input-bg: #252527;

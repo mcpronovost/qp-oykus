@@ -5,10 +5,11 @@ class qpPagination(pagination.PageNumberPagination):
     page_size = 100
 
     def get_page_size(self, request):
-        if request.user.is_authenticated and hasattr(request.user, "player"):
+        if request.user.is_authenticated:
             view = request.parser_context["view"]
-            if hasattr(view, "pagination_limit"):
-                return getattr(request.user.player, view.pagination_limit)
+            if hasattr(view, "pagination_size"):
+                return getattr(view, "pagination_size")
+            #    return getattr(request.user, view.pagination_limit)
         return self.page_size
 
     def get_paginated_response(self, data):

@@ -23,11 +23,9 @@ const closeCreateProject = () => {
     <div id="qp-sidebar">
         <el-scrollbar height="calc(100vh - 49px)">
             <nav class="qp-sidebar-nav">
-                <ul v-if="rat" class="qp-sidebar-nav-list">
-                    <QpOwned />
-                    <QpLoved />
-                </ul>
-                <ul v-else class="qp-sidebar-nav-list">
+                <ul class="qp-sidebar-nav-list">
+                    <QpOwned v-if="rat" />
+                    <QpLoved v-if="rat" />
                     <QpFeatured />
                 </ul>
                 <ul class="qp-sidebar-nav-list">
