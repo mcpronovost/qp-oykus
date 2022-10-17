@@ -15,6 +15,7 @@ const initState: TypeUserStore = {
     "staff_projects": [],
     "notifications": [],
     "lang": "fr",
+    "tz": "America/Toronto",
     "last": new Date().getTime()
 }
 
@@ -31,6 +32,11 @@ export const QpStoreUser = defineStore("storeUser", {
                 state.lang = payload
                 document.documentElement.setAttribute("lang", payload)
                 i18n.global.locale.value = payload
+            })
+        },
+        updateTimezone (payload: string) {
+            this.$patch((state) => {
+                state.tz = payload
             })
         },
         updateLast () {
@@ -62,6 +68,7 @@ export const QpStoreUser = defineStore("storeUser", {
                         state.notifications = r.notifications
                     })
                     this.updateLang(r.lang)
+                    this.updateTimezone(r.timezone)
                     this.updateLast()
                     return r
                 } else if (f?.status === 401) {

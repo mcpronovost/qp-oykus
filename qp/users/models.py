@@ -8,6 +8,11 @@ CHOIX_LANGS = [
     ("en", _("English"))
 ]
 
+CHOIX_TIMEZONES = [
+    ("America/Toronto", _("America/Toronto")),
+    ("Europe/Paris", _("Europe/Paris"))
+]
+
 class qpUserProfile(models.Model):
     user = models.OneToOneField(
         get_user_model(),
@@ -36,6 +41,14 @@ class qpUserProfile(models.Model):
         max_length=6,
         choices=CHOIX_LANGS,
         default="fr",
+        blank=False,
+        null=False
+    )
+    timezone = models.CharField(
+        verbose_name=_("Timezone"),
+        max_length=32,
+        choices=CHOIX_TIMEZONES,
+        default="America/Toronto",
         blank=False,
         null=False
     )

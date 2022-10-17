@@ -27,5 +27,5 @@ class qpProjectsDetailOwnerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpProject
-        fields = ["id", "slug", "name", "initial", "caption", "description", "primary_color", "creator", "owner"]
+        fields = ["id", "slug", "name", "initial", "caption", "description", "primary_color", "creator", "owner", "created_at",]
         read_only_fields = ["id", "slug"]

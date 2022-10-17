@@ -10,7 +10,8 @@ export interface TypeProject {
   primary_color: string,
   icon: string|null,
   creator: string|null,
-  owner: TypeUserSimple|null
+  owner: TypeUserSimple|null,
+  created_at: string
 }
 
 export interface ProjectsCreateForm {
