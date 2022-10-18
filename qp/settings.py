@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # ===---
     "qp.users",
     "qp.projects",
+    "qp.forums",
     "qp.notifications",
     # ===---
     "django_cleanup.apps.CleanupConfig" # last
