@@ -10,27 +10,40 @@ class AdminMiddleware():
         return response
     
     def get_app_list(self, app_list):
+        qplist_order = ["auth", "projects", "forums", "notifications"]
         qplist = []
         qpauth_app = None
         qpauth_mod = []
         for a in app_list:
+            try:
+                a["ordering"] = qplist_order.index(a["app_label"])
+            except Exception:
+                a["ordering"] = 100
+            # ===---
             if a["app_label"] == "auth":
                 qpauth_app = a
                 for m in a["models"]:
                     if m["object_name"] == "User":
                         qpauth_mod.append(m)
+                continue
             elif a["app_label"] == "knox":
                 for m in a["models"]:
                     if m["object_name"] == "AuthToken":
                         m["name"] = _("Tokens")
                         qpauth_mod.append(m)
-            else:
-                qplist.append(a)
+                continue
+            elif a["app_label"] == "forums":
+                x = ["qpForum", "qpForumCategory", "qpForumSection", "qpForumTopic", "qpForumMessage"]
+                for m in a["models"]:
+                    m["ordering"] = x.index(m["object_name"])
+                a["models"] = sorted(a["models"], key=lambda q: q["ordering"])
+            # ===---
+            qplist.append(a)
             # ===---
         if qpauth_app is not None:
             qpauth_app["models"] = qpauth_mod
         qplist.insert(0, qpauth_app)
-        app_list = qplist
+        app_list = sorted(qplist, key=lambda q: q["ordering"])
         return app_list
 
     def process_template_response(self, request, response):
