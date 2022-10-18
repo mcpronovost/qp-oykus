@@ -3,7 +3,7 @@ import { Buffer } from "buffer";
 import { QpStoreApp } from "./storeApp";
 import { QpStoreUser } from "./storeUser";
 
-export const API: string = "http://localhost:8000/api"
+export const API: string = "http://localhost:8000/api/v1"
 
 export const HEADERS = (rat: string|null, lang?: string) => {
     if (rat) {

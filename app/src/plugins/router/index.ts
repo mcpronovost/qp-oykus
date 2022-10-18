@@ -38,6 +38,14 @@ const routes = [
       }
     },
     {
+      path: "/forums",
+      name: "Forums",
+      component: () => import("@/views/ForumsView.vue"),
+      meta: {
+        title: "Forums"
+      }
+    },
+    {
       path: "/leaderboard",
       name: "Leaderboard",
       component: () => import("@/views/LeaderboardView.vue"),

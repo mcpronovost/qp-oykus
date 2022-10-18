@@ -2,8 +2,21 @@ from django.urls import path
 from knox import views as knox_views
 
 from qp.api.views import qpPingView
-from qp.api.views.auth import *
-from qp.api.views.me import *
+from qp.api.views.auth import qpRegisterView, qpLoginView
+from qp.api.views.me import (
+    qpMeView,
+    qpMeSettingsAccountUpdateView,
+    qpMeSettingsProfileUpdateView
+)
+from qp.api.views.notifications import qpNotificationsSeenView, qpNotificationsAllSeenView
+from qp.api.views.projects import (
+    qpProjectsCreateView,
+    qpProjectsListView,
+    qpProjectsListFeaturedView,
+    qpProjectsDetailView,
+    qpProjectsDeleteView
+)
+
 from qp.api.views.forums import *
 
 """
@@ -44,9 +57,19 @@ from qp.api.views.forums import *
 urlpatterns = [
     path("", qpPingView.as_view()),
     path("me/", qpMeView.as_view()),
+    path("me/settings/account/edit/", qpMeSettingsAccountUpdateView.as_view()),
+    path("me/settings/profile/edit/", qpMeSettingsProfileUpdateView.as_view()),
+
+    path("notifications/seen/", qpNotificationsAllSeenView.as_view()),
+    path("notifications/<int:pk>/seen/", qpNotificationsSeenView.as_view()),
+
+    path("projects/", qpProjectsListView.as_view()),
+    path("projects/list-featured/", qpProjectsListFeaturedView.as_view()),
+    path("projects/create/", qpProjectsCreateView.as_view()),
+    path("projects/<slug:slug>/", qpProjectsDetailView.as_view()),
+    path("projects/<slug:slug>/delete/", qpProjectsDeleteView.as_view()),
 
     path("forums/", qpForumsView.as_view()),
-    path("forums/create/", qpForumsCreateView.as_view()),
     path("forums/<int:pk>/", qpForumsDetailView.as_view()),
 
     path("register/", qpRegisterView.as_view(), name="auth_register"),

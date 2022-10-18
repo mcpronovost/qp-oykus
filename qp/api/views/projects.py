@@ -82,7 +82,6 @@ class qpProjectsDetailView(RetrieveAPIView):
     lookup_field = "slug"
 
     def get_object(self, slug):
-        print("get_object : ")
         try:
             instance = qpProject.objects.get(
                 Q(owner=self.request.user) | Q(permissions__user=self.request.user) | Q(is_public=True),
