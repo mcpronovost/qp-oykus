@@ -1,7 +1,7 @@
 asgiref==3.5.2
 cffi==1.15.1
 cryptography==38.0.1
-Django==4.1.1
+Django==4.1.2
 django-autoslug==1.9.8
 django-cleanup==6.0.0
 django-colorfield==0.7.2
