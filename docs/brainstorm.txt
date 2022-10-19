@@ -1,0 +1,91 @@
+
+>> RPG
+    > RPG.qpUniverse
+        - Name
+        - Slug
+        - Caption
+        - Description
+        - (fk) Creator
+        - (fk) Owner
+        - Colour Primary
+        - Colour Secondary
+        - Icon
+        - @ Initial
+        
+    > RPG.qpRaces
+        - Name
+        - Demonym
+        - Colour Primary
+
+>> Characters
+    > Characters.qpCharacter
+        - (fk) User
+        - (fk) RPG
+        - First Name
+        - Middle Name
+        - Last Name
+        - Avatar
+        - Gender
+        - (fk) Race
+        - @ Name
+        - @ Initial
+
+>> Forums
+    > Forums.qpForum
+        - (fk) RPG
+        - Name
+    
+    > Forums.qpForumCategory
+        - (fk) Forum
+        - Title
+        - Description
+        - Ordering
+        - Readability : [
+            - Public (non-users)
+            - Open (users)
+            - Limited (players)
+            - Restricted-Staff (modos)
+            - Restricted-Admin (admins)
+            - Closed (owner)
+        ]
+        - Writability : [
+            - Public (non-users)
+            - Open (users)
+            - Limited (players)
+            - Restricted-Staff (modos)
+            - Restricted-Admin (admins)
+            - Closed (owner)
+        ]
+    
+    > Forums.qpForumSection
+        - (fk) Category
+        - Title
+        - Description
+        - Ordering
+        - Readability : [
+            - Public (non-users)
+            - Open (users)
+            - Limited (players)
+            - Restricted-Staff (modos)
+            - Restricted-Admin (admins)
+            - Closed (owner)
+        ]
+        - Writability : [
+            - Public (non-users)
+            - Open (users)
+            - Limited (players)
+            - Restricted-Staff (modos)
+            - Restricted-Admin (admins)
+            - Closed (owner)
+        ]
+    
+    > Forums.qpForumTopics
+        - (fk) Section
+        - Title
+        - Description
+        - (fk) Author
+    
+    > Forums.qpForumMessages
+        - (fk) Topic
+        - (fk) Author
+        - Content
