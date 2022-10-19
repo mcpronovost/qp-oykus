@@ -24,14 +24,6 @@ class qpNotification(models.Model):
         blank=True,
         null=True
     )
-    project_from = models.ForeignKey(
-        "projects.qpProject",
-        on_delete=models.SET_NULL,
-        related_name="notifications_from",
-        verbose_name=_("From Project"),
-        blank=True,
-        null=True
-    )
     content = models.TextField(
         verbose_name=_("Content"),
         blank=True,

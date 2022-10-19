@@ -1,4 +1,5 @@
 from django.contrib import admin
+from ordered_model.admin import OrderedModelAdmin
 from qp.forums.models import (
   qpForum,
   qpForumCategory,
@@ -13,12 +14,12 @@ class qpForumAdmin(admin.ModelAdmin):
     readonly_fields = ["created_at", "updated_at"]
 
 @admin.register(qpForumCategory)
-class qpForumCategoryAdmin(admin.ModelAdmin):
-    list_display = ["title", "forum"]
+class qpForumCategoryAdmin(OrderedModelAdmin):
+    list_display = ["title", "forum", "order", "move_up_down_links"]
     readonly_fields = ["created_at", "updated_at"]
 
 @admin.register(qpForumSection)
-class qpForumSectionAdmin(admin.ModelAdmin):
+class qpForumSectionAdmin(OrderedModelAdmin):
     list_display = ["title", "category", "forum"]
     readonly_fields = ["created_at", "updated_at"]
 

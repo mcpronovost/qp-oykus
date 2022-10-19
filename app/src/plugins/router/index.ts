@@ -38,6 +38,14 @@ const routes = [
       }
     },
     {
+      path: "/rpg",
+      name: "RPG",
+      component: () => import("@/views/RpgView.vue"),
+      meta: {
+        title: "RPG"
+      }
+    },
+    {
       path: "/forums",
       name: "Forums",
       component: () => import("@/views/ForumsView.vue"),

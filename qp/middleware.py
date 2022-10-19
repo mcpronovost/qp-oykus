@@ -43,7 +43,10 @@ class AdminMiddleware():
         if qpauth_app is not None:
             qpauth_app["models"] = qpauth_mod
         qplist.insert(0, qpauth_app)
-        app_list = sorted(qplist, key=lambda q: q["ordering"])
+        try:
+            app_list = sorted(qplist, key=lambda q: q["ordering"])
+        except Exception:
+            pass
         return app_list
 
     def process_template_response(self, request, response):

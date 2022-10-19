@@ -1,8 +1,10 @@
+from secrets import choice
 from tabnanny import verbose
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from autoslug import AutoSlugField
 from colorfield.fields import ColorField
+from ordered_model.models import OrderedModel
 from django.contrib.auth import get_user_model
 
 
@@ -18,14 +20,6 @@ class qpForum(models.Model):
         populate_from="name",
         unique=True,
         editable=True,
-        blank=True,
-        null=True
-    )
-    project = models.OneToOneField(
-        "projects.qpProject",
-        on_delete=models.SET_NULL,
-        related_name="forum",
-        verbose_name=_("Project"),
         blank=True,
         null=True
     )
@@ -55,7 +49,7 @@ class qpForum(models.Model):
         return "%s" % (str(self.name))
 
 
-class qpForumCategory(models.Model):
+class qpForumCategory(OrderedModel):
     forum = models.ForeignKey(
         qpForum,
         on_delete=models.CASCADE,
@@ -78,17 +72,18 @@ class qpForumCategory(models.Model):
         verbose_name=_("Updated at"),
         auto_now=True
     )
+    order_with_respect_to = "forum"
 
     class Meta:
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
-        ordering = ["title"]
+        ordering = ["forum", "order"]
     
     def __str__(self):
         return "%s" % (str(self.title))
 
 
-class qpForumSection(models.Model):
+class qpForumSection(OrderedModel):
     forum = models.ForeignKey(
         qpForum,
         on_delete=models.CASCADE,
@@ -119,17 +114,24 @@ class qpForumSection(models.Model):
         verbose_name=_("Updated at"),
         auto_now=True
     )
+    order_with_respect_to = "category"
 
     class Meta:
         verbose_name = _("Section")
         verbose_name_plural = _("Sections")
-        ordering = ["title"]
+        ordering = ["category", "order"]
     
     def __str__(self):
         return "%s" % (str(self.title))
 
 
 class qpForumTopic(models.Model):
+    CHOIX_FLAGS = [
+        (0, _("Normal")),
+        (1, _("Helpful")),
+        (2, _("Important")),
+        (3, _("Mandatory"))
+    ]
     forum = models.ForeignKey(
         qpForum,
         on_delete=models.CASCADE,
@@ -157,6 +159,13 @@ class qpForumTopic(models.Model):
     title = models.CharField(
         verbose_name=_("Title"),
         max_length=120,
+        blank=False,
+        null=False
+    )
+    flag = models.PositiveSmallIntegerField(
+        verbose_name=_("Flag"),
+        choices=CHOIX_FLAGS,
+        default=0,
         blank=False,
         null=False
     )
@@ -231,4 +240,42 @@ class qpForumMessage(models.Model):
         ordering = ["pk"]
     
     def __str__(self):
-        return "%s #%s" % (str(_("Message")), str(self.title))
+        return "%s #%s" % (str(_("Message")), str(self.pk))
+
+
+class qpForumTrackSection(models.Model):
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="section_tracks",
+        verbose_name=_("User"),
+        blank=False,
+        null=False
+    )
+    section = models.ForeignKey(
+        qpForumSection,
+        on_delete=models.CASCADE,
+        related_name="tracks",
+        verbose_name=_("Section"),
+        blank=False,
+        null=False
+    )
+
+
+class qpForumTrackTopic(models.Model):
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="topic_tracks",
+        verbose_name=_("User"),
+        blank=False,
+        null=False
+    )
+    topic = models.ForeignKey(
+        qpForumTopic,
+        on_delete=models.CASCADE,
+        related_name="tracks",
+        verbose_name=_("Topic"),
+        blank=False,
+        null=False
+    )

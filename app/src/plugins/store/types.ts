@@ -33,7 +33,6 @@ export interface TypeUserProjects {
 export interface TypeUserNotification {
     "id": number,
     "user_from": number|null,
-    "project_from": number|null,
     "initial": string|null,
     "icon": string|null,
     "content": string|null,

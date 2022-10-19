@@ -4,8 +4,6 @@ from rest_framework import serializers
 from rest_framework.utils.serializer_helpers import ReturnDict
 
 from qp.users.models import qpUserProfile
-from qp.projects.models import qpProject
-from qp.notifications.models import qpNotification
 
 User = get_user_model()
 
