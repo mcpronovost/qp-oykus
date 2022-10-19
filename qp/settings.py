@@ -32,9 +32,10 @@ INSTALLED_APPS = [
     "rest_framework",
     "knox",
     "colorfield",
+    "ordered_model", # https://github.com/django-ordered-model/django-ordered-model
     # ===---
     "qp.users",
-    "qp.projects",
+    #"qp.projects",
     "qp.forums",
     "qp.notifications",
     # ===---
@@ -105,7 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "knox.auth.TokenAuthentication"
+        "knox.auth.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication"
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny"
