@@ -1,6 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import status
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
 
 from qp.api.permissions import qpIsAuthenticated
@@ -34,6 +34,23 @@ class qpForumsCreateView(CreateAPIView):
     def perform_create(self, serializer):
         """ Add current user as owner on ``CREATE`` """
         serializer.save(owner=self.request.user)
+
+
+class qpForumsDeleteView(DestroyAPIView):
+    """
+    TODO: finish this
+    ``DELETE``: qpForum
+    """
+    permission_classes = [qpIsAuthenticated]
+    queryset = qpForum.objects.all()
+    serializer_class = qpForumSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.owner == self.request.user:
+            self.perform_destroy(instance)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 class qpForumsDetailView(RetrieveUpdateAPIView):

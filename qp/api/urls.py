@@ -57,25 +57,21 @@ urlpatterns = [
     path("forums/<int:pk>/sections/", qpForumsSectionsListView.as_view()),
     path("forums/<int:pk>/topics/", qpForumsTopicsListView.as_view()),
     path("forums/<int:pk>/messages/", qpForumsMessagesListView.as_view()),
-
     path("forums/categories/", qpForumsCategoriesView.as_view()),
     path("forums/categories/create/", qpForumsCategoriesCreateView.as_view()),
     path("forums/categories/<int:pk>/", qpForumsCategoriesDetailView.as_view()),
     path("forums/categories/<int:pk>/sections/", qpForumsCategoriesSectionsView.as_view()),
     path("forums/categories/<int:pk>/topics/", qpForumsCategoriesTopicsView.as_view()),
     path("forums/categories/<int:pk>/messages/", qpForumsCategoriesMessagesView.as_view()),
-
     path("forums/sections/", qpForumsSectionsView.as_view()),
     path("forums/sections/create/", qpForumsSectionsCreateView.as_view()),
     path("forums/sections/<int:pk>/", qpForumsSectionsDetailView.as_view()),
     path("forums/sections/<int:pk>/topics/", qpForumsSectionsTopicsView.as_view()),
     path("forums/sections/<int:pk>/messages/", qpForumsSectionsMessagesView.as_view()),
-
     path("forums/topics/", qpForumsTopicsView.as_view()),
     path("forums/topics/create/", qpForumsTopicsCreateView.as_view()),
     path("forums/topics/<int:pk>/", qpForumsTopicsDetailView.as_view()),
     path("forums/topics/<int:pk>/messages/", qpForumsTopicsMessagesView.as_view()),
-
     path("forums/messages/", qpForumsMessagesView.as_view()),
     path("forums/messages/create/", qpForumsMessagesCreateView.as_view()),
     path("forums/messages/<int:pk>/", qpForumsMessagesDetailView.as_view()),
