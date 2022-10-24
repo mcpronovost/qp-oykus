@@ -4,8 +4,13 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAP
 from rest_framework.response import Response
 
 from qp.api.permissions import qpIsAny, qpIsAuthenticated
-from qp.rpg.models import qpRpg
-from qp.api.serializers.rpg import *
+from qp.rpg.models import qpRpg, qpRpgRace, qpRpgSkill
+from qp.characters.models import qpCharacter
+
+from qp.api.serializers.rpg import qpRpgSerializer, qpRpgCreateSerializer
+from qp.api.serializers.characters import qpCharacterSimpleSerializer
+from qp.api.serializers.races import qpRaceSimpleSerializer
+from qp.api.serializers.skills import qpSkillSimpleSerializer
 
 
 class qpRpgListView(ListAPIView):
@@ -68,7 +73,7 @@ class qpRpgRacesListView(ListAPIView):
     RPG Races GET list
     """
     permission_classes = [qpIsAny]
-    serializer_class = qpRpgRaceSerializer
+    serializer_class = qpRaceSimpleSerializer
 
     def get_queryset(self):
         slug = str(self.kwargs["slug"])
@@ -83,11 +88,26 @@ class qpRpgSkillsListView(ListAPIView):
     RPG Skills GET list
     """
     permission_classes = [qpIsAny]
-    serializer_class = qpRpgSkillSerializer
+    serializer_class = qpSkillSimpleSerializer
 
     def get_queryset(self):
         slug = str(self.kwargs["slug"])
         queryset = qpRpgSkill.objects.filter(
+            rpg__slug=slug
+        )
+        return queryset
+
+
+class qpRpgCharactersListView(ListAPIView):
+    """
+    RPG Characters GET list
+    """
+    permission_classes = [qpIsAny]
+    serializer_class = qpCharacterSimpleSerializer
+
+    def get_queryset(self):
+        slug = str(self.kwargs["slug"])
+        queryset = qpCharacter.objects.filter(
             rpg__slug=slug
         )
         return queryset

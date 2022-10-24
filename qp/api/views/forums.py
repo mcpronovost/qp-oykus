@@ -4,8 +4,10 @@ from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, 
 from rest_framework.response import Response
 
 from qp.api.permissions import qpIsAuthenticated
-from qp.forums.models import *
-from qp.api.serializers.forums import *
+from qp.forums.models import qpForum, qpForumCategory, qpForumSection, qpForumTopic, qpForumMessage
+from qp.api.serializers.forums import qpForumSerializer, qpForumCreateSerializer
+from qp.api.serializers.forums import qpCategorySerializer, qpSectionSerializer, qpTopicSerializer, qpMessageSerializer
+from qp.api.serializers.forums import qpCategoryCreateSerializer, qpSectionCreateSerializer, qpTopicCreateSerializer, qpMessageCreateSerializer
 
 
 class qpForumsListView(ListAPIView):
