@@ -17,7 +17,7 @@ CHOIX_ATTRIBUTES = [
     ("dexterity", _("Dexterity")),
     ("perception", _("Perception")),
     ("intelligence", _("Intelligence")),
-    ("willpower", _("Volonté"))
+    ("willpower", _("Willpower"))
 ]
 
 
@@ -105,6 +105,11 @@ class qpRpg(models.Model):
     @property
     def initial(self):
         return "".join([x[0] for x in self.name.split()[:2]]).upper()
+    
+    def get_settings(self):
+        if hasattr(self, "settings"):
+            return self.settings
+        return qpSettingsRpg.objects.filter(rpg__isnull=True).first()
 
 
 class qpRpgRace(models.Model):
@@ -180,6 +185,10 @@ class qpSettingsRpg(models.Model):
         unique=True,
         blank=True,
         null=True
+    )
+    limit_characters = models.PositiveSmallIntegerField(
+        verbose_name=_("Characters Limit"),
+        default=100
     )
     limit_races = models.PositiveSmallIntegerField(
         verbose_name=_("Races Limit"),
