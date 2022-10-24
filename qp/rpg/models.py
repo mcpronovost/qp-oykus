@@ -39,7 +39,7 @@ class qpRpg(models.Model):
     creator = models.ForeignKey(
         get_user_model(),
         on_delete=models.SET_NULL,
-        related_name="created_rpgs",
+        related_name="created_rpg",
         verbose_name=_("Creator"),
         blank=True,
         null=True
@@ -47,7 +47,7 @@ class qpRpg(models.Model):
     owner = models.ForeignKey(
         get_user_model(),
         on_delete=models.SET_NULL,
-        related_name="owned_rpgs",
+        related_name="owned_rpg",
         verbose_name=_("Owner"),
         blank=True,
         null=True
@@ -136,7 +136,7 @@ class qpRpgRace(models.Model):
         return "%s" % (str(self.name))
 
 
-class qpRpgSkills(models.Model):
+class qpRpgSkill(models.Model):
     rpg = models.ForeignKey(
         qpRpg,
         on_delete=models.CASCADE,
@@ -180,6 +180,14 @@ class qpSettingsRpg(models.Model):
         unique=True,
         blank=True,
         null=True
+    )
+    limit_races = models.PositiveSmallIntegerField(
+        verbose_name=_("Races Limit"),
+        default=20
+    )
+    limit_skills = models.PositiveSmallIntegerField(
+        verbose_name=_("Skills Limit"),
+        default=60
     )
     modifier_resistance_physical = models.SmallIntegerField(
         verbose_name=_("Physical Resistance Modifier"),

@@ -31,3 +31,25 @@ class qpRpgCreateSerializer(serializers.ModelSerializer):
         model = qpRpg
         fields = ["id", "name", "owner"]
         read_only_fields = ["id", "owner"]
+
+
+class qpRpgRaceSerializer(serializers.ModelSerializer):
+    """
+    Rpg Race serializer
+    """
+
+    class Meta:
+        model = qpRpgRace
+        fields = ["id", "name"]
+        read_only_fields = ["id"]
+
+
+class qpRpgSkillSerializer(serializers.ModelSerializer):
+    """
+    Rpg Skill serializer
+    """
+
+    class Meta:
+        model = qpRpgSkill
+        fields = ["id", "name", "attribute"]
+        read_only_fields = ["id"]

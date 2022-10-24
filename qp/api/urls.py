@@ -4,6 +4,7 @@ from knox import views as knox_views
 from qp.api.views.auth import *
 from qp.api.views.me import *
 from qp.api.views.rpg import *
+from qp.api.views.races import *
 from qp.api.views.forums import *
 
 urlpatterns = [
@@ -13,6 +14,12 @@ urlpatterns = [
     path("rpg/", qpRpgListView.as_view()),
     path("rpg/create/", qpRpgCreateView.as_view()),
     path("rpg/<slug:slug>/", qpRpgDetailView.as_view()),
+    path("rpg/<slug:slug>/delete/", qpRpgDeleteView.as_view()),
+    path("rpg/<slug:slug>/races/", qpRpgRacesListView.as_view()),
+    path("rpg/<slug:slug>/skills/", qpRpgSkillsListView.as_view()),
+
+    path("races/", qpRacesListView.as_view()),
+    path("races/create/", qpRacesCreateView.as_view()),
 
     path("forums/", qpForumsListView.as_view()),
     path("forums/create/", qpForumsCreateView.as_view()),
