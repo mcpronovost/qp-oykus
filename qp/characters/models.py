@@ -4,8 +4,6 @@ from autoslug import AutoSlugField
 from colorfield.fields import ColorField
 from django.contrib.auth import get_user_model
 
-from qp.characters.utils import get_slugific_names
-
 
 class qpCharacter(models.Model):
     user = models.ForeignKey(
@@ -13,6 +11,14 @@ class qpCharacter(models.Model):
         on_delete=models.CASCADE,
         related_name="characters",
         verbose_name=_("User"),
+        blank=False,
+        null=False
+    )
+    rpg = models.ForeignKey(
+        "rpg.qpRpg",
+        on_delete=models.CASCADE,
+        related_name="characters",
+        verbose_name=_("RPG"),
         blank=False,
         null=False
     )
@@ -35,7 +41,7 @@ class qpCharacter(models.Model):
         null=True
     )
     resistance_physical = models.PositiveSmallIntegerField(
-        verbose_name=_("Physique Resistance"),
+        verbose_name=_("Physical Resistance"),
         default=0,
         blank=False,
         null=False
@@ -54,6 +60,36 @@ class qpCharacter(models.Model):
     )
     attribute_strength = models.PositiveSmallIntegerField(
         verbose_name=_("Strength"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_constitution = models.PositiveSmallIntegerField(
+        verbose_name=_("Constitution"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_dexterity = models.PositiveSmallIntegerField(
+        verbose_name=_("Dexterity"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_perception = models.PositiveSmallIntegerField(
+        verbose_name=_("Perception"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_intelligence = models.PositiveSmallIntegerField(
+        verbose_name=_("Intelligence"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_willpower = models.PositiveSmallIntegerField(
+        verbose_name=_("Willpower"),
         default=0,
         blank=False,
         null=False
@@ -82,4 +118,53 @@ class qpCharacter(models.Model):
             result += " %s" % (str(self.middle_name))
         if self.last_name:
             result += " %s" % (str(self.last_name))
+        return result
+    
+    @property
+    def initial(self):
+        return "".join([x[0] for x in self.name.split()[:3]]).upper()
+    
+    @property
+    def physical(self):
+        result = self.resistance_physical
+        return result
+    
+    @property
+    def mental(self):
+        result = self.resistance_mental
+        return result
+    
+    @property
+    def spiritual(self):
+        result = self.resistance_spiritual
+        return result
+    
+    @property
+    def strength(self):
+        result = self.attribute_strength
+        return result
+    
+    @property
+    def constitution(self):
+        result = self.attribute_constitution
+        return result
+    
+    @property
+    def dexterity(self):
+        result = self.attribute_dexterity
+        return result
+    
+    @property
+    def perception(self):
+        result = self.attribute_perception
+        return result
+    
+    @property
+    def intelligence(self):
+        result = self.attribute_intelligence
+        return result
+    
+    @property
+    def willpower(self):
+        result = self.attribute_willpower
         return result
