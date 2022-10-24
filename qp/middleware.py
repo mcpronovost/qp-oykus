@@ -10,7 +10,7 @@ class AdminMiddleware():
         return response
     
     def get_app_list(self, app_list):
-        qplist_order = ["auth", "rpg", "forums", "notifications"]
+        qplist_order = ["auth", "rpg", "characters", "forums", "notifications"]
         qplist = []
         qpauth_app = None
         qpauth_mod = []
@@ -32,6 +32,11 @@ class AdminMiddleware():
                         m["name"] = _("Tokens")
                         qpauth_mod.append(m)
                 continue
+            elif a["app_label"] == "rpg":
+                x = ["qpSettingsRpg", "qpRpg", "qpRpgRace", "qpRpgSkill"]
+                for m in a["models"]:
+                    m["ordering"] = x.index(m["object_name"])
+                a["models"] = sorted(a["models"], key=lambda q: q["ordering"])
             elif a["app_label"] == "forums":
                 x = ["qpForum", "qpForumCategory", "qpForumSection", "qpForumTopic", "qpForumMessage"]
                 for m in a["models"]:
