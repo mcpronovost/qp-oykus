@@ -4,12 +4,16 @@ from knox import views as knox_views
 from qp.api.views.auth import *
 from qp.api.views.me import *
 from qp.api.views.rpg import *
+from qp.api.views.characters import *
 from qp.api.views.races import *
+from qp.api.views.skills import *
 from qp.api.views.forums import *
 
 urlpatterns = [
     path("", qpPingView.as_view()),
     path("me/", qpMeView.as_view()),
+    path("me/rpg/", qpMeRpgListView.as_view()),
+    path("me/characters/", qpMeCharactersListView.as_view()),
 
     path("rpg/", qpRpgListView.as_view()),
     path("rpg/create/", qpRpgCreateView.as_view()),
@@ -17,9 +21,22 @@ urlpatterns = [
     path("rpg/<slug:slug>/delete/", qpRpgDeleteView.as_view()),
     path("rpg/<slug:slug>/races/", qpRpgRacesListView.as_view()),
     path("rpg/<slug:slug>/skills/", qpRpgSkillsListView.as_view()),
+    path("rpg/<slug:slug>/characters/", qpRpgCharactersListView.as_view()),
+
+    path("characters/", qpCharactersListView.as_view()),
+    path("characters/create/", qpCharactersCreateView.as_view()),
+    path("characters/<int:pk>/", qpCharactersDetailView.as_view()),
+    path("characters/<int:pk>/delete/", qpCharactersDeleteView.as_view()),
 
     path("races/", qpRacesListView.as_view()),
     path("races/create/", qpRacesCreateView.as_view()),
+    path("races/<int:pk>/", qpRacesDetailView.as_view()),
+    path("races/<int:pk>/delete/", qpRacesDeleteView.as_view()),
+
+    path("skills/", qpSkillsListView.as_view()),
+    path("skills/create/", qpSkillsCreateView.as_view()),
+    path("skills/<int:pk>/", qpSkillsDetailView.as_view()),
+    path("skills/<int:pk>/delete/", qpSkillsDeleteView.as_view()),
 
     path("forums/", qpForumsListView.as_view()),
     path("forums/create/", qpForumsCreateView.as_view()),
