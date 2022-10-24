@@ -75,6 +75,7 @@ class qpCharacter(models.Model):
     def __str__(self):
         return "%s" % (str(self.name))
     
+    @property
     def name(self):
         result = "%s" % (str(self.first_name))
         if self.middle_name:

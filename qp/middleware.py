@@ -10,7 +10,7 @@ class AdminMiddleware():
         return response
     
     def get_app_list(self, app_list):
-        qplist_order = ["auth", "projects", "forums", "notifications"]
+        qplist_order = ["auth", "rpg", "forums", "notifications"]
         qplist = []
         qpauth_app = None
         qpauth_mod = []

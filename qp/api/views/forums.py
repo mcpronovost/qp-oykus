@@ -8,7 +8,7 @@ from qp.forums.models import *
 from qp.api.serializers.forums import *
 
 
-class qpForumsView(ListAPIView):
+class qpForumsListView(ListAPIView):
     """
     ``GET LIST``: qpForum
     """
@@ -136,7 +136,7 @@ class qpForumsMessagesListView(ListAPIView):
         return queryset
 
 
-class qpForumsCategoriesView(ListAPIView):
+class qpCategoriesListView(ListAPIView):
     """
     ``GET LIST``: qpForumCategory
     """
@@ -145,7 +145,7 @@ class qpForumsCategoriesView(ListAPIView):
     serializer_class = qpCategorySerializer
 
 
-class qpForumsCategoriesCreateView(CreateAPIView):
+class qpCategoriesCreateView(CreateAPIView):
     """
     ``POST CREATE``: qpForumCategory
     """
@@ -164,7 +164,7 @@ class qpForumsCategoriesCreateView(CreateAPIView):
         serializer.save()
 
 
-class qpForumsCategoriesDetailView(RetrieveUpdateAPIView):
+class qpCategoriesDetailView(RetrieveUpdateAPIView):
     """
     ``GET``,``UPDATE``: qpForumCategory
     """
@@ -183,7 +183,7 @@ class qpForumsCategoriesDetailView(RetrieveUpdateAPIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class qpForumsCategoriesSectionsView(ListAPIView):
+class qpCategoriesSectionsListView(ListAPIView):
     """
     ``GET LIST``: qpForumCategory > qpSection
     """
@@ -200,7 +200,7 @@ class qpForumsCategoriesSectionsView(ListAPIView):
         return queryset
 
 
-class qpForumsCategoriesTopicsView(ListAPIView):
+class qpCategoriesTopicsListView(ListAPIView):
     """
     ``GET LIST``: qpForumCategory > qpTopic.
     """
@@ -217,7 +217,7 @@ class qpForumsCategoriesTopicsView(ListAPIView):
         return queryset
 
 
-class qpForumsCategoriesMessagesView(ListAPIView):
+class qpCategoriesMessagesListView(ListAPIView):
     """
     ``GET LIST``: qpForumCategory > qpMessage
     """
@@ -234,7 +234,7 @@ class qpForumsCategoriesMessagesView(ListAPIView):
         return queryset
 
 
-class qpForumsSectionsView(ListAPIView):
+class qpSectionsListView(ListAPIView):
     """
     ``GET LIST``: qpForumsSection
     """
@@ -243,7 +243,7 @@ class qpForumsSectionsView(ListAPIView):
     serializer_class = qpSectionSerializer
 
 
-class qpForumsSectionsCreateView(CreateAPIView):
+class qpSectionsCreateView(CreateAPIView):
     """
     ``POST CREATE``: qpForumsSection
     """
@@ -262,7 +262,7 @@ class qpForumsSectionsCreateView(CreateAPIView):
         serializer.save()
 
 
-class qpForumsSectionsDetailView(RetrieveUpdateAPIView):
+class qpSectionsDetailView(RetrieveUpdateAPIView):
     """
     ``GET``,``UPDATE``: qpForumsSection
     """
@@ -281,7 +281,7 @@ class qpForumsSectionsDetailView(RetrieveUpdateAPIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class qpForumsSectionsTopicsView(ListAPIView):
+class qpSectionsTopicsListView(ListAPIView):
     """
     ``GET LIST``: qpForumsSection > qpTopic.
     """
@@ -298,7 +298,7 @@ class qpForumsSectionsTopicsView(ListAPIView):
         return queryset
 
 
-class qpForumsSectionsMessagesView(ListAPIView):
+class qpSectionsMessagesListView(ListAPIView):
     """
     ``GET LIST``: qpForumsSection > qpMessage
     """
@@ -315,7 +315,7 @@ class qpForumsSectionsMessagesView(ListAPIView):
         return queryset
 
 
-class qpForumsTopicsView(ListAPIView):
+class qpTopicsListView(ListAPIView):
     """
     ``GET LIST``: qpForumsTopic
     """
@@ -324,7 +324,7 @@ class qpForumsTopicsView(ListAPIView):
     serializer_class = qpTopicSerializer
 
 
-class qpForumsTopicsCreateView(CreateAPIView):
+class qpTopicsCreateView(CreateAPIView):
     """
     ``POST CREATE``: qpForumsTopic
     """
@@ -343,7 +343,7 @@ class qpForumsTopicsCreateView(CreateAPIView):
         serializer.save()
 
 
-class qpForumsTopicsDetailView(RetrieveUpdateAPIView):
+class qpTopicsDetailView(RetrieveUpdateAPIView):
     """
     ``GET``,``UPDATE``: qpForumsTopic
     """
@@ -362,7 +362,7 @@ class qpForumsTopicsDetailView(RetrieveUpdateAPIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class qpForumsTopicsMessagesView(ListAPIView):
+class qpTopicsMessagesListView(ListAPIView):
     """
     ``GET LIST``: qpForumsTopic > qpMessage
     """
@@ -379,7 +379,7 @@ class qpForumsTopicsMessagesView(ListAPIView):
         return queryset
 
 
-class qpForumsMessagesView(ListAPIView):
+class qpMessagesListView(ListAPIView):
     """
     ``GET LIST``: qpForumMessage
     """
@@ -388,7 +388,7 @@ class qpForumsMessagesView(ListAPIView):
     serializer_class = qpMessageSerializer
 
 
-class qpForumsMessagesCreateView(CreateAPIView):
+class qpMessagesCreateView(CreateAPIView):
     """
     ``POST CREATE``: qpForumMessage
     """
@@ -407,7 +407,7 @@ class qpForumsMessagesCreateView(CreateAPIView):
         serializer.save()
 
 
-class qpForumsMessagesDetailView(RetrieveUpdateAPIView):
+class qpMessagesDetailView(RetrieveUpdateAPIView):
     """
     ``GET``,``UPDATE``: qpForumMessage
     """

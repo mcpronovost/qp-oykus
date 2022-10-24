@@ -46,130 +46,275 @@ Oykus API v1
     <tbody>
         <tr>
             <td><a href="/api/v1/">/</a><br /></td>
-            <td>GET</td><td>qpPingView</td>
+            <td>GET</td><td>Ping</td>
         </tr>
     </tbody>
     <tr><td colspan="3"><hr /></td></tr>
+    <!-- Me -->
     <tbody>
         <tr>
             <td><a href="/api/v1/me/">me/</a><br /></td>
-            <td>GET</td><td>qpMeView</td>
+            <td>GET</td><td>Me</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/me/settings/account/">me/settings/account/</a><br /></td>
-            <td>GET, PATCH</td><td>qpMeSettingsAccountView</td>
+            <td>GET, PATCH</td><td>MeSettingsAccount</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/me/settings/profile/">me/settings/profile/</a><br /></td>
-            <td>GET, PATCH</td><td>qpMeSettingsProfileView</td>
+            <td>GET, PATCH</td><td>MeSettingsProfile</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/me/rpg/">me/rpg/</a><br /></td>
-            <td>GET list</td><td>qpMeRpgListView</td>
+            <td>GET list</td><td>MeRpgList</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/me/characters/">me/characters/</a><br /></td>
-            <td>GET list</td><td>qpMeCharactersListView</td>
+            <td>GET list</td><td>MeCharactersList</td>
         </tr>
     </tbody>
     <tr><td colspan="3"><hr /></td></tr>
+    <!-- Rpg -->
     <tbody>
         <tr>
             <td><a href="/api/v1/rpg/">rpg/</a><br /></td>
-            <td>GET list</td><td>qpRpgListView</td>
+            <td>GET list</td><td>RpgList</td>
         </tr>
         <tr>
             <td><a href="/api/v1/rpg/create/">rpg/create/</a><br /></td>
-            <td>POST</td><td>qpRpgCreateView</td>
+            <td>POST</td><td>RpgCreate</td>
         </tr>
         <tr>
             <td><a href="/api/v1/rpg/qalatlan/">rpg/[slug:slug]/</a><br /></td>
-            <td>GET, PATCH</td><td>qpRpgDetailView</td>
+            <td>GET, PATCH</td><td>RpgDetail</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/rpg/qalatlan/delete/">rpg/[slug:slug]/delete/</a><br /></td>
-            <td>DELETE</td><td>qpRpgDeleteView</td>
+            <td>DELETE</td><td>RpgDelete</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/rpg/qalatlan/races/">rpg/[slug:slug]/races/</a><br /></td>
-            <td>GET list</td><td>qpRpgRacesListView</td>
+            <td>GET list</td><td>RpgRacesList</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/rpg/qalatlan/skills/">rpg/[slug:slug]/skills/</a><br /></td>
-            <td>GET list</td><td>qpRpgSkillsListView</td>
+            <td>GET list</td><td>RpgSkillsList</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/rpg/qalatlan/characters/">rpg/[slug:slug]/characters/</a><br /></td>
-            <td>GET list</td><td>qpRpgCharactersListView</td>
+            <td>GET list</td><td>RpgCharactersList</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/rpg/qalatlan/quests/">rpg/[slug:slug]/quests/</a><br /></td>
-            <td>GET list</td><td>qpRpgQuestsListView</td>
+            <td>GET list</td><td>RpgQuestsList</td>
         </tr>
     </tbody>
     <tr><td colspan="3"><hr /></td></tr>
+    <!-- Characters -->
     <tbody>
         <tr class="disabled">
             <td><a href="/api/v1/characters/">characters/</a><br /></td>
-            <td>GET list</td><td>qpCharactersListView</td>
+            <td>GET list</td><td>CharactersList</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/characters/create/">characters/create/</a><br /></td>
-            <td>POST</td><td>qpCharactersCreateView</td>
+            <td>POST</td><td>CharactersCreate</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/characters/1/">characters/[int:pk]/</a><br /></td>
-            <td>GET, PATCH</td><td>qpCharactersDetailView</td>
+            <td>GET, PATCH</td><td>CharactersDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/characters/1/delete/">characters/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>CharactersDelete</td>
         </tr>
     </tbody>
     <tr><td colspan="3"><hr /></td></tr>
+    <!-- Races -->
+    <tbody>
+        <tr class="disabled">
+            <td><a href="/api/v1/races/">races/</a><br /></td>
+            <td>GET list</td><td>RacesList</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/races/create/">races/create/</a><br /></td>
+            <td>POST</td><td>RacesCreate</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/races/1/">races/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>RacesDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/races/1/delete/">races/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>RacesDelete</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <!-- Skills -->
+    <tbody>
+        <tr class="disabled">
+            <td><a href="/api/v1/skills/">skills/</a><br /></td>
+            <td>GET list</td><td>SkillsList</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/skills/create/">skills/create/</a><br /></td>
+            <td>POST</td><td>SkillsCreate</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/skills/1/">skills/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>SkillsDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/skills/1/delete/">skills/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>SkillsDelete</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <!-- Quests -->
     <tbody>
         <tr class="disabled">
             <td><a href="/api/v1/quests/">quests/</a><br /></td>
-            <td>GET list</td><td>qpQuestsListView</td>
+            <td>GET list</td><td>QuestsList</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/quests/create/">quests/create/</a><br /></td>
-            <td>POST</td><td>qpQuestsCreateView</td>
+            <td>POST</td><td>QuestsCreate</td>
         </tr>
         <tr class="disabled">
             <td><a href="/api/v1/quests/1/">quests/[int:pk]/</a><br /></td>
-            <td>GET, PATCH</td><td>qpQuestsDetailView</td>
+            <td>GET, PATCH</td><td>QuestsDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/quests/1/delete/">quests/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>QuestsDelete</td>
         </tr>
     </tbody>
     <tr><td colspan="3"><hr /></td></tr>
+    <!-- Forums -->
     <tbody>
         <tr>
             <td><a href="/api/v1/forums/">forums/</a><br /></td>
-            <td>GET list</td><td>qpForumsView</td>
+            <td>GET list</td><td>ForumsList</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/create/">forums/create/</a><br /></td>
-            <td>POST</td><td>qpForumsCreateView</td>
+            <td>POST</td><td>ForumsCreate</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/1/">forums/[int:pk]/</a><br /></td>
-            <td>GET, PATCH</td><td>qpForumsDetailView</td>
+            <td>GET, PATCH</td><td>ForumsDetail</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/1/delete/">forums/[int:pk]/delete/</a><br /></td>
-            <td>DELETE</td><td>qpForumsDeleteView</td>
+            <td>DELETE</td><td>ForumsDelete</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/1/categories/">forums/[int:pk]/categories/</a><br /></td>
-            <td>GET list</td><td>qpForumsCategoriesListView</td>
+            <td>GET list</td><td>ForumsCategoriesList</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/1/sections/">forums/[int:pk]/sections/</a><br /></td>
-            <td>GET list</td><td>qpForumsSectionsListView</td>
+            <td>GET list</td><td>ForumsSectionsList</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/1/topics/">forums/[int:pk]/topics/</a><br /></td>
-            <td>GET list</td><td>qpForumsTopicsListView</td>
+            <td>GET list</td><td>ForumsTopicsList</td>
         </tr>
         <tr>
             <td><a href="/api/v1/forums/1/messages/">forums/[int:pk]/messages/</a><br /></td>
-            <td>GET list</td><td>qpForumsMessagesListView</td>
+            <td>GET list</td><td>ForumsMessagesList</td>
+        </tr>
+        <tr><td colspan="3"></td></tr>
+        <tr>
+            <td><a href="/api/v1/forums/categories/">forums/categories/</a><br /></td>
+            <td>GET list</td><td>CategoriesList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/categories/">forums/categories/create/</a><br /></td>
+            <td>POST</td><td>CategoriesCreate</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/categories/1/">forums/categories/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>CategoriesDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/forums/categories/1/delete/">forums/categories/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>CategoriesDelete</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/categories/1/sections/">forums/categories/[int:pk]/sections/</a><br /></td>
+            <td>GET list</td><td>CategoriesSectionsList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/categories/1/topics/">forums/categories/[int:pk]/topics/</a><br /></td>
+            <td>GET list</td><td>CategoriesTopicsList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/categories/1/messages/">forums/categories/[int:pk]/messages/</a><br /></td>
+            <td>GET list</td><td>CategoriesMessagesList</td>
+        </tr>
+        <tr><td colspan="3"></td></tr>
+        <tr>
+            <td><a href="/api/v1/forums/sections/">forums/sections/</a><br /></td>
+            <td>GET list</td><td>SectionsList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/sections/">forums/sections/create/</a><br /></td>
+            <td>POST</td><td>SectionsCreate</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/sections/1/">forums/sections/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>SectionsDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/forums/sections/1/delete/">forums/sections/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>SectionsDelete</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/sections/1/topics/">forums/sections/[int:pk]/topics/</a><br /></td>
+            <td>GET list</td><td>SectionsTopicsList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/sections/1/messages/">forums/sections/[int:pk]/messages/</a><br /></td>
+            <td>GET list</td><td>SectionsMessagesList</td>
+        </tr>
+        <tr><td colspan="3"></td></tr>
+        <tr>
+            <td><a href="/api/v1/forums/topics/">forums/topics/</a><br /></td>
+            <td>GET list</td><td>TopicsList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/topics/">forums/topics/create/</a><br /></td>
+            <td>POST</td><td>TopicsCreate</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/topics/1/">forums/topics/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>TopicsDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/forums/topics/1/delete/">forums/topics/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>TopicsDelete</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/topics/1/messages/">forums/topics/[int:pk]/messages/</a><br /></td>
+            <td>GET list</td><td>TopicsMessagesList</td>
+        </tr>
+        <tr><td colspan="3"></td></tr>
+        <tr>
+            <td><a href="/api/v1/forums/messages/">forums/messages/</a><br /></td>
+            <td>GET list</td><td>MessagesList</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/messages/">forums/messages/create/</a><br /></td>
+            <td>POST</td><td>MessagesCreate</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/messages/1/">forums/messages/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>MessagesDetail</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/forums/messages/1/delete/">forums/messages/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>MessagesDelete</td>
         </tr>
     </tbody>
 </table>

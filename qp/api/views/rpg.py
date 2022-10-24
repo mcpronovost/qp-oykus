@@ -4,8 +4,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAP
 from rest_framework.response import Response
 
 from qp.api.permissions import qpIsAny, qpIsAuthenticated
-from qp.forums.models import qpForum
-from qp.api.serializers.forums import *
+from qp.rpg.models import qpRpg
+from qp.api.serializers.rpg import *
 
 
 class qpRpgListView(ListAPIView):
@@ -13,8 +13,8 @@ class qpRpgListView(ListAPIView):
     RPG GET list
     """
     permission_classes = [qpIsAny]
-    queryset = qpForum.objects.all()
-    serializer_class = qpForumSerializer
+    queryset = qpRpg.objects.all()
+    serializer_class = qpRpgSerializer
 
 
 class qpRpgCreateView(CreateAPIView):
@@ -22,8 +22,8 @@ class qpRpgCreateView(CreateAPIView):
     RPG CREATE
     """
     permission_classes = [qpIsAuthenticated]
-    queryset = qpForum.objects.all()
-    serializer_class = qpForumCreateSerializer
+    queryset = qpRpg.objects.all()
+    serializer_class = qpRpgCreateSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -34,8 +34,8 @@ class qpRpgDetailView(RetrieveUpdateAPIView):
     RPG GET, UPDATE
     """
     permission_classes = [qpIsAny]
-    queryset = qpForum.objects.all()
-    serializer_class = qpForumSerializer
+    queryset = qpRpg.objects.all()
+    serializer_class = qpRpgSerializer
     lookup_field = "slug"
 
     def patch(self, request, *args, **kwargs):
