@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oykus API v1</title>
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap-tweaks.css" />
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/default.css" />
+    <style>
+        tr.disabled{opacity:0.4;}
+        tr.disabled a{cursor:default;pointer-events:none;}
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+<div class="navbar navbar-static-top navbar-inverse" role="navigation" aria-label="navbar">
+<div class="container">
+<span>
+<a class='navbar-brand' rel="nofollow" href='https://www.django-rest-framework.org/'>
+Oykus API v1
+</a>
+</span>
+</div>
+</div>
+<div class="container">
+<ul class="breadcrumb"></ul>
+<div id="content" role="main" aria-label="content">
+<div class="region" aria-label="request form">
+</div>
+<div class="content-main" role="main" aria-label="main content">
+<div class="page-header">
+<h1>API v1</h1>
+</div>
+<div style="float:left">
+<p>All endpoints</p>
+</div>
+
+<div class="response-info" style="clear: both">
+<div class="prettyprint">
+<table style="border-collapse:separate;border-spacing:8px;width:100%">
+    <thead><tr><th>endpoints</th><th>methods</th><th>views</th></tr></thead>
+    <tbody>
+        <tr>
+            <td><a href="/api/v1/">/</a><br /></td>
+            <td>GET</td><td>qpPingView</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <tbody>
+        <tr>
+            <td><a href="/api/v1/me/">me/</a><br /></td>
+            <td>GET</td><td>qpMeView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/me/settings/account/">me/settings/account/</a><br /></td>
+            <td>GET, PATCH</td><td>qpMeSettingsAccountView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/me/settings/profile/">me/settings/profile/</a><br /></td>
+            <td>GET, PATCH</td><td>qpMeSettingsProfileView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/me/rpg/">me/rpg/</a><br /></td>
+            <td>GET list</td><td>qpMeRpgListView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/me/characters/">me/characters/</a><br /></td>
+            <td>GET list</td><td>qpMeCharactersListView</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <tbody>
+        <tr>
+            <td><a href="/api/v1/rpg/">rpg/</a><br /></td>
+            <td>GET list</td><td>qpRpgListView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/rpg/create/">rpg/create/</a><br /></td>
+            <td>POST</td><td>qpRpgCreateView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/rpg/qalatlan/">rpg/[slug:slug]/</a><br /></td>
+            <td>GET, PATCH</td><td>qpRpgDetailView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/rpg/qalatlan/delete/">rpg/[slug:slug]/delete/</a><br /></td>
+            <td>DELETE</td><td>qpRpgDeleteView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/rpg/qalatlan/races/">rpg/[slug:slug]/races/</a><br /></td>
+            <td>GET list</td><td>qpRpgRacesListView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/rpg/qalatlan/skills/">rpg/[slug:slug]/skills/</a><br /></td>
+            <td>GET list</td><td>qpRpgSkillsListView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/rpg/qalatlan/characters/">rpg/[slug:slug]/characters/</a><br /></td>
+            <td>GET list</td><td>qpRpgCharactersListView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/rpg/qalatlan/quests/">rpg/[slug:slug]/quests/</a><br /></td>
+            <td>GET list</td><td>qpRpgQuestsListView</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <tbody>
+        <tr class="disabled">
+            <td><a href="/api/v1/characters/">characters/</a><br /></td>
+            <td>GET list</td><td>qpCharactersListView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/characters/create/">characters/create/</a><br /></td>
+            <td>POST</td><td>qpCharactersCreateView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/characters/1/">characters/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>qpCharactersDetailView</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <tbody>
+        <tr class="disabled">
+            <td><a href="/api/v1/quests/">quests/</a><br /></td>
+            <td>GET list</td><td>qpQuestsListView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/quests/create/">quests/create/</a><br /></td>
+            <td>POST</td><td>qpQuestsCreateView</td>
+        </tr>
+        <tr class="disabled">
+            <td><a href="/api/v1/quests/1/">quests/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>qpQuestsDetailView</td>
+        </tr>
+    </tbody>
+    <tr><td colspan="3"><hr /></td></tr>
+    <tbody>
+        <tr>
+            <td><a href="/api/v1/forums/">forums/</a><br /></td>
+            <td>GET list</td><td>qpForumsView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/create/">forums/create/</a><br /></td>
+            <td>POST</td><td>qpForumsCreateView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/1/">forums/[int:pk]/</a><br /></td>
+            <td>GET, PATCH</td><td>qpForumsDetailView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/1/delete/">forums/[int:pk]/delete/</a><br /></td>
+            <td>DELETE</td><td>qpForumsDeleteView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/1/categories/">forums/[int:pk]/categories/</a><br /></td>
+            <td>GET list</td><td>qpForumsCategoriesListView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/1/sections/">forums/[int:pk]/sections/</a><br /></td>
+            <td>GET list</td><td>qpForumsSectionsListView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/1/topics/">forums/[int:pk]/topics/</a><br /></td>
+            <td>GET list</td><td>qpForumsTopicsListView</td>
+        </tr>
+        <tr>
+            <td><a href="/api/v1/forums/1/messages/">forums/[int:pk]/messages/</a><br /></td>
+            <td>GET list</td><td>qpForumsMessagesListView</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

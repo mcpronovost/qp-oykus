@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "ordered_model", # https://github.com/django-ordered-model/django-ordered-model
     # ===---
     "qp.users",
+    "qp.rpg",
     #"qp.projects",
     "qp.forums",
     "qp.notifications",

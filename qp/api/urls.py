@@ -46,9 +46,9 @@ urlpatterns = [
     path("", qpPingView.as_view()),
     path("me/", qpMeView.as_view()),
 
-    path("rpg/", qpRPGView.as_view()),
-    path("rpg/create/", qpRPGCreateView.as_view()),
-    path("rpg/<slug:slug>/", qpRPGDetailView.as_view()),
+    path("rpg/", qpRpgListView.as_view()),
+    path("rpg/create/", qpRpgCreateView.as_view()),
+    path("rpg/<slug:slug>/", qpRpgDetailView.as_view()),
 
     path("forums/", qpForumsView.as_view()),
     path("forums/create/", qpForumsCreateView.as_view()),

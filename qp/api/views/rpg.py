@@ -8,7 +8,7 @@ from qp.forums.models import qpForum
 from qp.api.serializers.forums import *
 
 
-class qpRPGView(ListAPIView):
+class qpRpgListView(ListAPIView):
     """
     RPG GET list
     """
@@ -17,7 +17,7 @@ class qpRPGView(ListAPIView):
     serializer_class = qpForumSerializer
 
 
-class qpRPGCreateView(CreateAPIView):
+class qpRpgCreateView(CreateAPIView):
     """
     RPG CREATE
     """
@@ -29,7 +29,7 @@ class qpRPGCreateView(CreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class qpRPGDetailView(RetrieveUpdateAPIView):
+class qpRpgDetailView(RetrieveUpdateAPIView):
     """
     RPG GET, UPDATE
     """

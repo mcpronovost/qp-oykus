@@ -28,3 +28,6 @@ def app(request):
     except Exception as e:
         print(e)
     return HttpResponse(template)
+
+def api_v1(request):
+    return render(request, "api-v1.html")
