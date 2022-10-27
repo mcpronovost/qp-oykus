@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Oykus - Test</title>
+  </head>
+
+  <body style="text-align:center">
+    <canvas id="qp-canvas" width="800" height="800" style="width:100%;max-width:200px;"></canvas>
+    <script type="text/javascript">
+
+      let d = 6
+      var c = document.getElementById("qp-canvas");
+      let s = c.clientWidth
+      var ctx = c.getContext("2d");
+      ctx.canvas.width = s
+      ctx.canvas.height = s
+
+      // hexalines
+      for (let i = 0; i <= 6; i++) {
+        let r = ((s/2) / 6) * i
+        ctx.beginPath();
+        ctx.moveTo((s/2 + (r * Math.cos(0))), (s/2 + (r * Math.sin(0))));
+        for (let dot = 0; dot <= d; dot++) {
+          ctx.lineTo((s/2 + (r * Math.cos(dot * 2 * Math.PI / d))), (s/2 + (r * Math.sin(dot * 2 * Math.PI / d))));
+        }
+        ctx.strokeStyle = "#bbb";
+        ctx.stroke();
+      }
+
+      // centerlines
+      for (let dot = 0; dot <= d; dot++) {
+        ctx.beginPath();
+        ctx.moveTo((s/2 + (s/2 * Math.cos(dot * 2 * Math.PI / d))), (s/2 + (s/2 * Math.sin(dot * 2 * Math.PI / d))));
+        ctx.lineTo(s/2, s/2);
+        ctx.strokeStyle = "#bbb";
+        ctx.stroke();
+      }
+
+      // skilldots
+      const skillist = [6, 3, 3, 3, 2, 3]
+      let skillpts = 3
+      let skill = ((s/2) / 6) * skillpts
+      ctx.beginPath();
+      for (let ps = 0; ps < 6; ps++) {
+        skillpts = skillist[ps]
+        let skill = ((s/2) / 6) * skillpts
+        let point = ps + 4
+        if (ps <= 0) {
+          ctx.moveTo((s/2 + (skill * Math.cos(point * 2 * Math.PI / d))), (s/2 + (skill * Math.sin(point * 2 * Math.PI / d))));
+        }
+        ctx.lineTo((s/2 + (skill * Math.cos(point * 2 * Math.PI / d))), (s/2 + (skill * Math.sin(point * 2 * Math.PI / d))));
+      }
+
+      ctx.fillStyle = "rgba(89, 89, 88, 0.5)";
+      ctx.fill();
+
+    </script>
+  </body>
+</html>

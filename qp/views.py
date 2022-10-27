@@ -31,3 +31,6 @@ def app(request):
 
 def api_v1(request):
     return render(request, "api-v1.html")
+
+def test(request):
+    return render(request, "test.html")
