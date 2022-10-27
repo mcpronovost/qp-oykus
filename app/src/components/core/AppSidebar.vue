@@ -10,12 +10,13 @@ import QpProjectCreate from "@/components/projects/ProjectCreate.vue";
 const useStoreUser = storeUser()
 const { rat } = storeToRefs(useStoreUser)
 
-const showCreateProject = ref<boolean>(false)
+const showCreateRpg = ref<boolean>(false)
+
 const openCreateProject = () => {
-    showCreateProject.value = true
+    showCreateRpg.value = true
 }
 const closeCreateProject = () => {
-    showCreateProject.value = false
+    showCreateRpg.value = false
 }
 </script>
 
@@ -42,7 +43,7 @@ const closeCreateProject = () => {
                 </ul>
             </nav>
         </el-scrollbar>
-        <QpProjectCreate :show="showCreateProject" @close="closeCreateProject()" />
+        <QpProjectCreate :show="showCreateRpg" @close="closeCreateProject()" />
     </div>
 </template>
 

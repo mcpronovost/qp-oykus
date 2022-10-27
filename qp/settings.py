@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # ===---
     "qp.users",
     "qp.rpg",
+    "qp.characters",
     #"qp.projects",
     "qp.forums",
     "qp.notifications",

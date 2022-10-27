@@ -54,6 +54,14 @@ const routes = [
       }
     },
     {
+      path: "/quests",
+      name: "Quests",
+      component: () => import("@/views/QuestsView.vue"),
+      meta: {
+        title: "Quests"
+      }
+    },
+    {
       path: "/leaderboard",
       name: "Leaderboard",
       component: () => import("@/views/LeaderboardView.vue"),

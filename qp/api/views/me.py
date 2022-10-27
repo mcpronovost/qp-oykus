@@ -1,21 +1,20 @@
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.generics import RetrieveAPIView, UpdateAPIView
+from qp.api.permissions import qpIsAny, qpIsAuthenticated
+from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_404_NOT_FOUND
 from django.contrib.auth import get_user_model
 
-from qp.api.serializers.me import (
-    qpMeSerializer,
-    qpMeSettingsAccountUpdateSerializer,
-    qpMeSettingsProfileUpdateSerializer
-)
+from qp.api.serializers.me import qpMeSerializer
+from qp.api.serializers.me import qpMeSettingsAccountUpdateSerializer, qpMeSettingsProfileUpdateSerializer
+from qp.api.serializers.rpg import qpRpgSimpleSerializer
+from qp.api.serializers.characters import qpCharacterSimpleSerializer
 
 User = get_user_model()
 
 
 class qpPingView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [qpIsAny]
 
     def get(self, request, fallback=None):
         if fallback:
@@ -26,7 +25,7 @@ class qpPingView(APIView):
 
 
 class qpMeView(RetrieveAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [qpIsAuthenticated]
     queryset = User.objects.all()
     serializer_class = qpMeSerializer
 
@@ -39,7 +38,7 @@ class qpMeView(RetrieveAPIView):
 
 
 class qpMeSettingsAccountUpdateView(UpdateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [qpIsAuthenticated]
     queryset = User.objects.all()
     serializer_class = qpMeSettingsAccountUpdateSerializer
 
@@ -52,7 +51,7 @@ class qpMeSettingsAccountUpdateView(UpdateAPIView):
 
 
 class qpMeSettingsProfileUpdateView(UpdateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [qpIsAuthenticated]
     queryset = User.objects.all()
     serializer_class = qpMeSettingsProfileUpdateSerializer
 
@@ -62,3 +61,27 @@ class qpMeSettingsProfileUpdateView(UpdateAPIView):
         except Exception as e:
             print("Error on qpMeSettingsProfileUpdateView : ", e)
         return None
+
+
+class qpMeRpgListView(ListAPIView):
+    """
+    Me RPG GET list
+    """
+    permission_classes = [qpIsAuthenticated]
+    serializer_class = qpRpgSimpleSerializer
+
+    def get_queryset(self):
+        queryset = self.request.user.owned_rpg.all()
+        return queryset
+
+
+class qpMeCharactersListView(ListAPIView):
+    """
+    Me Characters GET list
+    """
+    permission_classes = [qpIsAuthenticated]
+    serializer_class = qpCharacterSimpleSerializer
+
+    def get_queryset(self):
+        queryset = self.request.user.characters.all()
+        return queryset

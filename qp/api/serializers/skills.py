@@ -1,16 +1,16 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from qp.rpg.models import qpRpgRace
+from qp.rpg.models import qpRpgSkill
 from qp.api.serializers.rpg import qpRpgSimpleSerializer
 
 
-class qpRaceSimpleSerializer(serializers.ModelSerializer):
+class qpSkillSimpleSerializer(serializers.ModelSerializer):
     rpg = serializers.SerializerMethodField()
 
     class Meta:
-        model = qpRpgRace
-        fields = ["id", "rpg", "name", "description"]
+        model = qpRpgSkill
+        fields = ["id", "rpg", "name", "attribute", "description"]
         read_only_fields = ["id"]
     
     def get_rpg(self, obj):
@@ -19,12 +19,12 @@ class qpRaceSimpleSerializer(serializers.ModelSerializer):
         return None
 
 
-class qpRaceSerializer(serializers.ModelSerializer):
+class qpSkillSerializer(serializers.ModelSerializer):
     rpg = serializers.SerializerMethodField()
 
     class Meta:
-        model = qpRpgRace
-        fields = ["id", "rpg", "name", "description"]
+        model = qpRpgSkill
+        fields = ["id", "rpg", "name", "attribute", "description"]
         read_only_fields = ["id"]
     
     def get_rpg(self, obj):
@@ -33,12 +33,12 @@ class qpRaceSerializer(serializers.ModelSerializer):
         return None
 
 
-class qpRaceCreateSerializer(serializers.ModelSerializer):
+class qpSkillCreateSerializer(serializers.ModelSerializer):
     """
-    Race serializer
+    Skill serializer
     """
 
     class Meta:
-        model = qpRpgRace
-        fields = ["id", "rpg", "name", "description"]
+        model = qpRpgSkill
+        fields = ["id", "rpg", "name", "attribute", "description"]
         read_only_fields = ["id"]

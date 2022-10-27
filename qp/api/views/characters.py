@@ -5,76 +5,78 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAP
 from rest_framework.response import Response
 
 from qp.api.permissions import qpIsAny, qpIsAuthenticated
-from qp.rpg.models import qpRpgRace
-from qp.api.serializers.races import qpRaceSerializer, qpRaceCreateSerializer
+from qp.rpg.models import qpRpg
+from qp.characters.models import qpCharacter
+from qp.api.serializers.characters import qpCharacterSerializer, qpCharacterCreateSerializer
 
 
-class qpRacesListView(ListAPIView):
+class qpCharactersListView(ListAPIView):
     """
-    Races GET list
+    Characters GET list
     """
     permission_classes = [qpIsAny]
-    queryset = qpRpgRace.objects.all()
-    serializer_class = qpRaceSerializer
+    queryset = qpCharacter.objects.all()
+    serializer_class = qpCharacterSerializer
 
 
-class qpRacesCreateView(CreateAPIView):
+class qpCharactersCreateView(CreateAPIView):
     """
-    Races CREATE
+    Characters CREATE
     """
     permission_classes = [qpIsAuthenticated]
-    queryset = qpRpgRace.objects.all()
-    serializer_class = qpRaceCreateSerializer
+    queryset = qpCharacter.objects.all()
+    serializer_class = qpCharacterCreateSerializer
 
     def post(self, request, *args, **kwargs):
         rpg_pk = int(request.data.get("rpg"))
-        rpg = request.user.owned_rpg.filter(
-            pk=rpg_pk
-        ).first()
+        rpg = qpRpg.objects.filter(pk=rpg_pk).first()
         if rpg is None:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         # ===---
         rpg_settings = rpg.get_settings()
-        races_count = rpg.races.count()
-        if races_count >= rpg_settings.limit_races:
+        characters_count = rpg.characters.count()
+        if characters_count >= rpg_settings.limit_characters:
             ctx = {
-                "limit": rpg_settings.limit_races,
-                "count": races_count
+                "limit": rpg_settings.limit_characters,
+                "count": characters_count
             }
             return Response(ctx, status=status.HTTP_429_TOO_MANY_REQUESTS)
         # ===---
         return self.create(request, *args, **kwargs)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-class qpRacesDetailView(RetrieveUpdateAPIView):
+
+class qpCharactersDetailView(RetrieveUpdateAPIView):
     """
-    Races GET, UPDATE
+    Characters GET, UPDATE
     """
     permission_classes = [qpIsAny]
-    queryset = qpRpgRace.objects.all()
-    serializer_class = qpRaceSerializer
+    queryset = qpCharacter.objects.all()
+    serializer_class = qpCharacterSerializer
     lookup_field = "pk"
 
     def patch(self, request, *args, **kwargs):
         instance = self.get_object()
         user = request.user
-        if user is not None and user.is_authenticated and user.profile and instance.rpg.owner == user:
+        if user is not None and user.is_authenticated and user.profile and instance.user == user:
             return self.partial_update(request, *args, **kwargs)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class qpRacesDeleteView(DestroyAPIView):
+class qpCharactersDeleteView(DestroyAPIView):
     """
-    Races DELETE
+    Characters DELETE
     """
     permission_classes = [qpIsAuthenticated]
-    queryset = qpRpgRace.objects.all()
-    serializer_class = qpRaceSerializer
+    queryset = qpCharacter.objects.all()
+    serializer_class = qpCharacterSerializer
     lookup_field = "pk"
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        if instance.rpg.owner == self.request.user:
+        if instance.user == self.request.user or instance.rpg.owner == self.request.user:
             self.perform_destroy(instance)
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_401_UNAUTHORIZED)

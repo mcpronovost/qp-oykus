@@ -28,7 +28,7 @@ const formProject = reactive<ProjectsCreateForm>({
     name: "",
     caption: "",
     description: "",
-    primary_color: "#33391d",
+    primary_color: `#${Math.floor((Math.random() * 0xffffff)).toString(16)}`,
     secondary_color: "#ffffff",
     icon: null,
     icon_file: null
@@ -119,6 +119,10 @@ const doCreateProject = async () => {
     }
 }
 
+const doOpen = () => {
+    formProject.primary_color = `#${Math.floor((Math.random() * 0xffffff)).toString(16)}`
+}
+
 const doClose = () => {
     isLoading.value = false
     hasError.value = null
@@ -132,7 +136,7 @@ const goTo = (obj: any) => {
 </script>
 
 <template>
-    <el-dialog v-model="props.show" :title="$t('CreateNewProject')" @close="doClose()" class="qp-dialog-projects-create">
+    <el-dialog v-model="props.show" :title="$t('CreateNewProject')" @open="doOpen()" @close="doClose()" class="qp-dialog-projects-create">
         <el-form ref="refProject" :model="formProject" :rules="rulesProject" status-icon class="qp-form-projects-create">
             <el-row>
                 <el-col :span="24" :md="12" :lg="14">

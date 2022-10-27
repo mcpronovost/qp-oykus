@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from qp.users.models import qpUserProfile
+from qp.rpg.models import qpRpg
+from qp.characters.models import qpCharacter
 from qp.notifications.models import qpNotification
 
 User = get_user_model()
