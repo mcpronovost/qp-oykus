@@ -240,6 +240,18 @@ body .el-message-box {
 body .el-progress {
     --el-border-color-lighter: rgba(255, 255, 255, 0.05);
 }
+body .el-progress--circle {
+    max-width: 100%;
+}
+body .el-progress-circle {
+    --el-fill-color-light: var(--qp-secondary-dark-5);
+    height: auto!important;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+}
+body .el-progress-circle path.el-progress-circle__path {
+    stroke: var(--qp-primary);
+}
 
 body .el-result__title p {
     color: var(--qp-card-color);

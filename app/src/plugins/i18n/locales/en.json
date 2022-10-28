@@ -79,5 +79,15 @@
     "ImageSizeMustBe": "Image size must be {0}.",
     "Dimensions:": "Size {0}",
     "Youdoesnthavetherighttodothat": "You doesn't have the right to do that.",
-    "Projectdeletedsuccessfully": "Project deleted successfully!"
+    "Projectdeletedsuccessfully": "Project deleted successfully!",
+    "Strength": "Strength",
+    "Constitution": "Constitution",
+    "Dexterity": "Dexterity",
+    "Perception": "Perception",
+    "Intelligence": "Intelligence",
+    "Willpower": "Willpower",
+    "Quest": "Quest",
+    "Quests": "Quests",
+    "Character": "Character",
+    "Characters": "Characters"
 }

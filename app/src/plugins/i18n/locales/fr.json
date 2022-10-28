@@ -80,5 +80,15 @@
     "ImageSizeMustBe": "La dimension de l'image doit être de {0}.",
     "Dimensions:": "Dimension {0}",
     "Youdoesnthavetherighttodothat": "Vous n'avez pas la permission d'effectuer cette action.",
-    "Projectdeletedsuccessfully": "Projet supprimé avec succès !"
+    "Projectdeletedsuccessfully": "Projet supprimé avec succès !",
+    "Strength": "Force",
+    "Constitution": "Constitution",
+    "Dexterity": "Dextérité",
+    "Perception": "Perception",
+    "Intelligence": "Intelligence",
+    "Willpower": "Volonté",
+    "Quest": "Quête",
+    "Quests": "Quêtes",
+    "Character": "Personnage",
+    "Characters": "Personnages"
 }
