@@ -23,10 +23,10 @@ const listCharacterAttributes = computed<Array<any>>(() => {
     return [
         [t('Strength'), character.value.attributes?.strength | 0],
         [t('Constitution'), character.value.attributes?.constitution | 0],
-        [t('Dexterity'), character.value.attributes?.dexterity | 0],
         [t('Perception'), character.value.attributes?.perception | 0],
+        [t('Willpower'), character.value.attributes?.willpower | 0],
         [t('Intelligence'), character.value.attributes?.intelligence | 0],
-        [t('Willpower'), character.value.attributes?.willpower | 0]
+        [t('Dexterity'), character.value.attributes?.dexterity | 0]
     ]
 })
 
@@ -111,41 +111,49 @@ onMounted(() => {
             </div>
         </template>
         <div v-if="!isLoading && !hasError" class="qp-container">
-            <qp-header :title="`Couper du bois`" :content="`Couper et débiter les grands chênes de la région pour en récupérer les ressources.`" />
+            <qp-header :title="`Couper du bois`" />
             <el-row>
-                <el-col :span="24" :md="16" :lg="18">
+                <el-col>
                     <el-card>
-                        <el-row>
-                            <el-col>
-                                <h2>Récompenses</h2>
-                            </el-col>
-                            <el-col :span="4">
+                        <p v-text="`Couper et débiter les grands chênes de la région pour en récupérer les ressources.`"></p>
+                    </el-card>
+                </el-col>
+                <el-col :span="24" :md="14">
+                    <el-card>
+                        <h2>Récompenses</h2>
+                        <div>
+                            <span>
                                 <span>20 exp</span>
-                            </el-col>
-                            <el-col :span="4">
+                            </span>
+                            <span>
                                 <el-icon class="mdi mdi-rhombus-split-outline el-icon--left" />
                                 <span>1 234</span>
-                            </el-col>
-                            <el-col :span="4">
+                            </span>
+                            <span>
                                 <el-icon class="mdi mdi-orbit el-icon--left" />
                                 <span>123</span>
-                            </el-col>
-                            <el-col :span="4">
+                            </span>
+                            <span>
                                 <el-icon class="mdi mdi-diamond-stone el-icon--left" />
                                 <span>12</span>
-                            </el-col>
-                            <el-col :span="4">
+                            </span>
+                            <span>
                                 <el-icon class="mdi mdi-gold el-icon--left" />
                                 <span>1</span>
-                            </el-col>
-                            <el-col>
-                                <el-button size="large" />
-                                <el-button size="large" />
-                                <el-button size="large" />
-                                <el-button size="large" />
-                            </el-col>
-                        </el-row>
+                            </span>
+                        </div>
+                        <div>
+                            <el-button size="large" />
+                            <el-button size="large" />
+                            <el-button size="large" />
+                            <el-button size="large" />
+                        </div>
                     </el-card>
+                </el-col>
+                <el-col :span="24" :md="10">
+                    <el-button size="large" type="primary" class="qp-block qp-w100">
+                        <span>Commencer</span>
+                    </el-button>
                 </el-col>
             </el-row>
         </div>
