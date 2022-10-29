@@ -8,6 +8,7 @@ from qp.api.views.characters import *
 from qp.api.views.races import *
 from qp.api.views.skills import *
 from qp.api.views.forums import *
+from qp.api.views.quests import *
 
 urlpatterns = [
     path("", qpPingView.as_view()),
@@ -63,6 +64,10 @@ urlpatterns = [
     path("forums/messages/", qpMessagesListView.as_view()),
     path("forums/messages/create/", qpMessagesCreateView.as_view()),
     path("forums/messages/<int:pk>/", qpMessagesDetailView.as_view()),
+
+    path("quests/", qpQuestsListView.as_view()),
+    path("quests/<int:pk>/", qpQuestsDetailView.as_view()),
+    path("quests/<int:pk>/logs/", qpQuestLogsListView.as_view()),
 
     path("register/", qpRegisterView.as_view(), name="auth_register"),
     path("login/", qpLoginView.as_view()),

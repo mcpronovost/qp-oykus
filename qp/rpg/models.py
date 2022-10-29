@@ -126,6 +126,18 @@ class qpRpgRace(models.Model):
         blank=False,
         null=False
     )
+    name_male = models.CharField(
+        verbose_name=_("Male Name"),
+        max_length=32,
+        blank=True,
+        null=True
+    )
+    name_female = models.CharField(
+        verbose_name=_("Female Name"),
+        max_length=32,
+        blank=True,
+        null=True
+    )
     description = models.TextField(
         verbose_name=_("Description"),
         blank=True,

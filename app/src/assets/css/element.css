@@ -1,8 +1,11 @@
 body {
     --el-font-family: "Nunito", sans-serif;
     --el-font-size-base: 16px;
+    --el-font-size-small: 12px;
     --el-text-color-primary: var(--qp-base-color);
+    --el-text-color-secondary: var(--qp-secondary-dark-2);
 
+    --el-border-color-light: var(--qp-base-disable-color);
     --el-mask-color-extra-light: rgba(28, 28, 29, 0.5);
 
     --el-color-success: var(--qp-success);
@@ -103,7 +106,7 @@ body .el-button.is-text:not(.is-disabled):focus {
     background-color: rgba(255, 255, 255, 0.03);
     color: var(--qp-primary);
 }
-body .el-button.el-button--primary {
+body .el-button.el-button--primary:not(.is-disabled) {
     background-color: var(--qp-primary-dark-4);
     border-color: var(--qp-primary-dark-4);
     color: var(--qp-primary);
@@ -273,6 +276,16 @@ body .el-select-dropdown__item:hover {
 
 body .el-tabs__nav-wrap::after {
     background-color: rgba(255, 255, 255, 0.05);
+}
+
+body .el-timeline {
+    padding: 0;
+}
+body .el-timeline-item__wrapper {
+    top: -1px;
+}
+body .el-timeline-item__node.is-hollow {
+    background-color: var(--el-timeline-node-color);
 }
 
 body .el-popper.is-light,

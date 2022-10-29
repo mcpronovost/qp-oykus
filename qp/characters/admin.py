@@ -4,7 +4,7 @@ from qp.characters.models import qpCharacter
 
 @admin.register(qpCharacter)
 class qpCharacterAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+    list_display = ["name", "user", "rpg"]
     fieldsets = [
         (_("Character"), {
             "fields": [
@@ -12,11 +12,14 @@ class qpCharacterAdmin(admin.ModelAdmin):
                 "rpg"
             ]
         }),
-        (_("Name"), {
+        (_("Identity"), {
             "fields": [
                 "first_name",
                 "middle_name",
-                "last_name"
+                "last_name",
+                "gender",
+                "race",
+                "avatar"
             ]
         }),
         (_("Resistances"), {

@@ -10,7 +10,7 @@ class qpRaceSimpleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpRpgRace
-        fields = ["id", "rpg", "name", "description"]
+        fields = ["id", "rpg", "name", "name_male", "name_female", "description"]
         read_only_fields = ["id"]
     
     def get_rpg(self, obj):
@@ -24,7 +24,7 @@ class qpRaceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpRpgRace
-        fields = ["id", "rpg", "name", "description"]
+        fields = ["id", "rpg", "name", "name_male", "name_female", "description"]
         read_only_fields = ["id"]
     
     def get_rpg(self, obj):

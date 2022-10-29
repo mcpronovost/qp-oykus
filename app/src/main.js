@@ -17,6 +17,7 @@ import "@/assets/css/style.css";
 
 import QpPage from "@/components/BasePage.vue";
 import QpHeader from "@/components/BaseHeader.vue";
+import QpLoading from "@/components/BaseLoading.vue";
 import QpNotFound from "@/components/BaseResultNotFound.vue";
 import QpUnderConstruction from "@/components/BaseResultUnderConstruction.vue";
 
@@ -26,6 +27,7 @@ const app = createApp(App);
 
 app.component("QpPage", QpPage);
 app.component("QpHeader", QpHeader);
+app.component("QpLoading", QpLoading);
 app.component("QpNotfound", QpNotFound);
 app.component("QpUnderconstruction", QpUnderConstruction);
 

@@ -6,6 +6,11 @@ from django.contrib.auth import get_user_model
 
 
 class qpCharacter(models.Model):
+    CHOIX_GENDERS = [
+        ("unknown", _("Unknown")),
+        ("male", _("Male")),
+        ("female", _("Female"))
+    ]
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
@@ -37,6 +42,28 @@ class qpCharacter(models.Model):
     last_name = models.CharField(
         verbose_name=_("Last Name"),
         max_length=32,
+        blank=True,
+        null=True
+    )
+    gender = models.CharField(
+        verbose_name=_("Gender"),
+        max_length=32,
+        choices=CHOIX_GENDERS,
+        default="unknown",
+        blank=False,
+        null=False
+    )
+    race = models.ForeignKey(
+        "rpg.qpRpgRace",
+        on_delete=models.SET_NULL,
+        related_name="characters",
+        verbose_name=_("Race"),
+        blank=True,
+        null=True
+    )
+    avatar = models.ImageField(
+        verbose_name=_("Avatar"),
+        upload_to="characters/avatars",
         blank=True,
         null=True
     )

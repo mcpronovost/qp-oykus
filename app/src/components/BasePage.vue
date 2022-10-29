@@ -229,7 +229,8 @@ onMounted(() => {
         grid-column: 1 / 2 !important;
     }
 
-    #qp-sideview {
+    #qp-main main.qp-bothside-show #qp-sideview,
+    #qp-main main.qp-sideview-show #qp-sideview {
         box-shadow: -2px 0 2px rgba(0, 0, 0, 0.1);
         width: calc(100vw - 128px);
         max-width: 260px;

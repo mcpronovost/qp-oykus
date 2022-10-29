@@ -89,5 +89,12 @@
     "Quest": "Quest",
     "Quests": "Quests",
     "Character": "Character",
-    "Characters": "Characters"
+    "Characters": "Characters",
+    "History": "History",
+    "PhysicalResistance": "Physical Resistance",
+    "Physical": "Physical",
+    "MentalResistance": "Mental Resistance",
+    "Mental": "Mental",
+    "SpiritualResistance": "Spiritual Resistance",
+    "Spiritual": "Spiritual"
 }
