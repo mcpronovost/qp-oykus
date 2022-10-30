@@ -81,6 +81,15 @@ const listCharacterAttributes = computed<Array<any>>(() => {
             </el-col>
         </el-row>
         <qp-chart-radar v-if="listCharacterAttributes.length" :levels="6" :data="listCharacterAttributes" />
+        <el-row v-if="props.quest?.skills && character.skills" class="qp-quest-character-skills">
+            <el-col v-for="(skill, n) in props.quest.skills" :key="`quest-character-skill-${n}`">
+                <div class="qp-quest-character-skills-header">
+                    <span v-text="character.skills[skill].name"></span>
+                    <span v-text="$t('Lvl', [character.skills[skill].level])"></span>
+                </div>
+                <el-progress :percentage="(character.skills[skill].exp/character.skills[skill].next)*100" :stroke-width="4" :show-text="false" />
+            </el-col>
+        </el-row>
         <div v-if="!props.quest.current && props.quest.characters.length > 1">
             <el-button text size="small">
                 <span>Changer de personnage</span>
@@ -113,5 +122,22 @@ const listCharacterAttributes = computed<Array<any>>(() => {
     text-align: center;
     word-break: break-word;
     opacity: 0.6;
+}
+.qp-quest-character-skills {
+    font-size: 12px;
+    line-height: 120%;
+    margin: 24px 0 0;
+}
+.qp-quest-character-skills-header {
+    color: var(--qp-secondary);
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 0 0 6px;
+}
+.qp-quest-character-skills-header span + span {
+    text-align: right;
 }
 </style>

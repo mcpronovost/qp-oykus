@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-from qp.characters.models import qpCharacter
+from qp.characters.models import qpCharacter, qpCharacterSkill
+
+class qpCharacterSkillInline(admin.StackedInline):
+    model = qpCharacterSkill
+    extra = 0
 
 @admin.register(qpCharacter)
 class qpCharacterAdmin(admin.ModelAdmin):
@@ -49,3 +53,4 @@ class qpCharacterAdmin(admin.ModelAdmin):
         })
     ]
     readonly_fields = ["created_at", "updated_at"]
+    inlines = [qpCharacterSkillInline]

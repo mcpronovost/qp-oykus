@@ -1,3 +1,4 @@
+import math
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Count, Q
 from rest_framework import serializers
@@ -26,12 +27,13 @@ class qpQuestSimpleSerializer(serializers.ModelSerializer):
 class qpQuestSerializer(serializers.ModelSerializer):
     rpg = serializers.SerializerMethodField()
     section = serializers.SerializerMethodField()
+    skills = serializers.SerializerMethodField()
     characters = serializers.SerializerMethodField()
     current = serializers.SerializerMethodField()
 
     class Meta:
         model = qpQuest
-        fields = ["id", "rpg", "section", "title", "description", "characters", "current"]
+        fields = ["id", "rpg", "section", "title", "description", "reward_exp", "skills", "characters", "current"]
         read_only_fields = ["id"]
     
     def get_rpg(self, obj):
@@ -48,6 +50,12 @@ class qpQuestSerializer(serializers.ModelSerializer):
                 "categorie": result.category.title
             }
         return None
+    
+    def get_skills(self, obj):
+        result = []
+        for s in obj.skills.all():
+            result.append(s.pk)
+        return result
     
     def get_characters(self, obj):
         request = self.context.get("request")

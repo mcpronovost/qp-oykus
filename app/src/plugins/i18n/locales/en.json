@@ -99,5 +99,12 @@
     "Spiritual": "Spiritual",
     "StartQuest": "Start Quest",
     "CompleteQuest": "Complete Quest",
-    "NoCharacterAvailable": "No Character Available"
+    "NoCharacterAvailable": "No Character Available",
+    "QuestFailed": "Quest Failed",
+    "QuestSuccessful": "Quest Successful",
+    "RewardsReceived": "Rewards Received",
+    "Rewards": "Rewards",
+    "YouFailedTheQuest": "You failed the quest.",
+    "YouSuccessfullyCompletedTheQuest": "You successfully completed the quest.",
+    "Lvl": "Lvl.{0}"
 }

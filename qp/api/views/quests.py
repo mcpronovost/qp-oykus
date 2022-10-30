@@ -1,4 +1,5 @@
 import math
+import random
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Count, Q
 from django.utils import timezone
@@ -66,7 +67,7 @@ class qpQuestStartView(APIView):
             quest=quest,
             character=character,
             start=timezone.now(),
-            end=timezone.now()+timezone.timedelta(seconds=10)
+            end=timezone.now()+quest.duration
         )
         # ===---
         return Response(status=status.HTTP_200_OK)
@@ -78,7 +79,6 @@ class qpQuestEndView(APIView):
     serializer_class = qpQuestSerializer
 
     def post(self, request, *args, **kwargs):
-        print("-------------------------- end")
         pk = int(kwargs["pk"])
         user_pk = request.POST.get("user", None)
         character_pk = request.POST.get("character", None)
@@ -99,25 +99,42 @@ class qpQuestEndView(APIView):
         if questlog is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         # ===--- todo: donner les rewards
-        character = questlog.character
         is_success = False
-        quest_level = quest.level
+        settings = quest.rpg.get_settings()
+        character = questlog.character
+        dm = settings.quest_malus_level_difference
+        ql = quest.level
+        qr_exp = quest.reward_exp
+        at = settings.total_attribute
+        qd = settings.quest_modifier_destiny
         for skill in quest.skills.all():
-            print("quest_level : ", quest_level)
-            print("character skill : ", "-")
-            print("level difference : ", "-")
-            print("difference points : ", "-")
-            
-            points = 4097
-            print("level : ", math.floor((math.sqrt(((points / 1024) * 8) + 1) - 1) / 2) + 1)
-            print(skill.attribute)
-            print("character attribute : ", getattr(character, skill.attribute))
+            character_skill, created = character.skills.get_or_create(skill=skill)
+            sl = math.floor(1 if math.log2(character_skill.exp)-8 else math.log2(character_skill.exp)-8) if character_skill.exp else 0
+            lm = (ql - sl) * dm
+            sa = getattr(character, skill.attribute)
+            ab = sa/at
+            needed = (1-((ab-lm)-qd))
+            rewards_currencies = {}
+            reward_exp = 0
+            if random.random() > needed:
+                reward_exp = qr_exp
+                is_success = True
+                character_skill.exp = character_skill.exp + reward_exp
+            else:
+                if qr_exp > 0:
+                    reward_exp = math.floor(qr_exp/2)
+                    character_skill.exp = character_skill.exp + reward_exp
+            character_skill.save()
+            # ===---
+            rewards_currencies["exp"] = reward_exp
         # ===---
         questlog.is_completed = True
         questlog.is_success = is_success
-        #questlog.save()
+        questlog.save()
         result = {
-            "is_success": is_success
+            "valid": True,
+            "is_success": is_success,
+            "rewards_currencies": rewards_currencies
         }
         # ===---
         return Response(result, status=status.HTTP_200_OK)
@@ -129,6 +146,7 @@ class qpQuestLogsListView(ListAPIView):
     """
     permission_classes = [qpIsAny]
     serializer_class = qpQuestLogSerializer
+    page_size = 32
 
     def get_queryset(self):
         pk = str(self.kwargs["pk"])

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from "vue";
+import { h, onMounted, onBeforeUnmount, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { API, HEADERS } from "../plugins/store/index";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { storeUser } from "../plugins/store";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 import QpQuestsCharacter from "../components/quests/QuestsCharacter.vue";
 import QpQuestsHistory from "../components/quests/QuestsHistory.vue";
 import wood from "@/assets/img/items/wood-pile.svg";
@@ -150,7 +150,45 @@ const doQuestEnd = async () => {
             body: data
         })
         if (f.status === 200) {
-            doQuestDetail(true)
+            let r = await f.json()
+            if (r.valid) {
+                let title = t("QuestFailed")
+                let msg = t("YouFailedTheQuest")
+                let popclass = "qp-quest-popfail"
+                let vtext = <Array<any>>[]
+                if (r.is_success) {
+                    title = t("QuestSuccessful")
+                    msg = t("YouSuccessfullyCompletedTheQuest")
+                    popclass = "qp-quest-popsuccess"
+                }
+                Object.entries(r.rewards_currencies).forEach(([k, v]) => {
+                    if (k == "exp") {
+                        vtext.push(
+                            h("li", null, `${v} exp`)
+                        )
+                    } else {
+                        vtext.push(
+                            h("li", null, [
+                                h("el-icon", {class: `el-icon el-icon--left mdi mdi-${k}`}),
+                                h("span", null, `${v}`)
+                            ])
+                        )
+                    }
+                })
+                ElMessageBox({
+                    title: title,
+                    message: h("div", null, [
+                        h("div", {class: "qp-quest-poptext"}, msg),
+                        h("div", {class: "el-divider el-divider--horizontal"}, ""),
+                        h("div", {class: "qp-quest-poptitle"}, t("RewardsReceived")),
+                        h("ul", {class: "qp-quest-popcurrencies"}, vtext)
+                    ]),
+                    center: true,
+                    autofocus: false,
+                    customClass: popclass
+                })
+                doQuestDetail(true)
+            }
             isLoadingQuest.value = false
         } else {
             if (f.status === 401) throw t("YouAreNotAuthorizedToDoThat")
@@ -193,26 +231,12 @@ onBeforeUnmount(() => {
                 </el-col>
                 <el-col v-if="!quest.current" :span="24">
                     <el-card class="qp-quest-rewards">
-                        <h2 class="qp-quest-rewards-title">Récompenses</h2>
+                        <h2 class="qp-quest-rewards-title">
+                            <span v-text="$t('Rewards')"></span>
+                        </h2>
                         <div class="qp-quest-rewards-currencies">
                             <div>
-                                <span>20 exp</span>
-                            </div>
-                            <div>
-                                <el-icon class="mdi mdi-rhombus-split-outline el-icon--left" />
-                                <span>1 234</span>
-                            </div>
-                            <div>
-                                <el-icon class="mdi mdi-orbit el-icon--left" />
-                                <span>123</span>
-                            </div>
-                            <div>
-                                <el-icon class="mdi mdi-diamond-stone el-icon--left" />
-                                <span>12</span>
-                            </div>
-                            <div>
-                                <el-icon class="mdi mdi-gold el-icon--left" />
-                                <span>1</span>
+                                <span v-text="`${quest.reward_exp} exp`"></span>
                             </div>
                         </div>
                         <div class="qp-quest-rewards-items">
@@ -267,7 +291,7 @@ onBeforeUnmount(() => {
     color: var(--qp-secondary);
     font-family: "Quicksand", sans-serif;
     font-size: 28px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 120%;
     letter-spacing: 2px;
     margin: 0 0 24px;
@@ -300,5 +324,41 @@ onBeforeUnmount(() => {
 .qp-quest-rewards-items .el-avatar {
     --el-avatar-bg-color: transparent;
     --el-avatar-size: 28px;
+}
+</style>
+
+<style>
+body .el-message-box.qp-quest-popsuccess {
+    --el-border-color-lighter: var(--qp-success-dark-2);
+}
+body .el-message-box.qp-quest-popfail {
+    --el-border-color-lighter: var(--qp-error-dark-2);
+}
+.qp-quest-popsuccess .el-divider,
+.qp-quest-popfail .el-divider {
+    margin: 24px 0 0;
+}
+.qp-quest-poptext {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 12px 0 24px;
+}
+.qp-quest-poptitle {
+    font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin: 24px 0 0;
+}
+.qp-quest-popcurrencies {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.qp-quest-popcurrencies li {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 24px 20px;
 }
 </style>

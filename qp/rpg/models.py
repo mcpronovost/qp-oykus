@@ -222,6 +222,18 @@ class qpSettingsRpg(models.Model):
         verbose_name=_("Spiritual Resistance Modifier"),
         default=0
     )
+    total_attribute = models.PositiveSmallIntegerField(
+        verbose_name=_("Total Attribute"),
+        default=6
+    )
+    quest_malus_level_difference = models.FloatField(
+        verbose_name=_("Malus of Quest Level Difference"),
+        default=0.25
+    )
+    quest_modifier_destiny = models.FloatField(
+        verbose_name=_("Modifier of Quest Destiny"),
+        default=0.05
+    )
 
     class Meta:
         verbose_name = _("RPG Setting")

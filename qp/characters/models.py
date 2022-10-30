@@ -224,12 +224,6 @@ class qpCharacterSkill(models.Model):
     )
     exp = models.PositiveBigIntegerField(
         verbose_name=_("Experience"),
-        default=1,
-        blank=False,
-        null=False
-    )
-    level = models.PositiveSmallIntegerField(
-        verbose_name=_("Level"),
         default=0,
         blank=False,
         null=False
@@ -242,12 +236,3 @@ class qpCharacterSkill(models.Model):
     
     def __str__(self):
         return "%s" % (str(self.skill.name))
-    
-    def save(self, *args, **kwargs):
-        if self.exp >= 1 and self.exp < 1024:
-            self.level = 1
-        elif self.exp >= 1024 and self.exp < 2048:
-            self.level = 1
-        if self.exp > 2048:
-            self.exp = 2048
-        return super().save(*args, **kwargs)

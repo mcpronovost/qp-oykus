@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
+from django.utils import timezone
 from ordered_model.models import OrderedModel
 
 class qpQuest(OrderedModel):
@@ -39,6 +40,14 @@ class qpQuest(OrderedModel):
         related_name="quests",
         verbose_name=_("Skills"),
         blank=False
+    )
+    duration = models.DurationField(
+        verbose_name=_("Duration"),
+        default=timezone.timedelta(seconds=30)
+    )
+    reward_exp = models.PositiveIntegerField(
+        verbose_name=_("Reward Experience"),
+        default=1
     )
     created_at = models.DateTimeField(
         verbose_name=_("Created at"),

@@ -1,3 +1,4 @@
+import math
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
@@ -44,11 +45,12 @@ class qpCharacterSerializer(serializers.ModelSerializer):
     race = serializers.SerializerMethodField()
     resistances = serializers.SerializerMethodField()
     attributes = serializers.SerializerMethodField()
+    skills = serializers.SerializerMethodField()
 
     class Meta:
         model = qpCharacter
-        fields = ["id", "user", "rpg", "first_name", "middle_name", "last_name", "name", "initial", "gender", "race", "avatar", "resistances", "attributes"]
-        read_only_fields = ["id", "user", "name", "initial", "resistances", "attributes"]
+        fields = ["id", "user", "rpg", "first_name", "middle_name", "last_name", "name", "initial", "gender", "race", "avatar", "resistances", "attributes", "skills"]
+        read_only_fields = ["id", "user", "name", "initial", "resistances", "attributes", "skills"]
     
     def get_user(self, obj):
         if obj.user:
@@ -87,6 +89,19 @@ class qpCharacterSerializer(serializers.ModelSerializer):
             "intelligence": obj.intelligence,
             "willpower": obj.willpower
         }
+        return result
+    
+    def get_skills(self, obj):
+        result = {}
+        for s in obj.skills.all():
+            level = math.floor(1 if math.log2(s.exp)-8 else math.log2(s.exp)-8) if s.exp else 0
+            result[s.skill.pk] = {
+                "id": s.pk,
+                "name": s.skill.name,
+                "exp": s.exp,
+                "level": level,
+                "next": math.pow(2, level+9)
+            }
         return result
 
 

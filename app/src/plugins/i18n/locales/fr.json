@@ -100,5 +100,12 @@
     "Spiritual": "Spirituel",
     "StartQuest": "Débuter la quête",
     "CompleteQuest": "Terminer la quête",
-    "NoCharacterAvailable": "Aucun personnage disponible"
+    "NoCharacterAvailable": "Aucun personnage disponible",
+    "QuestFailed": "Quête échouée",
+    "QuestSuccessful": "Quête réussie",
+    "RewardsReceived": "Récompenses reçues",
+    "Rewards": "Récompenses",
+    "YouFailedTheQuest": "Vous avez échoué la quête.",
+    "YouSuccessfullyCompletedTheQuest": "Vous avez complété la quête avec succès.",
+    "Lvl": "Niv.{0}"
 }
