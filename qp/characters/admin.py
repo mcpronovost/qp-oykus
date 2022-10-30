@@ -22,6 +22,11 @@ class qpCharacterAdmin(admin.ModelAdmin):
                 "avatar"
             ]
         }),
+        (_("Identity"), {
+            "fields": [
+                "location"
+            ]
+        }),
         (_("Resistances"), {
             "fields": [
                 "resistance_physical",
@@ -43,4 +48,4 @@ class qpCharacterAdmin(admin.ModelAdmin):
             ]
         })
     ]
-    readonly_fields = ["user", "rpg", "created_at", "updated_at"]
+    readonly_fields = ["created_at", "updated_at"]

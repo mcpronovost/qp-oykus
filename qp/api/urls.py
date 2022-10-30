@@ -67,6 +67,8 @@ urlpatterns = [
 
     path("quests/", qpQuestsListView.as_view()),
     path("quests/<int:pk>/", qpQuestsDetailView.as_view()),
+    path("quests/<int:pk>/start/", qpQuestStartView.as_view()),
+    path("quests/<int:pk>/end/", qpQuestEndView.as_view()),
     path("quests/<int:pk>/logs/", qpQuestLogsListView.as_view()),
 
     path("register/", qpRegisterView.as_view(), name="auth_register"),

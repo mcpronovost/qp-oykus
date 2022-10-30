@@ -67,6 +67,14 @@ class qpCharacter(models.Model):
         blank=True,
         null=True
     )
+    location = models.ForeignKey(
+        "forums.qpForumSection",
+        on_delete=models.SET_NULL,
+        related_name="characters",
+        verbose_name=_("Location"),
+        blank=True,
+        null=True
+    )
     resistance_physical = models.PositiveSmallIntegerField(
         verbose_name=_("Physical Resistance"),
         default=0,
@@ -195,3 +203,51 @@ class qpCharacter(models.Model):
     def willpower(self):
         result = self.attribute_willpower
         return result
+
+
+class qpCharacterSkill(models.Model):
+    character = models.ForeignKey(
+        qpCharacter,
+        on_delete=models.CASCADE,
+        related_name="skills",
+        verbose_name=_("Character"),
+        blank=False,
+        null=False
+    )
+    skill = models.ForeignKey(
+        "rpg.qpRpgSkill",
+        on_delete=models.CASCADE,
+        related_name="characters",
+        verbose_name=_("Skill"),
+        blank=False,
+        null=False
+    )
+    exp = models.PositiveBigIntegerField(
+        verbose_name=_("Experience"),
+        default=1,
+        blank=False,
+        null=False
+    )
+    level = models.PositiveSmallIntegerField(
+        verbose_name=_("Level"),
+        default=0,
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = _("Skill")
+        verbose_name_plural = _("Skills")
+        ordering = ["skill"]
+    
+    def __str__(self):
+        return "%s" % (str(self.skill.name))
+    
+    def save(self, *args, **kwargs):
+        if self.exp >= 1 and self.exp < 1024:
+            self.level = 1
+        elif self.exp >= 1024 and self.exp < 2048:
+            self.level = 1
+        if self.exp > 2048:
+            self.exp = 2048
+        return super().save(*args, **kwargs)

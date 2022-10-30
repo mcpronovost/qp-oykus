@@ -6,21 +6,35 @@ import QpChartRadar from "@/components/charts/ChartRadar.vue";
 const { t } = useI18n()
 
 const props = defineProps({
+    quest: {
+        type: Object,
+        default: () => {}
+    },
     character: {
         type: Object,
         default: () => {}
     }
 })
 
-const listCharacterAttributes = computed<Array<any>>(() => {
+const character = computed(() => {
     if (props.character) {
+        return props.character
+    } else if (props.quest?.current?.character) {
+        return props.quest.current.character
+    } else {
+        return null
+    }
+})
+
+const listCharacterAttributes = computed<Array<any>>(() => {
+    if (character.value) {
         return [
-            [t('Strength'), props.character.attributes?.strength | 0],
-            [t('Constitution'), props.character.attributes?.constitution | 0],
-            [t('Perception'), props.character.attributes?.perception | 0],
-            [t('Willpower'), props.character.attributes?.willpower | 0],
-            [t('Intelligence'), props.character.attributes?.intelligence | 0],
-            [t('Dexterity'), props.character.attributes?.dexterity | 0]
+            [t('Strength'), character.value.attributes?.strength | 0],
+            [t('Constitution'), character.value.attributes?.constitution | 0],
+            [t('Perception'), character.value.attributes?.perception | 0],
+            [t('Willpower'), character.value.attributes?.willpower | 0],
+            [t('Intelligence'), character.value.attributes?.intelligence | 0],
+            [t('Dexterity'), character.value.attributes?.dexterity | 0]
         ]
     }
     return []
@@ -28,48 +42,50 @@ const listCharacterAttributes = computed<Array<any>>(() => {
 </script>
 
 <template>
-    <div v-if="props.character" class="qp-center">
+    <div v-if="character" class="qp-center">
         <div>
-            <el-avatar :size="120" :src="props.character.avatar" :style="`background-color:${props.character.avatar ? 'transparent' : props.character.rpg?.primary_color};color:#fff;`">
-                <span v-text="props.character.initial"></span>
+            <el-avatar :size="120" :src="character.avatar" :style="`background-color:${character.avatar ? 'transparent' : character.rpg?.primary_color};color:#fff;`">
+                <span v-text="character.initial"></span>
             </el-avatar>
         </div>
         <div class="qp-questcharacter-name">
-            <span v-text="props.character.name"></span>
+            <span v-text="character.name"></span>
         </div>
         <div class="qp-questcharacter-identity">
-            <span v-text="`${props.character.race}`"></span>
+            <span v-text="`${character.race}`"></span>
         </div>
         <el-row class="qp-questcharacter-resistances">
             <el-col :span="8">
                 <span v-text="$t('Physical')"></span>
-                <el-progress type="circle" :percentage="(props.character.resistances?.physical/8)*100">
+                <el-progress type="circle" :percentage="(character.resistances?.physical/8)*100">
                     <template #default>
-                        <div class="qp-center" v-text="props.character.resistances?.physical"></div>
+                        <div class="qp-center" v-text="character.resistances?.physical"></div>
                     </template>
                 </el-progress>
             </el-col>
             <el-col :span="8">
                 <span v-text="$t('Mental')"></span>
-                <el-progress type="circle" :percentage="(props.character.resistances?.mental/8)*100">
+                <el-progress type="circle" :percentage="(character.resistances?.mental/8)*100">
                     <template #default>
-                        <div class="qp-center" v-text="props.character.resistances?.mental"></div>
+                        <div class="qp-center" v-text="character.resistances?.mental"></div>
                     </template>
                 </el-progress>
             </el-col>
             <el-col :span="8">
                 <span v-text="$t('Spiritual')"></span>
-                <el-progress type="circle" :percentage="(props.character.resistances?.spiritual/8)*100">
+                <el-progress type="circle" :percentage="(character.resistances?.spiritual/8)*100">
                     <template #default>
-                        <div class="qp-center" v-text="props.character.resistances?.spiritual"></div>
+                        <div class="qp-center" v-text="character.resistances?.spiritual"></div>
                     </template>
                 </el-progress>
             </el-col>
         </el-row>
         <qp-chart-radar v-if="listCharacterAttributes.length" :levels="6" :data="listCharacterAttributes" />
-        <el-button text size="small">
-            <span>Changer de personnage</span>
-        </el-button>
+        <div v-if="!props.quest.current && props.quest.characters.length > 1">
+            <el-button text size="small">
+                <span>Changer de personnage</span>
+            </el-button>
+        </div>
     </div>
 </template>
 

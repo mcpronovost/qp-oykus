@@ -97,5 +97,8 @@
     "MentalResistance": "Résistance mentale",
     "Mental": "Mental",
     "SpiritualResistance": "Résistance spirituelle",
-    "Spiritual": "Spirituel"
+    "Spiritual": "Spirituel",
+    "StartQuest": "Débuter la quête",
+    "CompleteQuest": "Terminer la quête",
+    "NoCharacterAvailable": "Aucun personnage disponible"
 }

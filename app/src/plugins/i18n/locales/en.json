@@ -96,5 +96,8 @@
     "MentalResistance": "Mental Resistance",
     "Mental": "Mental",
     "SpiritualResistance": "Spiritual Resistance",
-    "Spiritual": "Spiritual"
+    "Spiritual": "Spiritual",
+    "StartQuest": "Start Quest",
+    "CompleteQuest": "Complete Quest",
+    "NoCharacterAvailable": "No Character Available"
 }
