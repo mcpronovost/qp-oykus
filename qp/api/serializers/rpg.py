@@ -10,8 +10,8 @@ class qpRpgSimpleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpRpg
-        fields = ["id", "name", "initial", "owner", "caption", "primary_color", "icon"]
-        read_only_fields = ["id", "initial", "owner"]
+        fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum"]
+        read_only_fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum"]
     
     def get_owner(self, obj):
         if obj.owner:
@@ -24,8 +24,8 @@ class qpRpgSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpRpg
-        fields = ["id", "name", "initial", "owner", "caption", "primary_color", "icon"]
-        read_only_fields = ["id", "initial", "owner"]
+        fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum"]
+        read_only_fields = ["id", "initial", "owner", "forum"]
     
     def get_owner(self, obj):
         if obj.owner:

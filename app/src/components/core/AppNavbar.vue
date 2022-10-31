@@ -25,7 +25,7 @@ const version = (APP_VERSION || "0.1.0")
                 <!---->
                 <ul v-if="rat" class="qp-navbar-nav-list">
                     <li class="qp-navbar-nav-list-item">
-                        <el-button circle :disabled="$route.name=='Projects'" @click="$router.push({name:'Projects'})">
+                        <el-button circle :disabled="$route.name=='RpgList'" @click="$router.push({name:'RpgList'})">
                             <i class="mdi mdi-apps mdi-24px"></i>
                         </el-button>
                     </li>

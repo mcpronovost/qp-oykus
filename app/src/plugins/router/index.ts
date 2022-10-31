@@ -5,7 +5,7 @@ import { storeApp, storeUser } from "../store";
 import i18n from "../i18n";
 
 import { routeAuth } from "./routeAuth";
-import { routeProjects } from "./routeProjects";
+import { routeRpg } from "./routeRpg";
 import { routeSettings } from "./routeSettings";
 
 const { t } = i18n.global;
@@ -28,7 +28,7 @@ const routes = [
         title: "Profile"
       }
     },
-    ...routeProjects,
+    ...routeRpg,
     {
       path: "/tasks",
       name: "Tasks",
@@ -112,6 +112,10 @@ router.beforeEach((to, from, next) => {
     const { updateIsLoading } = useStoreApp
     const useStoreUser = storeUser()
     const { updateUser } = useStoreUser
+    if (!to.path.startsWith("/rpg/")) {
+        let styletag = document.getElementById("qp-custom-style")
+        if (styletag) styletag.remove();
+    }
     updateIsLoading(true)
     updateUser()
     next()

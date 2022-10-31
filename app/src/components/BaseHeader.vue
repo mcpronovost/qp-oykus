@@ -8,6 +8,11 @@ const props = defineProps({
         type: String,
         required: false
     },
+    titleSize: {
+        type: String,
+        required: false,
+        default: "72px"
+    },
     hideDivider: {
         type: Boolean,
         required: false
@@ -19,7 +24,7 @@ const props = defineProps({
     <el-row>
         <el-col>
             <header class="qp-header">
-                <h1 v-if="props.title" class="qp-header-title">
+                <h1 v-if="props.title" class="qp-header-title" :style="`font-size:${titleSize};`">
                     <span v-text="props.title"></span>
                 </h1>
                 <div v-if="props.content" class="qp-header-content">

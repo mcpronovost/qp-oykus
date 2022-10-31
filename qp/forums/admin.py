@@ -10,7 +10,7 @@ from qp.forums.models import (
 
 @admin.register(qpForum)
 class qpForumAdmin(admin.ModelAdmin):
-    list_display = ["name", "owner"]
+    list_display = ["rpg", "owner"]
     readonly_fields = ["created_at", "updated_at"]
 
 @admin.register(qpForumCategory)

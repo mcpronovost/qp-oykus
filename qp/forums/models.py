@@ -7,19 +7,12 @@ from django.contrib.auth import get_user_model
 
 
 class qpForum(models.Model):
-    name = models.CharField(
-        verbose_name=_("Name"),
-        max_length=32,
+    rpg = models.OneToOneField(
+        "rpg.qpRpg",
+        on_delete=models.CASCADE,
+        related_name="forum",
         blank=False,
         null=False
-    )
-    slug = AutoSlugField(
-        verbose_name=_("Slug"),
-        populate_from="name",
-        unique=True,
-        editable=True,
-        blank=True,
-        null=True
     )
     owner = models.ForeignKey(
         get_user_model(),
@@ -41,10 +34,10 @@ class qpForum(models.Model):
     class Meta:
         verbose_name = _("Forum")
         verbose_name_plural = _("Forums")
-        ordering = ["name"]
+        ordering = ["rpg__name"]
     
     def __str__(self):
-        return "%s" % (str(self.name))
+        return "%s" % (str(self.rpg.name))
 
 
 class qpForumCategory(OrderedModel):

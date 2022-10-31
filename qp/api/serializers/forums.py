@@ -112,11 +112,12 @@ class qpForumSerializer(serializers.ModelSerializer):
     Forum serializer
     """
     owner = serializers.SerializerMethodField()
+    categories = qpCategorySerializer(many=True)
 
     class Meta:
         model = qpForum
-        fields = ["id", "name", "slug", "owner"]
-        read_only_fields = ["id", "slug", "owner"]
+        fields = ["id", "owner", "categories"]
+        read_only_fields = ["id", "owner", "categories"]
     
     def get_owner(self, obj):
         if obj.owner:
@@ -131,5 +132,5 @@ class qpForumCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpForum
-        fields = ["id", "name", "owner"]
+        fields = ["id", "owner"]
         read_only_fields = ["id", "owner"]

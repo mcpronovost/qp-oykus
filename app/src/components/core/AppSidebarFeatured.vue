@@ -33,7 +33,7 @@ onMounted(() => {
     </li>
     <li v-for="(obj, n) in listFeatured" :key="`featured-${n}`" class="qp-sidebar-nav-list-item">
         <el-tooltip placement="left" :content="obj.name">
-            <el-button size="large" circle @click="$router.push({name:'ProjectsDetail', params:{slug:`${obj.slug}`}})">
+            <el-button size="large" circle @click="$router.push({name:'RpgForum', params:{slug:`${obj.slug}`}})">
                 <el-avatar :src="obj.icon" :size="40" :style="`background-color:${obj.icon ? 'transparent' : obj.primary_color};color:#fff;`">
                     <span v-text="obj.initial"></span>
                 </el-avatar>
