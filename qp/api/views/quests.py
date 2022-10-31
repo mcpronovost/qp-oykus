@@ -117,16 +117,26 @@ class qpQuestEndView(APIView):
             rewards_currencies = {}
             reward_exp = 0
             if random.random() > needed:
-                reward_exp = qr_exp
                 is_success = True
+                reward_exp = qr_exp
                 character_skill.exp = character_skill.exp + reward_exp
+                rewards_currencies["exp"] = reward_exp
+                for c in quest.reward_currencies.all():
+                    amount = c.amount_min
+                    if c.amount_max > c.amount_min:
+                        amount = random.randint(c.amount_min, c.amount_max)
+                    cc, _ = c.currency.characters_currencies.get_or_create(
+                        character=character
+                    )
+                    cc.amount = cc.amount + amount
+                    cc.save()
+                    rewards_currencies[c.currency.icon] = amount
             else:
                 if qr_exp > 0:
                     reward_exp = math.floor(qr_exp/2)
                     character_skill.exp = character_skill.exp + reward_exp
+                    rewards_currencies["exp"] = reward_exp
             character_skill.save()
-            # ===---
-            rewards_currencies["exp"] = reward_exp
         # ===---
         questlog.is_completed = True
         questlog.is_success = is_success

@@ -68,6 +68,45 @@ class qpQuest(OrderedModel):
         return "%s" % (str(self.title))
 
 
+class qpQuestRewardCurrency(models.Model):
+    quest = models.ForeignKey(
+        qpQuest,
+        on_delete=models.CASCADE,
+        related_name="reward_currencies",
+        verbose_name=_("Quest"),
+        blank=False,
+        null=False
+    )
+    currency = models.ForeignKey(
+        "rpg.qpRpgCurrency",
+        on_delete=models.CASCADE,
+        related_name="quest_reward_currencies",
+        verbose_name=_("Currency"),
+        blank=False,
+        null=False
+    )
+    amount_min = models.IntegerField(
+        verbose_name=_("Min Amount"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    amount_max = models.IntegerField(
+        verbose_name=_("Max Amount"),
+        default=0,
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = _("Currency")
+        verbose_name_plural = _("Currencies")
+        ordering = ["quest", "currency"]
+    
+    def __str__(self):
+        return "%s" % (str(self.currency.name))
+
+
 class qpQuestLog(models.Model):
     quest = models.ForeignKey(
         qpQuest,

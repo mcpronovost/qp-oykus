@@ -169,7 +169,7 @@ const doQuestEnd = async () => {
                     } else {
                         vtext.push(
                             h("li", null, [
-                                h("el-icon", {class: `el-icon el-icon--left mdi mdi-${k}`}),
+                                h("el-icon", {class: `el-icon el-icon--left ${k}`}),
                                 h("span", null, `${v}`)
                             ])
                         )
@@ -237,6 +237,11 @@ onBeforeUnmount(() => {
                         <div class="qp-quest-rewards-currencies">
                             <div>
                                 <span v-text="`${quest.reward_exp} exp`"></span>
+                            </div>
+                            <div v-for="(currency, n) in quest.reward_currencies" :key="`qp-reward-currency-${n}`">
+                                <el-icon :class="`el-icon--left ${currency.icon}`" />
+                                <span v-if="currency.amount_min != currency.amount_max" v-text="`${currency.amount_min}-${currency.amount_max}`"></span>
+                                <span v-else v-text="`${currency.amount_min}`"></span>
                             </div>
                         </div>
                         <div class="qp-quest-rewards-items">

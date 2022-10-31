@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
+from ordered_model.models import OrderedModel
 from autoslug import AutoSlugField
 from colorfield.fields import ColorField
 from django.contrib.auth import get_user_model
@@ -189,6 +190,38 @@ class qpRpgSkill(models.Model):
         return "%s" % (str(self.name))
 
 
+class qpRpgCurrency(OrderedModel):
+    rpg = models.ForeignKey(
+        qpRpg,
+        on_delete=models.CASCADE,
+        related_name="currencies",
+        blank=False,
+        null=False
+    )
+    name = models.CharField(
+        verbose_name=_("Name"),
+        max_length=32,
+        blank=False,
+        null=False
+    )
+    icon = models.CharField(
+        verbose_name=_("Icon"),
+        max_length=120,
+        default="mdi mdi-cash-multiple",
+        blank=False,
+        null=False
+    )
+    order_with_respect_to = "rpg"
+
+    class Meta:
+        verbose_name = _("Currency")
+        verbose_name_plural = _("Currencies")
+        ordering = ["rpg", "order"]
+    
+    def __str__(self):
+        return "%s" % (str(self.name))
+
+
 class qpSettingsRpg(models.Model):
     rpg = models.OneToOneField(
         qpRpg,
@@ -209,6 +242,10 @@ class qpSettingsRpg(models.Model):
     limit_skills = models.PositiveSmallIntegerField(
         verbose_name=_("Skills Limit"),
         default=60
+    )
+    limit_inventory_size_character = models.PositiveSmallIntegerField(
+        verbose_name=_("Character Inventory Size Limit"),
+        default=100
     )
     modifier_resistance_physical = models.SmallIntegerField(
         verbose_name=_("Physical Resistance Modifier"),

@@ -203,6 +203,15 @@ class qpCharacter(models.Model):
     def willpower(self):
         result = self.attribute_willpower
         return result
+    
+    def get_wallet(self):
+        result = {}
+        for c in self.rpg.currencies.all():
+            cc, _ = c.characters_currencies.get_or_create(
+                character=self
+            )
+            result[cc.currency.name] = cc.amount
+        return result
 
 
 class qpCharacterSkill(models.Model):
@@ -236,3 +245,39 @@ class qpCharacterSkill(models.Model):
     
     def __str__(self):
         return "%s" % (str(self.skill.name))
+
+
+class qpCharacterCurrency(models.Model):
+    character = models.ForeignKey(
+        qpCharacter,
+        on_delete=models.CASCADE,
+        related_name="currencies",
+        verbose_name=_("Character"),
+        blank=False,
+        null=False
+    )
+    currency = models.ForeignKey(
+        "rpg.qpRpgCurrency",
+        on_delete=models.CASCADE,
+        related_name="characters_currencies",
+        verbose_name=_("Currency"),
+        blank=False,
+        null=False
+    )
+    amount = models.IntegerField(
+        verbose_name=_("Amount"),
+        default=0,
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = _("Currency")
+        verbose_name_plural = _("Currencies")
+        ordering = ["character", "currency"]
+    
+    def __str__(self):
+        return "%s - %s" % (
+            str(self.character.name),
+            str(self.currency.name)
+        )

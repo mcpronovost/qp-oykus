@@ -46,11 +46,12 @@ class qpCharacterSerializer(serializers.ModelSerializer):
     resistances = serializers.SerializerMethodField()
     attributes = serializers.SerializerMethodField()
     skills = serializers.SerializerMethodField()
+    wallet = serializers.SerializerMethodField()
 
     class Meta:
         model = qpCharacter
-        fields = ["id", "user", "rpg", "first_name", "middle_name", "last_name", "name", "initial", "gender", "race", "avatar", "resistances", "attributes", "skills"]
-        read_only_fields = ["id", "user", "name", "initial", "resistances", "attributes", "skills"]
+        fields = ["id", "user", "rpg", "first_name", "middle_name", "last_name", "name", "initial", "gender", "race", "avatar", "resistances", "attributes", "skills", "wallet"]
+        read_only_fields = ["id", "user", "name", "initial", "resistances", "attributes", "skills", "wallet"]
     
     def get_user(self, obj):
         if obj.user:
@@ -102,6 +103,10 @@ class qpCharacterSerializer(serializers.ModelSerializer):
                 "level": level,
                 "next": math.pow(2, level+9)
             }
+        return result
+    
+    def get_wallet(self, obj):
+        result = obj.get_wallet()
         return result
 
 

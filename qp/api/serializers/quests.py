@@ -28,12 +28,13 @@ class qpQuestSerializer(serializers.ModelSerializer):
     rpg = serializers.SerializerMethodField()
     section = serializers.SerializerMethodField()
     skills = serializers.SerializerMethodField()
+    reward_currencies = serializers.SerializerMethodField()
     characters = serializers.SerializerMethodField()
     current = serializers.SerializerMethodField()
 
     class Meta:
         model = qpQuest
-        fields = ["id", "rpg", "section", "title", "description", "reward_exp", "skills", "characters", "current"]
+        fields = ["id", "rpg", "section", "title", "description", "skills", "reward_exp", "reward_currencies", "characters", "current"]
         read_only_fields = ["id"]
     
     def get_rpg(self, obj):
@@ -55,6 +56,18 @@ class qpQuestSerializer(serializers.ModelSerializer):
         result = []
         for s in obj.skills.all():
             result.append(s.pk)
+        return result
+    
+    def get_reward_currencies(self, obj):
+        result = []
+        for c in obj.reward_currencies.all():
+            if (c.amount_min > 0) or (c.amount_max > 0):
+                result.append({
+                    "name": str(c.currency.name),
+                    "icon": str(c.currency.icon),
+                    "amount_min": int(c.amount_min) if c.amount_max > c.amount_min else int(c.amount_max),
+                    "amount_max": int(c.amount_max) if c.amount_max > c.amount_min else int(c.amount_min)
+                })
         return result
     
     def get_characters(self, obj):
