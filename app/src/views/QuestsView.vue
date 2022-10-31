@@ -234,28 +234,24 @@ onBeforeUnmount(() => {
                         <h2 class="qp-quest-rewards-title">
                             <span v-text="$t('Rewards')"></span>
                         </h2>
-                        <div class="qp-quest-rewards-currencies">
+                        <div v-if="quest.reward_currencies" class="qp-quest-rewards-currencies">
                             <div>
                                 <span v-text="`${quest.reward_exp} exp`"></span>
                             </div>
                             <div v-for="(currency, n) in quest.reward_currencies" :key="`qp-reward-currency-${n}`">
-                                <el-icon :class="`el-icon--left ${currency.icon}`" />
-                                <span v-if="currency.amount_min != currency.amount_max" v-text="`${currency.amount_min}-${currency.amount_max}`"></span>
-                                <span v-else v-text="`${currency.amount_min}`"></span>
+                                <el-tooltip placement="bottom" :content="currency.name">
+                                    <div>
+                                        <el-icon :class="`el-icon--left ${currency.icon}`" />
+                                        <span v-if="currency.amount_min != currency.amount_max" v-text="`${currency.amount_min}-${currency.amount_max}`"></span>
+                                        <span v-else v-text="`${currency.amount_min}`"></span>
+                                    </div>
+                                </el-tooltip>
                             </div>
                         </div>
-                        <div class="qp-quest-rewards-items">
-                            <div>
+                        <div v-if="quest.reward_items" class="qp-quest-rewards-items">
+                            <div v-for="(item, n) in quest.reward_items" :key="`qp-reward-item-${n}`">
                                 <el-avatar :src="wood" shape="square" />
                                 <span>3-10</span>
-                            </div>
-                            <div>
-                                <el-avatar :src="acorn" shape="square" />
-                                <span>1-2</span>
-                            </div>
-                            <div>
-                                <el-avatar :src="oakleaf" shape="square" />
-                                <span>1-2</span>
                             </div>
                         </div>
                     </el-card>
@@ -302,10 +298,11 @@ onBeforeUnmount(() => {
     margin: 0 0 24px;
 }
 .qp-quest-rewards-currencies {
-    margin: 24px 0;
+    margin: 24px 0 0;
 }
 .qp-quest-rewards-currencies div {
     display: inline-block;
+    cursor: default;
     margin: 0 48px 0 0;
 }
 .qp-quest-rewards-items {

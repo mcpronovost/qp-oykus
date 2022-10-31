@@ -98,7 +98,7 @@ class qpQuestEndView(APIView):
         ).first()
         if questlog is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        # ===--- todo: donner les rewards
+        # ===---
         is_success = False
         settings = quest.rpg.get_settings()
         character = questlog.character
