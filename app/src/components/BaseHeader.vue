@@ -8,10 +8,14 @@ const props = defineProps({
         type: String,
         required: false
     },
+    heading: {
+        type: Number,
+        required: false,
+        default: 1
+    },
     titleSize: {
         type: String,
-        required: false,
-        default: "72px"
+        required: false
     },
     hideDivider: {
         type: Boolean,
@@ -24,9 +28,12 @@ const props = defineProps({
     <el-row>
         <el-col>
             <header class="qp-header">
-                <h1 v-if="props.title" class="qp-header-title" :style="`font-size:${titleSize};`">
+                <h1 v-if="heading == 1 && props.title" class="qp-header-title" :style="titleSize?`font-size:${titleSize};`:''">
                     <span v-text="props.title"></span>
                 </h1>
+                <h2 v-else-if="heading == 2 && props.title" class="qp-header-title" :style="titleSize?`font-size:${titleSize};`:''">
+                    <span v-text="props.title"></span>
+                </h2>
                 <div v-if="props.content" class="qp-header-content">
                     <p v-text="props.content"></p>
                 </div>
@@ -41,11 +48,17 @@ const props = defineProps({
     padding: 32px 0 0;
     margin: 0;
 }
+h1.qp-header-title {
+    font-size: 72px;
+    line-height: 120%;
+}
+h2.qp-header-title {
+    font-size: 52px;
+    line-height: 120%;
+}
 .qp-header-title {
     font-family: "Quicksand", sans-serif;
-    font-size: 72px;
     font-weight: 300;
-    line-height: 120%;
     padding: 0;
     margin: 0 0 24px;
 }

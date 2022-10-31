@@ -59,6 +59,16 @@ onMounted(() => {doRpgDetail()})
 </script>
 
 <template>
+    <header v-if="rpg" class="qp-forum-header">
+        <div class="qp-forum-header-wrapper">
+            <div class="qp-forum-header-content">
+                <h1 class="qp-forum-header-title">
+                    <span v-text="rpg.name"></span>
+                </h1>
+                <p v-if="rpg.caption" class="qp-forum-header-caption" v-text="rpg.caption"></p>
+            </div>
+        </div>
+    </header>
     <router-view v-if="!isLoading && !hasError && rpg" :key="$route.fullPath" :rpg="rpg" />
     <qp-notfound v-else-if="!isLoading" />
 </template>

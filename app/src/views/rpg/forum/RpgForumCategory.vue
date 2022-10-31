@@ -58,7 +58,7 @@ onMounted(() => {initRpg()})
 <template>
     <div v-if="!isLoading && !hasError && rpg && category" class="qp-container">
         <section>
-            <qp-header :title="category.title" :content="category.description" title-size="52px" />
+            <qp-header :title="category.title" :content="category.description" :heading="2" />
             <el-row>
                 <el-col v-for="(section, n) in category.sections" :key="`rpg-forum-section-${n}`">
                     <el-card>

@@ -234,3 +234,37 @@ body .el-popper.qp-topbar-popper-notifications .el-button {
     width: calc(100% - 24px);
     margin: 0 12px 6px;
 }
+
+
+/**/
+
+.qp-forum-header {
+    text-align: center;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.qp-forum-header-wrapper {
+    background-color: var(--qp-card-bg);
+    padding: 0;
+}
+
+.qp-forum-header-content {
+    padding: 12px;
+}
+
+.qp-forum-header-title {
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 120%;
+    word-break: break-word;
+    padding: 6px 12px;
+    margin: 0;
+}
+
+.qp-forum-header-caption {
+    font-size: 16px;
+    font-style: italic;
+    line-height: 120%;;
+}

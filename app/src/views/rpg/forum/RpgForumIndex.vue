@@ -56,17 +56,26 @@ onMounted(() => {initRpg()})
 </script>
 
 <template>
-    <div v-if="!isLoading && !hasError && rpg" class="qp-container">
-        <section v-for="(category, n) in forum.categories" :key="`rpg-forum-category-${n}`">
-            <qp-header :title="category.title" title-size="52px" />
-            <el-row>
-                <el-col v-for="(section, nn) in category.sections" :key="`rpg-forum-section-${n}-${nn}`">
-                    <el-card>
-                        <pre>{{section}}</pre>
-                    </el-card>
-                </el-col>
-            </el-row>
-        </section>
+    <div v-if="!isLoading && !hasError && rpg">
+        <div class="qp-container">
+            <section v-for="(category, n) in forum.categories" :key="`rpg-forum-category-${n}`">
+                <qp-header :title="category.title" :heading="2" />
+                <el-row>
+                    <el-col v-for="(section, nn) in category.sections" :key="`rpg-forum-section-${n}-${nn}`">
+                        <el-card>
+                            <div>
+                                <h3>
+                                    <el-link href="#" v-text="section.title" />
+                                </h3>
+                            </div>
+                            <div>
+                                <pre>{{section}}</pre>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </section>
+        </div>
     </div>
     <qp-notfound v-else-if="!isLoading" />
 </template>
