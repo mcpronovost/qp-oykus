@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import strip_tags
 from rest_framework import serializers
 
 from qp.rpg.models import qpRpg
@@ -22,10 +23,11 @@ class qpRpgSimpleSerializer(serializers.ModelSerializer):
 class qpRpgSerializer(serializers.ModelSerializer):
     owner = serializers.SerializerMethodField()
     copyright = serializers.SerializerMethodField()
+    style = serializers.SerializerMethodField()
 
     class Meta:
         model = qpRpg
-        fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum", "created_at", "updated_at", "copyright"]
+        fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum", "created_at", "updated_at", "copyright", "style"]
         read_only_fields = ["id", "initial", "owner", "forum", "created_at", "updated_at", "copyright"]
     
     def get_owner(self, obj):
@@ -45,6 +47,15 @@ class qpRpgSerializer(serializers.ModelSerializer):
             str(obj.owner.profile.name),
             str(_("All rights reserved"))
         )
+    
+    def get_style(self, obj):
+        result = None
+        style = obj.style.filter(is_active=True).first()
+        if style is not None:
+            result = {
+                "stylesheet": strip_tags(style.stylesheet)
+            }
+        return result
 
 
 class qpRpgCreateSerializer(serializers.ModelSerializer):

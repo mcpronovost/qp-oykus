@@ -222,6 +222,40 @@ class qpRpgCurrency(OrderedModel):
         return "%s" % (str(self.name))
 
 
+class qpRpgStyle(models.Model):
+    rpg = models.ForeignKey(
+        qpRpg,
+        on_delete=models.CASCADE,
+        related_name="style",
+        verbose_name=_("RPG"),
+        blank=False,
+        null=False
+    )
+    name = models.CharField(
+        verbose_name=_("Name"),
+        max_length=32,
+        blank=False,
+        null=False
+    )
+    stylesheet = models.TextField(
+        verbose_name=_("Stylesheet"),
+        blank=True,
+        null=True
+    )
+    is_active = models.BooleanField(
+        verbose_name=_("Active"),
+        default=False
+    )
+
+    class Meta:
+        verbose_name = _("Style")
+        verbose_name_plural = _("Styles")
+        ordering = ["rpg", "name"]
+    
+    def __str__(self):
+        return "%s" % (str(self.name))
+
+
 class qpSettingsRpg(models.Model):
     rpg = models.OneToOneField(
         qpRpg,

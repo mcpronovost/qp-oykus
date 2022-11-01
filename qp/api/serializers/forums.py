@@ -33,11 +33,18 @@ class qpTopicSerializer(serializers.ModelSerializer):
     """
     Forum Topic serializer
     """
+    author = serializers.SerializerMethodField()
 
     class Meta:
         model = qpForumTopic
-        fields = ["id", "title", "forum", "category", "section"]
-        read_only_fields = ["id"]
+        fields = ["id", "title", "forum", "category", "section", "author", "flag", "created_at", "updated_at"]
+        read_only_fields = ["id", "created_at", "updated_at"]
+    
+    def get_author(self, obj):
+        request = self.context.get("request")
+        if obj.author is not None:
+            return qpCharacterSimpleSerializer(obj.author, context={"request": request}).data
+        return None
 
 
 class qpTopicCreateSerializer(serializers.ModelSerializer):
@@ -61,7 +68,7 @@ class qpSectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpForumSection
-        fields = ["id", "title", "forum", "category", "topics", "breadcrumb"]
+        fields = ["id", "title", "description", "forum", "category", "topics", "breadcrumb"]
         read_only_fields = ["id", "category", "breadcrumb"]
     
     def get_category(self, obj):
@@ -138,7 +145,11 @@ class qpCategorySectionSerializer(serializers.ModelSerializer):
                 "id": last_message.pk,
                 "title": str(last_message.topic.title),
                 "author": qpCharacterSimpleSerializer(last_message.author, context={"request": request}).data,
-                "created_at": last_message.created_at
+                "created_at": last_message.created_at,
+                "topic": {
+                    "id": int(last_message.topic.id),
+                    "title": str(last_message.topic.title)
+                }
             }
         return result
 

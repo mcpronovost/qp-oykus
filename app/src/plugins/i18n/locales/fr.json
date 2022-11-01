@@ -110,5 +110,9 @@
     "Lvl": "Niv.{0}",
     "NewChapter": "Nouveau chapitre",
     "NoCategoriesYet": "Aucune catégorie pour l'instant",
-    "NoSectionsYet": "Aucune section pour l'instant"
+    "NoSectionsYet": "Aucune section pour l'instant",
+    "RPG": "RPG",
+    "Forum": "Forum",
+    "Informations": "Informations",
+    "Community": "Communauté"
 }

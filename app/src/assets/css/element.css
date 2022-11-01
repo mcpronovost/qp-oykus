@@ -134,6 +134,7 @@ body .el-button > span {
 body .el-card,
 body .el-card.is-always-shadow {
     background-color: var(--qp-card-bg);
+    border: none;
     border-color: var(--qp-card-bg);
     border-radius: 0;
     box-shadow: none;

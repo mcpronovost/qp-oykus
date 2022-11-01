@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy as _
+from django.http import Http404
 from rest_framework import status
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
@@ -174,6 +175,17 @@ class qpCategoriesDetailView(RetrieveUpdateAPIView):
     queryset = qpForumCategory.objects.all()
     serializer_class = qpCategorySerializer
 
+    def get_object(self):
+        category_pk = self.kwargs.get("pk", None)
+        rpg_slug = self.kwargs.get("slug", None)
+        category = qpForumCategory.objects.filter(
+            pk=category_pk,
+            forum__rpg__slug=rpg_slug
+        ).first()
+        if category is None:
+            raise Http404
+        return category
+
     def patch(self, request, *args, **kwargs):
         """ Verify if user have authorization before ``UPDATE`` """
         can_update = False
@@ -271,6 +283,17 @@ class qpSectionsDetailView(RetrieveUpdateAPIView):
     permission_classes = [qpIsAuthenticated]
     queryset = qpForumSection.objects.all()
     serializer_class = qpSectionSerializer
+
+    def get_object(self):
+        section_pk = self.kwargs.get("pk", None)
+        rpg_slug = self.kwargs.get("slug", None)
+        category = qpForumSection.objects.filter(
+            pk=section_pk,
+            forum__rpg__slug=rpg_slug
+        ).first()
+        if category is None:
+            raise Http404
+        return category
 
     def patch(self, request, *args, **kwargs):
         """ Verify if user have authorization before ``UPDATE`` """

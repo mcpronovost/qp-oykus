@@ -3,9 +3,9 @@ import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { ElMessage } from "element-plus";
 import { API, HEADERS } from "../../../plugins/store/index";
 import { storeUser } from "../../../plugins/store";
+import QpRpgForumSectionCard from "../../../components/rpg/forum/RpgForumSectionCard.vue";
 
 const { t } = useI18n()
 
@@ -70,27 +70,7 @@ onMounted(() => {initRpg()})
                 <qp-header :title="category.title" :heading="2" />
                 <el-row>
                     <el-col v-for="(section, nn) in category.sections" :key="`rpg-forum-section-${n}-${nn}`" :span="24" :md="section.width">
-                        <el-card class="rpg-forum-category-section">
-                            <div class="rpg-forum-category-section-title">
-                                <h3>
-                                    <span v-text="section.title" @click="$router.push({path:`/rpg/${rpg.slug}/s${section.id}-${$f.qpSlugify(section.title)}`})"></span>
-                                </h3>
-                            </div>
-                            <div class="rpg-forum-category-section-lastmessage">
-                                <el-avatar v-if="section.last_message" :src="section.last_message.author.avatar" :size="120" :style="`background-color:${section.last_message.author.avatar ? 'transparent' : rpg.primary_color};color:#fff;`">
-                                    <span v-text="section.last_message.author.initial"></span>
-                                </el-avatar>
-                                <el-avatar v-if="section.id==4" :size="120" :style="`background-color:${rpg.primary_color};color:#fff;`">
-                                    <span v-text="'PWQ'"></span>
-                                </el-avatar>
-                            </div>
-                            <div class="rpg-forum-category-section-track">
-                                track
-                            </div>
-                            <div class="rpg-forum-category-section-lasttopic">
-                                last topic
-                            </div>
-                        </el-card>
+                        <QpRpgForumSectionCard :rpg="rpg" :section="section" />
                     </el-col>
                     <el-col v-if="!category.sections.length">
                         <el-alert :title="$t('NoSectionsYet')" type="error" center :closable="false" />

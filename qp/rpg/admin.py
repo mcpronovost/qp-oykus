@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from ordered_model.admin import OrderedInlineModelAdminMixin, OrderedTabularInline
-from qp.rpg.models import qpRpg, qpRpgRace, qpRpgSkill, qpRpgCurrency, qpSettingsRpg
+from qp.rpg.models import qpRpg, qpRpgRace, qpRpgSkill, qpRpgCurrency, qpRpgStyle, qpSettingsRpg
 
 @admin.register(qpSettingsRpg)
 class qpSettingsRpgAdmin(admin.ModelAdmin):
@@ -35,6 +35,11 @@ class qpRpgCurrencyInline(OrderedTabularInline):
     fields = ["name", "icon", "move_up_down_links"]
     readonly_fields = ["move_up_down_links"]
     ordering = ["order"]
+
+
+class qpRpgStyleInline(admin.StackedInline):
+    model = qpRpgStyle
+    extra = 0
 
 
 @admin.register(qpRpg)
@@ -75,7 +80,7 @@ class qpRpgAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
         })
     ]
     readonly_fields = ["created_at", "updated_at"]
-    inlines = [qpRpgCurrencyInline]
+    inlines = [qpRpgCurrencyInline, qpRpgStyleInline]
 
 
 @admin.register(qpRpgRace)

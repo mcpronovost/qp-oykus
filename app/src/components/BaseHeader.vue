@@ -63,6 +63,10 @@ h2.qp-header-title {
     margin: 0 0 24px;
 }
 .qp-header-content p {
+    font-size: 14px;
+    line-height: 150%;
+    max-width: 800px;
+    opacity: 0.8;
     padding: 0;
     margin: 0 2px 24px;
 }

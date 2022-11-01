@@ -5,6 +5,7 @@ import { useRoute } from "vue-router";
 import { ElMessage } from "element-plus";
 import { API, HEADERS } from "../../../plugins/store/index";
 import { storeUser } from "../../../plugins/store";
+import QpRpgForumSectionCard from "../../../components/rpg/forum/RpgForumSectionCard.vue";
 
 const route = useRoute()
 
@@ -33,9 +34,10 @@ const initRpg = () => {
 const initCategory = async () => {
     isLoading.value = true
     hasError.value = null
+    let slug = rpg.value.slug
     let pk = route.params.category_pk
     // ===---
-    let f = await fetch(`${API}/forums/categories/${pk}/`, {
+    let f = await fetch(`${API}/rpg/${slug}/forums/categories/${pk}/`, {
         method: "GET",
         headers: HEADERS(rat.value, lang.value)
     })
@@ -67,10 +69,11 @@ onMounted(() => {initRpg()})
             </ul>
         </div>
         <el-row>
-            <el-col v-for="(section, n) in category.sections" :key="`rpg-forum-section-${n}`">
-                <el-card>
-                    <pre>{{section}}</pre>
-                </el-card>
+            <el-col v-for="(section, n) in category.sections" :key="`rpg-forum-section-${n}`" :span="24" :md="section.width">
+                <QpRpgForumSectionCard :rpg="rpg" :section="section" />
+            </el-col>
+            <el-col v-if="!category.sections.length">
+                <el-alert :title="$t('NoSectionsYet')" type="error" center :closable="false" />
             </el-col>
         </el-row>
     </div>

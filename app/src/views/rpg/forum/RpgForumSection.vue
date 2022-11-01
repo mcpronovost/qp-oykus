@@ -6,6 +6,7 @@ import { ElMessage } from "element-plus";
 import { ArrowRight } from "@element-plus/icons-vue";
 import { API, HEADERS } from "../../../plugins/store/index";
 import { storeApp, storeUser } from "../../../plugins/store";
+import QpRpgForumTopicCard from "../../../components/rpg/forum/RpgForumTopicCard.vue";
 
 const route = useRoute()
 
@@ -37,9 +38,10 @@ const initRpg = () => {
 const initSection = async () => {
     isLoading.value = true
     hasError.value = null
+    let slug = rpg.value.slug
     let pk = route.params.section_pk
     // ===---
-    let f = await fetch(`${API}/forums/sections/${pk}/`, {
+    let f = await fetch(`${API}/rpg/${slug}/forums/sections/${pk}/`, {
         method: "GET",
         headers: HEADERS(rat.value, lang.value)
     })
@@ -80,15 +82,13 @@ onMounted(() => {initRpg()})
                 <el-col>
                     <el-card>
                         <span v-text="$t('Quests')"></span>
-                        <pre>{{ section }}</pre>
+                        <pre>mainviewWidth : {{mainviewWidth }}</pre>
                     </el-card>
                 </el-col>
             </div>
             <div :class="`qp-forum-section-topics ${mainviewWidth < 767 ? 'qp-forum-section-topics-mobile' : mainviewWidth < 1024 ? 'qp-forum-section-topics-minimize' : ''}`">
-                <el-col v-for="(topic, n) in section.topics" :key="`rpg-forum-topic-${n}`" :span="mainviewWidth < 1024 ? 24 : 12">
-                    <el-card>
-                        <pre>{{topic}}</pre>
-                    </el-card>
+                <el-col v-for="(topic, n) in section.topics" :key="`rpg-forum-topic-${n}`" :span="topic.flag == 3 ? 24 : (mainviewWidth < 1024 ? 24 : mainviewWidth > 1199 ? 8 : 12)">
+                    <QpRpgForumTopicCard :rpg="rpg" :topic="topic" />
                 </el-col>
             </div>
         </div>
@@ -130,6 +130,7 @@ onMounted(() => {initRpg()})
 }
 .qp-forum-section-actions-mobile {
     flex: 1 1 100%;
+    max-width: 100%;
     order: 1;
 }
 </style>

@@ -100,15 +100,15 @@ onMounted(() => {
 }
 
 #qp-main main.qp-bothside-show {
-    grid-template-columns: 300px auto 300px;
+    grid-template-columns: 280px auto 280px;
 }
 
 #qp-main main.qp-sidenav-show {
-    grid-template-columns: 300px auto 0;
+    grid-template-columns: 280px auto 0;
 }
 
 #qp-main main.qp-sideview-show {
-    grid-template-columns: 0 auto 300px;
+    grid-template-columns: 0 auto 280px;
 }
 
 /* ===---=== */
@@ -176,6 +176,7 @@ onMounted(() => {
 
 /* ===---=== */
 #qp-mainview {
+    overflow-x: hidden;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     height: calc(100vh - 49px);

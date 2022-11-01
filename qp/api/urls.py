@@ -23,6 +23,8 @@ urlpatterns = [
     path("rpg/<slug:slug>/races/", qpRpgRacesListView.as_view()),
     path("rpg/<slug:slug>/skills/", qpRpgSkillsListView.as_view()),
     path("rpg/<slug:slug>/characters/", qpRpgCharactersListView.as_view()),
+    path("rpg/<slug:slug>/forums/categories/<int:pk>/", qpCategoriesDetailView.as_view()),
+    path("rpg/<slug:slug>/forums/sections/<int:pk>/", qpSectionsDetailView.as_view()),
 
     path("characters/", qpCharactersListView.as_view()),
     path("characters/create/", qpCharactersCreateView.as_view()),
