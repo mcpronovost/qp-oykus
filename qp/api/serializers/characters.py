@@ -19,8 +19,9 @@ class qpCharacterSimpleSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "user", "name", "initial"]
     
     def get_user(self, obj):
+        request = self.context.get("request")
         if obj.user:
-            return qpUsersSimpleSerializer(obj.user.profile).data
+            return qpUsersSimpleSerializer(obj.user.profile, context={"request": request}).data
         return None
     
     def get_rpg(self, obj):
@@ -54,8 +55,9 @@ class qpCharacterSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "user", "name", "initial", "resistances", "attributes", "skills", "wallet"]
     
     def get_user(self, obj):
+        request = self.context.get("request")
         if obj.user:
-            return qpUsersSimpleSerializer(obj.user.profile).data
+            return qpUsersSimpleSerializer(obj.user.profile, context={"request": request}).data
         return None
     
     def get_rpg(self, obj):

@@ -107,5 +107,8 @@
     "Rewards": "Récompenses",
     "YouFailedTheQuest": "Vous avez échoué la quête.",
     "YouSuccessfullyCompletedTheQuest": "Vous avez complété la quête avec succès.",
-    "Lvl": "Niv.{0}"
+    "Lvl": "Niv.{0}",
+    "NewChapter": "Nouveau chapitre",
+    "NoCategoriesYet": "Aucune catégorie pour l'instant",
+    "NoSectionsYet": "Aucune section pour l'instant"
 }

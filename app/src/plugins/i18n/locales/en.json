@@ -106,5 +106,8 @@
     "Rewards": "Rewards",
     "YouFailedTheQuest": "You failed the quest.",
     "YouSuccessfullyCompletedTheQuest": "You successfully completed the quest.",
-    "Lvl": "Lvl.{0}"
+    "Lvl": "Lvl.{0}",
+    "NewChapter": "New Chapter",
+    "NoCategoriesYet": "No categories yet",
+    "NoSectionsYet": "No sections yet"
 }

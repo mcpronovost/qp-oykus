@@ -21,7 +21,7 @@ import QpLoading from "@/components/BaseLoading.vue";
 import QpNotFound from "@/components/BaseResultNotFound.vue";
 import QpUnderConstruction from "@/components/BaseResultUnderConstruction.vue";
 
-import { qpDate } from "@/plugins/filters";
+import { qpDate, qpSlugify } from "@/plugins/filters";
 
 const app = createApp(App);
 
@@ -32,7 +32,8 @@ app.component("QpNotfound", QpNotFound);
 app.component("QpUnderconstruction", QpUnderConstruction);
 
 app.config.globalProperties.$f = {
-    qpDate
+    qpDate,
+    qpSlugify
 }
 
 app.use(i18n);

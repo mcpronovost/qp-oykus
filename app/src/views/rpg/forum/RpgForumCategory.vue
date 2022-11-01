@@ -41,6 +41,7 @@ const initCategory = async () => {
     })
     if (f.status === 200) {
         let r = await f.json()
+        document.title = `${r.title} - ${rpg.value.name}`
         category.value = r
         isLoading.value = false
     } else {
@@ -57,16 +58,21 @@ onMounted(() => {initRpg()})
 
 <template>
     <div v-if="!isLoading && !hasError && rpg && category" class="qp-container">
-        <section>
-            <qp-header :title="category.title" :content="category.description" :heading="2" />
-            <el-row>
-                <el-col v-for="(section, n) in category.sections" :key="`rpg-forum-section-${n}`">
-                    <el-card>
-                        <pre>{{section}}</pre>
-                    </el-card>
-                </el-col>
-            </el-row>
-        </section>
+        <qp-header :title="category.title" :content="category.description" :heading="2" />
+        <div class="el-forum-breadcrumb">
+            <ul class="el-forum-breadcrumb-list">
+                <li v-for="(bread, n) in category.breadcrumb" :key="`qp-bread-${n}`" class="el-forum-breadcrumb-item">
+                    <span @click="$router.push({path:bread.path})" v-text="bread.name"></span>
+                </li>
+            </ul>
+        </div>
+        <el-row>
+            <el-col v-for="(section, n) in category.sections" :key="`rpg-forum-section-${n}`">
+                <el-card>
+                    <pre>{{section}}</pre>
+                </el-card>
+            </el-col>
+        </el-row>
     </div>
     <qp-notfound v-else-if="!isLoading" />
 </template>

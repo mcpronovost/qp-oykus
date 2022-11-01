@@ -45,7 +45,7 @@ const props = defineProps({
 
 <style scoped>
 .qp-header {
-    padding: 32px 0 0;
+    padding: 20px 0 0;
     margin: 0;
 }
 h1.qp-header-title {
@@ -73,6 +73,6 @@ h2.qp-header-title {
     width: 72px;
     height: 2px;
     padding: 0;
-    margin: 32px 2px;
+    margin: 20px 2px;
 }
 </style>

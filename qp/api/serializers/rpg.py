@@ -21,16 +21,30 @@ class qpRpgSimpleSerializer(serializers.ModelSerializer):
 
 class qpRpgSerializer(serializers.ModelSerializer):
     owner = serializers.SerializerMethodField()
+    copyright = serializers.SerializerMethodField()
 
     class Meta:
         model = qpRpg
-        fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum"]
-        read_only_fields = ["id", "initial", "owner", "forum"]
+        fields = ["id", "name", "initial", "slug", "owner", "caption", "primary_color", "icon", "forum", "created_at", "updated_at", "copyright"]
+        read_only_fields = ["id", "initial", "owner", "forum", "created_at", "updated_at", "copyright"]
     
     def get_owner(self, obj):
         if obj.owner:
             return qpUsersSimpleSerializer(obj.owner.profile).data
         return None
+    
+    def get_copyright(self, obj):
+        created_year = obj.created_at.year
+        updated_year = obj.updated_at.year
+        year = "%s-%s" % (
+            created_year,
+            updated_year
+        ) if created_year != updated_year else created_year
+        return "© %s %s - %s" % (
+            str(year),
+            str(obj.owner.profile.name),
+            str(_("All rights reserved"))
+        )
 
 
 class qpRpgCreateSerializer(serializers.ModelSerializer):

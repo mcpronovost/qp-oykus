@@ -14,14 +14,6 @@ class qpForum(models.Model):
         blank=False,
         null=False
     )
-    owner = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.SET_NULL,
-        related_name="forums",
-        verbose_name=_("Owner"),
-        blank=True,
-        null=True
-    )
     created_at = models.DateTimeField(
         verbose_name=_("Created at"),
         auto_now_add=True
@@ -55,6 +47,11 @@ class qpForumCategory(OrderedModel):
         blank=False,
         null=False
     )
+    description = models.TextField(
+        verbose_name=_("Description"),
+        blank=True,
+        null=True
+    )
     created_at = models.DateTimeField(
         verbose_name=_("Created at"),
         auto_now_add=True
@@ -75,6 +72,14 @@ class qpForumCategory(OrderedModel):
 
 
 class qpForumSection(OrderedModel):
+    CHOIX_WIDTH = [
+        (24, _("100%")),
+        (18, _("75%")),
+        (16, _("66%")),
+        (12, _("50%")),
+        (8, _("33%")),
+        (6, _("25%"))
+    ]
     forum = models.ForeignKey(
         qpForum,
         on_delete=models.CASCADE,
@@ -97,6 +102,18 @@ class qpForumSection(OrderedModel):
         blank=False,
         null=False
     )
+    description = models.TextField(
+        verbose_name=_("Description"),
+        blank=True,
+        null=True
+    )
+    width = models.PositiveSmallIntegerField(
+        verbose_name=_("Width"),
+        choices=CHOIX_WIDTH,
+        default=24,
+        blank=True,
+        null=True
+    )
     created_at = models.DateTimeField(
         verbose_name=_("Created at"),
         auto_now_add=True
@@ -114,6 +131,10 @@ class qpForumSection(OrderedModel):
     
     def __str__(self):
         return "%s" % (str(self.title))
+    
+    def get_last_message(self):
+        result = self.messages.order_by("-created_at").first()
+        return result
 
 
 class qpForumTopic(models.Model):
@@ -147,6 +168,14 @@ class qpForumTopic(models.Model):
         blank=False,
         null=False
     )
+    author = models.ForeignKey(
+        "characters.qpCharacter",
+        on_delete=models.SET_NULL,
+        related_name="topics",
+        verbose_name=_("Author"),
+        blank=True,
+        null=True
+    )
     title = models.CharField(
         verbose_name=_("Title"),
         max_length=120,
@@ -172,7 +201,7 @@ class qpForumTopic(models.Model):
     class Meta:
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
-        ordering = ["title"]
+        ordering = ["-flag", "-updated_at"]
     
     def __str__(self):
         return "%s" % (str(self.title))
@@ -210,6 +239,14 @@ class qpForumMessage(models.Model):
         verbose_name=_("Topic"),
         blank=False,
         null=False
+    )
+    author = models.ForeignKey(
+        "characters.qpCharacter",
+        on_delete=models.SET_NULL,
+        related_name="messages",
+        verbose_name=_("Author"),
+        blank=True,
+        null=True
     )
     content = models.TextField(
         verbose_name=_("Content"),

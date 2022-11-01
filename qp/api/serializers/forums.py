@@ -1,7 +1,9 @@
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 from rest_framework import serializers
 
 from qp.api.serializers.users import qpUsersSimpleSerializer
+from qp.api.serializers.characters import qpCharacterSimpleSerializer
 from qp.forums.models import *
 
 
@@ -53,12 +55,42 @@ class qpSectionSerializer(serializers.ModelSerializer):
     """
     Forum Section serializer
     """
+    category = serializers.SerializerMethodField()
     topics = qpTopicSerializer(many=True)
+    breadcrumb = serializers.SerializerMethodField()
 
     class Meta:
         model = qpForumSection
-        fields = ["id", "title", "forum", "category", "topics"]
-        read_only_fields = ["id"]
+        fields = ["id", "title", "forum", "category", "topics", "breadcrumb"]
+        read_only_fields = ["id", "category", "breadcrumb"]
+    
+    def get_category(self, obj):
+        result = {
+            "id": int(obj.category.pk),
+            "title": str(obj.category.title),
+            "slug": slugify(obj.category.title)
+        }
+        return result
+    
+    def get_breadcrumb(self, obj):
+        result = []
+        slug = obj.forum.rpg.slug
+        result.append({
+            "name": str(obj.forum.rpg.name),
+            "path": "/rpg/%s" % (
+                str(slug)
+            )
+        })
+        if obj.category:
+            result.append({
+                "name": str(obj.category.title),
+                "path": "/rpg/%s/c%s-%s" % (
+                    str(slug),
+                    str(obj.category.pk),
+                    str(slugify(obj.category.title))
+                )
+            })
+        return result
 
 
 class qpSectionCreateSerializer(serializers.ModelSerializer):
@@ -77,11 +109,38 @@ class qpCategorySectionSerializer(serializers.ModelSerializer):
     """
     Forum Category's Section serializer
     """
+    last_topic = serializers.SerializerMethodField()
+    last_message = serializers.SerializerMethodField()
 
     class Meta:
         model = qpForumSection
-        fields = ["id", "title", "forum", "category"]
+        fields = ["id", "title", "forum", "category", "width", "last_topic", "last_message"]
         read_only_fields = ["id"]
+    
+    def get_last_topic(self, obj):
+        result = None
+        last_message = obj.get_last_message()
+        if last_message is not None:
+            last_topic = last_message.topic
+            result = {
+                "id": last_topic.pk,
+                "title": str(last_topic.title),
+                "updated_at": last_message.created_at
+            }
+        return result
+    
+    def get_last_message(self, obj):
+        request = self.context.get("request")
+        result = None
+        last_message = obj.get_last_message()
+        if last_message is not None:
+            result = {
+                "id": last_message.pk,
+                "title": str(last_message.topic.title),
+                "author": qpCharacterSimpleSerializer(last_message.author, context={"request": request}).data,
+                "created_at": last_message.created_at
+            }
+        return result
 
 
 class qpCategorySerializer(serializers.ModelSerializer):
@@ -89,11 +148,23 @@ class qpCategorySerializer(serializers.ModelSerializer):
     Forum Category serializer
     """
     sections = qpCategorySectionSerializer(many=True)
+    breadcrumb = serializers.SerializerMethodField()
 
     class Meta:
         model = qpForumCategory
-        fields = ["id", "title", "forum", "sections"]
-        read_only_fields = ["id"]
+        fields = ["id", "title", "forum", "sections", "breadcrumb"]
+        read_only_fields = ["id", "breadcrumb"]
+    
+    def get_breadcrumb(self, obj):
+        result = []
+        slug = obj.forum.rpg.slug
+        result.append({
+            "name": str(obj.forum.rpg.name),
+            "path": "/rpg/%s" % (
+                str(slug)
+            )
+        })
+        return result
 
 
 class qpCategoryCreateSerializer(serializers.ModelSerializer):
@@ -120,8 +191,8 @@ class qpForumSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "owner", "categories"]
     
     def get_owner(self, obj):
-        if obj.owner:
-            return qpUsersSimpleSerializer(obj.owner.profile).data
+        if obj.rpg.owner:
+            return qpUsersSimpleSerializer(obj.rpg.owner.profile).data
         return None
 
 

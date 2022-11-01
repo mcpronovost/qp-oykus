@@ -46,6 +46,11 @@ body .el-alert {
     line-height: 120%;
     text-align: left;
 }
+body .el-alert__title {
+    font-size: 16px;
+    line-height: 120%;
+    vertical-align: middle;
+}
 body .el-alert .el-alert__icon {
     margin-right: 6px;
 }
@@ -137,6 +142,9 @@ body .el-card.is-always-shadow {
 
 body .el-col {
     padding: 10px;
+}
+body .el-col.qp-pa0 {
+    padding: 0;
 }
 
 body .el-color-picker {
@@ -264,6 +272,9 @@ body .el-row {
     padding: 0 10px;
     margin-left: 0!important;
     margin-right: 0!important;
+}
+body .el-row.qp-pa0 {
+    padding: 0;
 }
 
 body .el-select {
