@@ -13,7 +13,7 @@ const props = defineProps({
 
 <template>
     <el-card v-if="props.rpg && props.section" :id="`rpg-${props.rpg.slug}-forum-section-${props.section.id}`" class="rpg-forum-category-section">
-        <div class="rpg-forum-category-section-title" @click="$router.push({path:`/rpg/${props.rpg.slug}/s${props.section.id}-${$f.qpSlugify(props.section.title)}`})">
+        <div class="rpg-forum-category-section-title" @click="$router.push({path:`/rpg/${props.rpg.slug}/s${props.section.id}-${$f.qpslug(props.section.title)}`})">
             <h3>
                 <span v-text="props.section.title"></span>
             </h3>
@@ -29,7 +29,7 @@ const props = defineProps({
                 <span v-text="props.section.last_message.topic.title"></span>
             </div>
             <div class="rpg-forum-category-section-lastmessage-date">
-                <span v-text="$f.qpDate(props.section.last_message.created_at)"></span>
+                <span v-text="$f.qpdate(props.section.last_message.created_at)"></span>
             </div>
         </div>
     </el-card>

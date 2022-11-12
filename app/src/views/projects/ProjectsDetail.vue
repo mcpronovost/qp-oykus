@@ -66,7 +66,7 @@ onMounted(() => getProject())
         <el-row>
             <el-col>
                 <pre>{{project.created_at}}</pre>
-                <pre>qpdated ({{tz}}) : {{$f.qpDate(project.created_at, tz)}}</pre>
+                <pre>qpdated ({{tz}}) : {{$f.qpdate(project.created_at, tz)}}</pre>
             </el-col>
         </el-row>
     </div>

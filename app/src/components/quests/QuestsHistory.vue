@@ -173,7 +173,7 @@ const listHistory = ref<Array<any>>([
         <el-timeline-item
             v-for="(log, n) in props.logs"
             :key="`history-${n}`"
-            :timestamp="new Date(log.end) > new Date() ? $f.qpDate(new Date(log.start)) : $f.qpDate(new Date(log.end))"
+            :timestamp="new Date(log.end) > new Date() ? $f.qpdate(new Date(log.start)) : $f.qpdate(new Date(log.end))"
             :color="!log.is_completed ? '' : log.is_success ? 'var(--qp-primary-dark-2)' : 'var(--qp-error-dark-2)'"
             size="large"
         >
