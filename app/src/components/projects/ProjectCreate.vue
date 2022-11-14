@@ -6,6 +6,7 @@ import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
+import { qprhex } from "@mcpronovost/qpfilters";
 import { API, HEADERS } from "../../plugins/store/index";
 import { storeUser } from "../../plugins/store";
 
@@ -28,7 +29,7 @@ const formProject = reactive<ProjectsCreateForm>({
     name: "",
     caption: "",
     description: "",
-    primary_color: `#${Math.floor((Math.random() * 0xffffff)).toString(16)}`,
+    primary_color: qprhex(),
     secondary_color: "#ffffff",
     icon: null,
     icon_file: null
@@ -120,7 +121,7 @@ const doCreateProject = async () => {
 }
 
 const doOpen = () => {
-    formProject.primary_color = `#${Math.floor((Math.random() * 0xffffff)).toString(16)}`
+    formProject.primary_color = qprhex()
 }
 
 const doClose = () => {

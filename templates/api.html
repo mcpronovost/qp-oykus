@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oykus API v1</title>
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap-tweaks.css" />
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/default.css" />
+    <style>
+        tr.disabled{opacity:0.4;}
+        tr.disabled a{cursor:default;pointer-events:none;}
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+<div class="navbar navbar-static-top navbar-inverse" role="navigation" aria-label="navbar">
+<div class="container">
+<span>
+<a class='navbar-brand' rel="nofollow" href='https://www.django-rest-framework.org/'>
+Oykus API v1
+</a>
+</span>
+</div>
+</div>
+<div class="container">
+<ul class="breadcrumb"></ul>
+<div id="content" role="main" aria-label="content">
+<div class="region" aria-label="request form">
+</div>
+<div class="content-main" role="main" aria-label="main content">
+<div class="page-header">
+<h1>API v1</h1>
+</div>
+<div style="float:left">
+<p>All endpoints</p>
+</div>
+
+<div class="response-info" style="clear: both">
+<div class="prettyprint">
+<table style="border-collapse:separate;border-spacing:8px;width:100%">
+    <thead><tr><th>endpoints</th><th>methods</th><th>views</th></tr></thead>
+    <tr><td colspan="3"><hr /></td></tr>
+    <!-- Me -->
+    <tbody>
+        {% for url in url_list %}
+            {% if url == "divider" %}
+                <tr><td colspan="3"><hr /></td></tr>
+            {% else %}
+                <tr>
+                    <td><a href="/api/v1{{ url.link }}">{{ url.pattern }}</a><br /></td>
+                    <td>{{ url.methods }}</td><td>{{ url.view }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

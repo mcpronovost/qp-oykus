@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { qpdate, qpslug } from "@mcpronovost/qpfilters";
+import { qpabbr, qpdate, qpslug } from "@mcpronovost/qpfilters";
 const props = defineProps({
     rpg: {
         type: Object,
@@ -29,12 +29,13 @@ const props = defineProps({
         <div class="rpg-forum-section-topic-title" @click="$router.push({path:`/rpg/${props.rpg.slug}/t${props.topic.id}-${qpslug(props.topic.title)}`})">
             <h3>
                 <span v-text="props.topic.title"></span>
+                <div v-text="qpabbr('Pachu\'a Wapi Qatlaalawsiq', 2)"></div>
             </h3>
         </div>
         <div class="rpg-forum-section-topic-footer">
             <div class="rpg-forum-section-topic-date">
                 <el-icon class="mdi mdi-clock-outline el-icon--left" />
-                <span v-text="$f.qpdate(props.topic.created_at)"></span>
+                <span v-text="qpdate(props.topic.created_at)"></span>
             </div>
             <div class="rpg-forum-section-topic-counts">
                 <span v-text="0"></span>

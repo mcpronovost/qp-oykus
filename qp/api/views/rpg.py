@@ -1,113 +1,59 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import status
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 
 from qp.api.permissions import qpIsAny, qpIsAuthenticated
-from qp.rpg.models import qpRpg, qpRpgRace, qpRpgSkill
-from qp.characters.models import qpCharacter
+from qp.rpg.models import qpRpg
 
-from qp.api.serializers.rpg import qpRpgSerializer, qpRpgCreateSerializer
-from qp.api.serializers.characters import qpCharacterSimpleSerializer
-from qp.api.serializers.races import qpRaceSimpleSerializer
-from qp.api.serializers.skills import qpSkillSimpleSerializer
+from qp.api.serializers.rpg import qpRpgSerializer, qpRpgSimpleSerializer
 
 
 class qpRpgListView(ListAPIView):
     """
-    RPG GET list
+    RPG `GET` list
     """
     permission_classes = [qpIsAny]
     queryset = qpRpg.objects.all()
-    serializer_class = qpRpgSerializer
+    serializer_class = qpRpgSimpleSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
-class qpRpgCreateView(CreateAPIView):
+class qpRpgDetailView(RetrieveUpdateDestroyAPIView):
     """
-    RPG CREATE
-    """
-    permission_classes = [qpIsAuthenticated]
-    queryset = qpRpg.objects.all()
-    serializer_class = qpRpgCreateSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-
-class qpRpgDetailView(RetrieveUpdateAPIView):
-    """
-    RPG GET, UPDATE
+    RPG `GET`, `UPDATE`, `DELETE`
     """
     permission_classes = [qpIsAny]
     queryset = qpRpg.objects.all()
     serializer_class = qpRpgSerializer
     lookup_field = "slug"
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # user = request.user
+        if instance is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return self.retrieve(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
         instance = self.get_object()
         user = request.user
+        if instance is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         if user is not None and user.is_authenticated and user.profile and instance.owner == user:
             return self.partial_update(request, *args, **kwargs)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-
-class qpRpgDeleteView(DestroyAPIView):
-    """
-    RPG DELETE
-    """
-    permission_classes = [qpIsAuthenticated]
-    queryset = qpRpg.objects.all()
-    serializer_class = qpRpgSerializer
-    lookup_field = "slug"
-
-    def destroy(self, request, *args, **kwargs):
+    def delete(self, request, *args, **kwargs):
         instance = self.get_object()
-        if instance.owner == self.request.user:
-            self.perform_destroy(instance)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        user = request.user
+        if instance is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        if user is not None and user.is_authenticated and user.profile and instance.owner == user:
+            return self.destroy(request, *args, **kwargs)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-
-class qpRpgRacesListView(ListAPIView):
-    """
-    RPG Races GET list
-    """
-    permission_classes = [qpIsAny]
-    serializer_class = qpRaceSimpleSerializer
-
-    def get_queryset(self):
-        slug = str(self.kwargs["slug"])
-        queryset = qpRpgRace.objects.filter(
-            rpg__slug=slug
-        )
-        return queryset
-
-
-class qpRpgSkillsListView(ListAPIView):
-    """
-    RPG Skills GET list
-    """
-    permission_classes = [qpIsAny]
-    serializer_class = qpSkillSimpleSerializer
-
-    def get_queryset(self):
-        slug = str(self.kwargs["slug"])
-        queryset = qpRpgSkill.objects.filter(
-            rpg__slug=slug
-        )
-        return queryset
-
-
-class qpRpgCharactersListView(ListAPIView):
-    """
-    RPG Characters GET list
-    """
-    permission_classes = [qpIsAny]
-    serializer_class = qpCharacterSimpleSerializer
-
-    def get_queryset(self):
-        slug = str(self.kwargs["slug"])
-        queryset = qpCharacter.objects.filter(
-            rpg__slug=slug
-        )
-        return queryset
+    def put(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

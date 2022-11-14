@@ -9,14 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mcpronovost/qpfilters": "^1.0.6",
     "@fontsource/nunito": "^4.5.11",
     "@fontsource/quicksand": "^4.5.11",
+    "@mcpronovost/qpfilters": "file:../../qp-filters",
     "@mdi/font": "^7.0.96",
     "buffer": "^6.0.3",
     "element-plus": "^2.2.21",
     "pinia": "^2.0.23",
-    "vue": "^3.2.45",
+    "vue": "^3.2.37",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },

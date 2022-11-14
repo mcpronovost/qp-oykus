@@ -56,3 +56,14 @@ class qpRpgSerializer(serializers.ModelSerializer):
                 "stylesheet": strip_tags(style.stylesheet)
             }
         return result
+
+
+class qpRpgCreateSerializer(serializers.ModelSerializer):
+    """
+    Rpg ``create`` serializer
+    """
+
+    class Meta:
+        model = qpRpg
+        fields = ["id", "name", "owner"]
+        read_only_fields = ["id", "owner"]
