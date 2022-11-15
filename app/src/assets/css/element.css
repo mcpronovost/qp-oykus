@@ -249,6 +249,18 @@ body .el-message-box {
     --el-messagebox-content-color: var(--qp-card-color);
 }
 
+body .el-pagination {
+    --el-pagination-button-bg-color: var(--qp-card-bg);
+    --el-disabled-bg-color: var(--qp-card-bg);
+    --el-text-color-regular: var(--qp-card-color);
+    --el-text-color-placeholder: var(--qp-card-color);
+    justify-content: center;
+}
+body .el-pagination.is-background .btn-next:disabled,
+body .el-pagination.is-background .btn-prev:disabled {
+    opacity: 0.6;
+}
+
 body .el-progress {
     --el-border-color-lighter: rgba(255, 255, 255, 0.05);
 }

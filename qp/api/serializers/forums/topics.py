@@ -30,12 +30,11 @@ class qpForumTopicSerializer(serializers.ModelSerializer):
     Forum Topic serializer
     """
     author = serializers.SerializerMethodField()
-    messages = qpForumMessageSerializer(many=True)
     breadcrumb = serializers.SerializerMethodField()
 
     class Meta:
         model = qpForumTopic
-        fields = ["id", "title", "forum", "category", "section", "author", "flag", "messages", "created_at", "updated_at", "breadcrumb"]
+        fields = ["id", "title", "forum", "category", "section", "author", "flag", "created_at", "updated_at", "breadcrumb"]
         read_only_fields = ["id", "created_at", "updated_at", "breadcrumb"]
     
     def get_author(self, obj):

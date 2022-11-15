@@ -24,7 +24,7 @@ const props = defineProps({
             </el-avatar>
             <div v-if="props.section.last_message" class="rpg-forum-category-section-track"></div>
         </div>
-        <div v-if="props.section.last_message" class="rpg-forum-category-section-lastmessage">
+        <div v-if="props.section.last_message" class="rpg-forum-category-section-lastmessage" @click="$router.push({path:`/rpg/${props.rpg.slug}/t${props.section.last_message.topic.id}-${$f.qpslug(props.section.last_message.topic.title)}`, query: {page: 'last'}})">
             <div class="rpg-forum-category-section-lastmessage-title">
                 <span v-text="props.section.last_message.topic.title"></span>
             </div>

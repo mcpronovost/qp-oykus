@@ -127,7 +127,7 @@ const doSendProfile = async () => {
                     <div class="qp-settings-heading">
                         <el-card class="qp-h100">
                             <div class="qp-settings-heading-wrapper">
-                                <el-avatar :src="formProfile.avatar_file" :size="120">
+                                <el-avatar :src="formProfile.avatar_file" :size="120" :style="formProfile.avatar_file ? '' : 'background-color:var(--qp-primary);color:#fff;'">
                                     <span v-text="initial"></span>
                                 </el-avatar>
                             </div>

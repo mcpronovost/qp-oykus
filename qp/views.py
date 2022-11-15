@@ -41,7 +41,7 @@ def api(request):
             url_list.append("divider")
         url_list.append({
             "pattern": pattern,
-            "link": pattern.replace("<slug:slug>", "qalatlan"),
+            "link": pattern.replace("<slug:slug>", "oykus").replace("<int:pk>", "1"),
             "methods": methods,
             "view": view
         })
