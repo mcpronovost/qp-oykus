@@ -36,10 +36,10 @@ const initRpg = () => {
 const initForum = async () => {
     isLoading.value = true
     hasError.value = null
-    let pk = props.rpg.forum
+    let slug = props.rpg.slug
     // ===---
     try {
-        let f = await fetch(`${API}/forums/${pk}/`, {
+        let f = await fetch(`${API}/rpg/${slug}/forum/`, {
             method: "GET",
             headers: HEADERS(rat.value, lang.value)
         })

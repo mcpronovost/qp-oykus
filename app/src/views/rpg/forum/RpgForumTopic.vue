@@ -5,7 +5,7 @@ import { useRoute } from "vue-router";
 import { ElMessage } from "element-plus";
 import { API, HEADERS } from "../../../plugins/store/index";
 import { storeUser } from "../../../plugins/store";
-import QpRpgForumSectionCard from "../../../components/rpg/forum/RpgForumSectionCard.vue";
+import QpRpgForumMessageCard from "../../../components/rpg/forum/RpgForumMessageCard.vue";
 
 const route = useRoute()
 
@@ -23,28 +23,28 @@ const isLoading = ref<boolean>(false)
 const hasError = ref<string|null>(null)
 
 const rpg = ref<any>(null)
-const category = ref<any>(null)
+const topic = ref<any>(null)
 
 const initRpg = () => {
     isLoading.value = true
     rpg.value = props.rpg
-    initCategory()
+    initTopic()
 }
 
-const initCategory = async () => {
+const initTopic = async () => {
     isLoading.value = true
     hasError.value = null
     let slug = rpg.value.slug
-    let pk = route.params.category_pk
+    let pk = route.params.topic_pk
     // ===---
-    let f = await fetch(`${API}/rpg/${slug}/forum/categories/${pk}/`, {
+    let f = await fetch(`${API}/rpg/${slug}/forum/topics/${pk}/`, {
         method: "GET",
         headers: HEADERS(rat.value, lang.value)
     })
     if (f.status === 200) {
         let r = await f.json()
         document.title = `${r.title} - ${rpg.value.name}`
-        category.value = r
+        topic.value = r
         isLoading.value = false
     } else {
         if (f.status === 401) ElMessage.error("not authorized")
@@ -59,23 +59,25 @@ onMounted(() => {initRpg()})
 </script>
 
 <template>
-    <div v-if="!isLoading && !hasError && rpg && category" class="qp-container">
-        <qp-header :title="category.title" :content="category.description" :heading="2" />
+    <div v-if="!isLoading && !hasError && rpg && topic" class="qp-container">
+        <qp-header :title="topic.title" :content="topic.description" :heading="2" title-size="52px" />
         <div class="el-forum-breadcrumb">
             <ul class="el-forum-breadcrumb-list">
-                <li v-for="(bread, n) in category.breadcrumb" :key="`qp-bread-${n}`" class="el-forum-breadcrumb-item">
+                <li v-for="(bread, n) in topic.breadcrumb" :key="`qp-bread-${n}`" class="el-forum-breadcrumb-item">
                     <span @click="$router.push({path:bread.path})" v-text="bread.name"></span>
                 </li>
             </ul>
         </div>
-        <el-row>
-            <el-col v-for="(section, n) in category.sections" :key="`rpg-forum-section-${n}`" :span="24" :md="section.width">
-                <QpRpgForumSectionCard :rpg="rpg" :section="section" />
-            </el-col>
-            <el-col v-if="!category.sections.length">
-                <el-alert :title="$t('NoSectionsYet')" type="error" center :closable="false" />
-            </el-col>
-        </el-row>
+        <div class="qp-forum-topic">
+            <el-row>
+                <el-col v-for="(message, n) in topic.messages" :key="`rpg-forum-message-${n}`" :span="24">
+                    <QpRpgForumMessageCard :rpg="rpg" :message="message" />
+                </el-col>
+                <el-col v-for="(message, n) in topic.messages" :key="`rpg-forum-message-${n}`" :span="24">
+                    <QpRpgForumMessageCard :rpg="rpg" :message="message" />
+                </el-col>
+            </el-row>
+        </div>
     </div>
     <qp-notfound v-else-if="!isLoading" />
 </template>

@@ -3,7 +3,6 @@ import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { ElMessage } from "element-plus";
-import { ArrowRight } from "@element-plus/icons-vue";
 import { API, HEADERS } from "../../../plugins/store/index";
 import { storeApp, storeUser } from "../../../plugins/store";
 import QpRpgForumTopicCard from "../../../components/rpg/forum/RpgForumTopicCard.vue";
@@ -41,7 +40,7 @@ const initSection = async () => {
     let slug = rpg.value.slug
     let pk = route.params.section_pk
     // ===---
-    let f = await fetch(`${API}/rpg/${slug}/forums/sections/${pk}/`, {
+    let f = await fetch(`${API}/rpg/${slug}/forum/sections/${pk}/`, {
         method: "GET",
         headers: HEADERS(rat.value, lang.value)
     })
@@ -64,7 +63,7 @@ onMounted(() => {initRpg()})
 
 <template>
     <div v-if="!isLoading && !hasError && rpg && section" class="qp-container">
-        <qp-header :title="section.title" :content="section.description" title-size="52px" />
+        <qp-header :title="section.title" :content="section.description" :heading="2" title-size="52px" />
         <div class="el-forum-breadcrumb">
             <ul class="el-forum-breadcrumb-list">
                 <li v-for="(bread, n) in section.breadcrumb" :key="`qp-bread-${n}`" class="el-forum-breadcrumb-item">

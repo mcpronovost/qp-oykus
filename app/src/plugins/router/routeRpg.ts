@@ -28,6 +28,11 @@ export const routeRpg = [
                 path: "/rpg/:slug/s:section_pk-:section_slug",
                 name: "RpgForumSection",
                 component: () => import("@/views/rpg/forum/RpgForumSection.vue")
+            },
+            {
+                path: "/rpg/:slug/t:topic_pk-:topic_slug",
+                name: "RpgForumTopic",
+                component: () => import("@/views/rpg/forum/RpgForumTopic.vue")
             }
         ]
     }

@@ -417,6 +417,7 @@ body .el-menu-item.rpg-sidenav-menu-item > span {
 }
 
 /* ===================================================== */
+
 .qp-forum-section-topics > .el-col {
     flex-grow: 1;
     max-width: 100%;
@@ -512,4 +513,50 @@ body .el-menu-item.rpg-sidenav-menu-item > span {
 }
 .rpg-forum-section-topic-counts {
     opacity: 0.5;
+}
+
+/* ===================================================== */
+
+.rpg-forum-topic-message {
+    text-align: center;
+    overflow: visible;
+    height: 100%;
+    margin: 0 0 6px;
+}
+
+.rpg-forum-topic-message-banner {
+    position: relative;
+}
+
+.rpg-forum-topic-message-author-avatar {
+    text-align: center;
+    margin: -48px 0 0;
+}
+.rpg-forum-topic-message-author-avatar .el-avatar {
+    background-color: var(--qp-card-bg);
+    border: 12px solid var(--qp-card-bg);
+    color: #fff;
+}
+
+.rpg-forum-topic-message-author-name {
+    padding: 6px 12px;
+}
+.rpg-forum-topic-message-author-name h3 {
+    color: var(--qp-primary);
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 120%;
+}
+
+.rpg-forum-topic-message-content {
+    padding: 32px 12px;
+}
+.rpg-forum-topic-message-content-text {
+    font-size: 18px;
+    line-height: 180%;
+    text-align: justify;
+    word-break: break-word;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
 }
